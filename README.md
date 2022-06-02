@@ -1,20 +1,20 @@
-> Learning languages is like living multiple lives
-
 ## Application
 Using computer vision to help learn the Chinese language.
-- Features:
-    - [ ] Snip a screnshot for image to text recognition
-    - [ ] Automatically copy words to the clipboard
-    - [ ] Save words to Google Translate
-    - [ ] Connects to Spotify when you want to learn songs
-    - [ ] For Chinese
-        - [ ] Automatic PinYin (Latinized pronunciation)
-        - [ ] Chinese Traditional to Chinese Simplified
-- Extra features
-    - Copying unhighlightable text without translating (eg. programming tutorials on YouTube)
-    - Pop-up window
-    - What language (Python, Java, C#)
-    - Possible to hide terminal of python script?
+> Learning languages is like living multiple lives
+Features:
+- [ ] Snip a screnshot for image to text recognition
+- [ ] Smart image recognition AI
+- [ ] Automatically copy words to the clipboard
+- [ ] Save words to Google Translate
+- [ ] Connects to Spotify when you want to learn songs
+- [ ] For Chinese
+    - [ ] Automatic PinYin (Latinized pronunciation)
+    - [ ] Chinese Traditional to Chinese Simplified
+Extra features:
+- Copying unhighlightable text without translating (eg. programming tutorials on YouTube)
+- Pop-up window
+- What language (Python, Java, C#)
+- Possible to hide terminal of python script?
 
 
 Name ideas:
