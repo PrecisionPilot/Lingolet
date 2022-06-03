@@ -6,7 +6,7 @@ Features:
 - [ ] Smart image recognition AI
 - [ ] Automatically copy words to the clipboard
 - [ ] Save words to Google Translate
-- [ ] Connects to Spotify when you want to learn songs
+- [ ] Streams translated Spotify lyrics
 - [ ] For Chinese
     - [ ] Automatic PinYin (Latinized pronunciation)
     - [ ] Chinese Traditional to Chinese Simplified

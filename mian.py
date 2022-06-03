@@ -1,9 +1,6 @@
-# import pyautogui
-
-# myScreenshot = pyautogui.screenshot()
-# myScreenshot.save(r'c:/users/seanw/downloads/image.png')
 from PIL import Image, ImageGrab
 from pynput.mouse import Listener
+from PyQt5 import QtWidgets, QtCore, QtGui
 
 x1 = 0
 y1 = 0
@@ -22,6 +19,17 @@ def on_click(x, y, button, pressed):
         global x2, y2
         x2 = x
         y2 = y
+
+        # Make sure x1 < x2, y1 < y2
+        if x1 > x2:
+            tmp = x1
+            x1 = x2
+            x2 = tmp
+        if y1 > y2:
+            tmp = y1
+            y1 = y2
+            y2 = tmp
+        
         im2 = ImageGrab.grab(bbox=(x1, y1, x2, y2))
         im2.show()
 
@@ -30,3 +38,6 @@ def on_scroll(x, y, dx, dy):
 
 with Listener(on_move=on_move, on_click=on_click, on_scroll=on_scroll) as listener:
     listener.join()
+
+
+# Fix bug: negative dx dy values
