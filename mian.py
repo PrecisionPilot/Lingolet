@@ -1,6 +1,7 @@
 from PIL import Image, ImageGrab
 from pynput.mouse import Listener
 from PyQt5 import QtWidgets, QtCore, QtGui
+import SnippingMenu
 
 x1 = 0
 y1 = 0
