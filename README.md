@@ -1,3 +1,10 @@
+## Schedule
+- Snip feature
+- Image recognition to text (Wednesday)
+- Google Translate API (Friday)
+- Spotify API (Satuday)
+
+
 ## Application
 Using computer vision to help learn the Chinese language.
 > Learning languages is like living multiple lives
@@ -21,6 +28,7 @@ Name ideas:
 - Language Experience Enchanter
 - Languages Enhanced
 - Enchanted Lingo
+- Open-LingoVision
 
 
 
