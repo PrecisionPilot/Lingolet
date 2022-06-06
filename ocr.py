@@ -1,5 +1,6 @@
 import io
 import os
+from PIL import Image, ImageGrab
 from google.cloud import vision
 
 # Authentication
@@ -9,14 +10,16 @@ os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = r'auth.json'
 client = vision.ImageAnnotatorClient()
 
 
-# Load image into memory
-imageDir = "Sample Text.png"
-with open(imageDir, "rb") as img:
-    content = img.read()
-image = vision.Image(content=content)
+def parseImage(dir):
+    # Load image into memory
+    with open(dir, "rb") as img:
+        content = img.read()
+    image = vision.Image(content=content)
 
-# OCR detection
-response = client.text_detection(image=image)
-texts = response.text_annotations
+    # OCR detection
+    response = client.text_detection(image=image)
+    texts = response.text_annotations
+    texts = texts[0].description
 
-print(texts)
+    # Do stuff with the text
+    return texts

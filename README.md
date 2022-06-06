@@ -1,22 +1,23 @@
 ## Schedule
-- Snip feature
-- Image recognition to text (Wednesday)
-- Google Translate API (Friday)
-- Spotify API (Satuday)
+- [ ] Snip feature
+- [x] Image recognition to text (Wednesday)
+- [ ] Keyboard shortcut to parse clipboard
+- [ ] Google Translate API (Friday)
+- [ ] [Spotify API](https://youtu.be/c5sWvP9h3s8) (Satuday)
 
 
 ## Application
 Using computer vision to help learn the Chinese language.
 > Learning languages is like living multiple lives
 Features:
-- [ ] Snip a screnshot for image to text recognition
-- [ ] Smart image recognition AI
-- [ ] Automatically copy words to the clipboard
-- [ ] Save words to Google Translate
-- [ ] Streams translated Spotify lyrics
-- [ ] For Chinese
-    - [ ] Automatic PinYin (Latinized pronunciation)
-    - [ ] Chinese Traditional to Chinese Simplified
+- Snip a screnshot for image to text recognition
+- Smart image recognition AI
+- Automatically copy words to the clipboard
+- Save words to Google Translate
+- Streams translated Spotify lyrics
+- For Chinese
+    - Automatic PinYin (Latinized pronunciation)
+    - Chinese Traditional to Chinese Simplified
 Extra features:
 - Copying unhighlightable text without translating (eg. programming tutorials on YouTube)
 - Pop-up window

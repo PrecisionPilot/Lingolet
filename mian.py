@@ -1,8 +1,12 @@
 from PIL import Image, ImageGrab
 from pynput.mouse import Listener
 from PyQt5 import QtWidgets, QtCore, QtGui
-import SnippingMenu
+import pyperclip
+from ocr import parseImage
+# import SnippingMenu
 
+
+# Screenshot snipping implementation
 x1 = 0
 y1 = 0
 x2 = 0
@@ -37,8 +41,20 @@ def on_click(x, y, button, pressed):
 def on_scroll(x, y, dx, dy):
     print("scrolled")
 
-with Listener(on_move=on_move, on_click=on_click, on_scroll=on_scroll) as listener:
-    listener.join()
+# Screenshot snipping
+# with Listener(on_move=on_move, on_click=on_click, on_scroll=on_scroll) as listener:
+#     listener.join()
 
 
-# Fix bug: negative dx dy values
+clipboard = ImageGrab.grabclipboard()
+# Check if clipboard contains image
+if clipboard != None:
+    # Use the clipboard image to parse
+    clipboard = clipboard[0]
+    text = parseImage(clipboard)
+
+    # Copy to clipboard
+    pyperclip.copy(text)
+    print(text)
+else:
+    print("Error: You do not have an image copied to clipboard")
