@@ -1,6 +1,8 @@
-## Schedule
+## To-Do List
 - [ ] Snip feature (make it work well with Minecraft)
 - [x] Image recognition to text (Wednesday)
+- [ ] Create a Python file which handles pynput
+- [ ] Pop-up window with editable textbox
 - [ ] Automatic read aloud option
 - [ ] Keyboard shortcut to parse clipboard
 - [ ] Google Translate API (Friday)

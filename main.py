@@ -1,5 +1,6 @@
 from PIL import Image, ImageGrab
-from pynput.mouse import Listener
+from pynput import mouse
+from pynput import keyboard
 from PyQt5 import QtWidgets, QtCore, QtGui
 import pyperclip
 from ocr import parseImage
@@ -42,19 +43,28 @@ def on_scroll(x, y, dx, dy):
     print("scrolled")
 
 # Screenshot snipping
-with Listener(on_move=on_move, on_click=on_click, on_scroll=on_scroll) as listener:
+# with mouse.Listener(on_move=on_move, on_click=on_click, on_scroll=on_scroll) as listener:
+#     listener.join()
+
+
+def parseClipboard():
+    clipboard = ImageGrab.grabclipboard()
+    # Check if clipboard contains image
+    if clipboard != None:
+        # Use the clipboard image to parse
+        clipboard = clipboard[0]
+        text = parseImage(clipboard)
+
+        # Copy to clipboard
+        pyperclip.copy(text)
+        print(text)
+    else:
+        print("Error: You do not have an image copied to clipboard")
+
+# Hotkey implementation
+def for_canonical(f):
+    return lambda k: f(listener.canonical(k))
+hotkey = keyboard.HotKey(keyboard.HotKey.parse("<ctrl>+q"), parseClipboard())
+
+with keyboard.Listener(on_press=for_canonical(hotkey.press), on_release=for_canonical(hotkey.release)) as listener:
     listener.join()
-
-
-# clipboard = ImageGrab.grabclipboard()
-# # Check if clipboard contains image
-# if clipboard != None:
-#     # Use the clipboard image to parse
-#     clipboard = clipboard[0]
-#     text = parseImage(clipboard)
-
-#     # Copy to clipboard
-#     pyperclip.copy(text)
-#     print(text)
-# else:
-#     print("Error: You do not have an image copied to clipboard")
