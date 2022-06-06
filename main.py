@@ -42,19 +42,19 @@ def on_scroll(x, y, dx, dy):
     print("scrolled")
 
 # Screenshot snipping
-# with Listener(on_move=on_move, on_click=on_click, on_scroll=on_scroll) as listener:
-#     listener.join()
+with Listener(on_move=on_move, on_click=on_click, on_scroll=on_scroll) as listener:
+    listener.join()
 
 
-clipboard = ImageGrab.grabclipboard()
-# Check if clipboard contains image
-if clipboard != None:
-    # Use the clipboard image to parse
-    clipboard = clipboard[0]
-    text = parseImage(clipboard)
+# clipboard = ImageGrab.grabclipboard()
+# # Check if clipboard contains image
+# if clipboard != None:
+#     # Use the clipboard image to parse
+#     clipboard = clipboard[0]
+#     text = parseImage(clipboard)
 
-    # Copy to clipboard
-    pyperclip.copy(text)
-    print(text)
-else:
-    print("Error: You do not have an image copied to clipboard")
+#     # Copy to clipboard
+#     pyperclip.copy(text)
+#     print(text)
+# else:
+#     print("Error: You do not have an image copied to clipboard")

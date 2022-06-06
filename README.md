@@ -1,6 +1,7 @@
 ## Schedule
-- [ ] Snip feature
+- [ ] Snip feature (make it work well with Minecraft)
 - [x] Image recognition to text (Wednesday)
+- [ ] Automatic read aloud option
 - [ ] Keyboard shortcut to parse clipboard
 - [ ] Google Translate API (Friday)
 - [ ] [Spotify API](https://youtu.be/c5sWvP9h3s8) (Satuday)
@@ -12,6 +13,8 @@ Using computer vision to help learn the Chinese language.
 Features:
 - Snip a screnshot for image to text recognition
 - Smart image recognition AI
+- Works well with Minecraft
+- Automatic read aloud option
 - Automatically copy words to the clipboard
 - Save words to Google Translate
 - Streams translated Spotify lyrics
