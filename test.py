@@ -1,12 +1,10 @@
-from pynput import keyboard
+from PIL import ImageGrab
+import atexist
 
-def on_activate_h():
-    print('<ctrl>+<alt>+h pressed')
+clipboard = ImageGrab.grabclipboard()
+if clipboard:
+    clipboard.save("clipboard.png")
+print(clipboard)
 
-def on_activate_i():
-    print('<ctrl>+<alt>+i pressed')
-
-with keyboard.GlobalHotKeys({
-        '<ctrl>+<alt>+h': on_activate_h,
-        '<ctrl>+<alt>+i': on_activate_i}) as h:
-    h.join()
+# image = ImageGrab.grab(bbox=(0, 0, 500, 500))
+# print(image)

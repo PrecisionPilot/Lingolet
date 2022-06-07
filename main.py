@@ -49,15 +49,22 @@ def on_scroll(x, y, dx, dy):
 
 def parseClipboard():
     clipboard = ImageGrab.grabclipboard()
-    # Check if clipboard contains image
-    if clipboard != None:
-        # Use the clipboard image to parse
-        clipboard = clipboard[0]
-        text = parseImage(clipboard)
 
+    # Check if clipboard contains image
+    if clipboard:
+        # Check if clipboard is a list
+        if isinstance(clipboard, list):
+            # Use the clipboard image to parse
+            clipboard = clipboard[0]
+            text = parseImage(clipboard)
+        else:
+            clipboard.save("clipboard.png")
+            text = parseImage("clipboard.png")
+        
         # Copy to clipboard
         pyperclip.copy(text)
         print(text)
+
     else:
         print("Error: You do not have an image copied to clipboard")
 
