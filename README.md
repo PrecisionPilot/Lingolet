@@ -1,5 +1,12 @@
 ## To-Do List
-- [ ] Snip feature (make it work well with Minecraft)
+- [ ] Give Project a name
+    - Language Experience Enchanter
+    - Languages Enhanced
+    - Enchanted Lingo
+    - Open-LingoVision
+- [ ] Snip feature
+    - [ ] Make PIL readable to 
+    - [ ] Make it work well with Minecraft
 - [x] Image recognition to text (Wednesday)
 - [x] Keyboard shortcut to parse clipboard
 - [ ] Create a Python file which handles pynput
@@ -39,14 +46,6 @@ Extra features:
 - Pop-up window
 - What language (Python, Java, C#)
 - Possible to hide terminal of python script?
-
-
-Name ideas:
-- Language Experience Enchanter
-- Languages Enhanced
-- Enchanted Lingo
-- Open-LingoVision
-
 
 
 ## Sales pitch:
