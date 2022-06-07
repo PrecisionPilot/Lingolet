@@ -3,6 +3,8 @@
 - [x] Image recognition to text (Wednesday)
 - [x] Keyboard shortcut to parse clipboard
 - [ ] Create a Python file which handles pynput
+- [ ] Have a way to quit software
+
 - [ ] Pop-up window with editable textbox (when hotkey is toggled)
     - [ ] Parsing sound effect
     - [ ] Google Translate API (Friday)
@@ -14,6 +16,7 @@
     - [ ] Custom hotkey
     - [ ] Custom
 - [ ] [Spotify API](https://youtu.be/c5sWvP9h3s8) (Satuday)
+    - [ ] Automatically pull up lyrics document (for language learning)
 - [ ] Update features list
 
 
