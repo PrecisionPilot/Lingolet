@@ -11,8 +11,10 @@
     - [ ] Make it work well with Minecraft
 - [x] Image recognition to text (Wednesday)
 - [x] Keyboard shortcut to parse clipboard
+    - [ ] Parses text if text detected on clipboard
 - [ ] Create a Python file which handles pynput
 - [ ] Have a way to quit software
+
 
 - [ ] Pop-up window with editable textbox (when hotkey is toggled)
     - [ ] Parsing sound effect
@@ -23,7 +25,8 @@
 - [ ] Create a settings menu
     - [ ] Automatic read aloud option
     - [ ] Custom hotkey
-    - [ ] Custom
+    - [ ] Custom sound effect
+    - [ ] Run on startup option (Windows + MacOS support)
 - [ ] [Spotify API](https://youtu.be/c5sWvP9h3s8) (Satuday)
     - [ ] Automatically pull up lyrics document (for language learning)
 - [ ] Update features list
