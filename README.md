@@ -1,12 +1,20 @@
 ## To-Do List
 - [ ] Snip feature (make it work well with Minecraft)
 - [x] Image recognition to text (Wednesday)
+- [x] Keyboard shortcut to parse clipboard
 - [ ] Create a Python file which handles pynput
-- [ ] Pop-up window with editable textbox
-- [ ] Automatic read aloud option
-- [ ] Keyboard shortcut to parse clipboard
-- [ ] Google Translate API (Friday)
+- [ ] Pop-up window with editable textbox (when hotkey is toggled)
+    - [ ] Parsing sound effect
+    - [ ] Google Translate API (Friday)
+    - [ ] When Chinese Traditional is detected, have both Chinese Simplified & English output
+- [ ] Welcome page
+    - Instructions (hotkey etc), Features
+- [ ] Create a settings menu
+    - [ ] Automatic read aloud option
+    - [ ] Custom hotkey
+    - [ ] Custom
 - [ ] [Spotify API](https://youtu.be/c5sWvP9h3s8) (Satuday)
+- [ ] Update features list
 
 
 ## Application
