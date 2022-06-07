@@ -1,4 +1,5 @@
 ## To-Do List
+- [ ] Learn to use the [debugger](https://code.visualstudio.com/docs/editor/debugging)
 - [ ] Give Project a name
     - Language Experience Enchanter
     - Languages Enhanced
