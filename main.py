@@ -62,9 +62,5 @@ def parseClipboard():
         print("Error: You do not have an image copied to clipboard")
 
 # Hotkey implementation
-def for_canonical(f):
-    return lambda k: f(listener.canonical(k))
-hotkey = keyboard.HotKey(keyboard.HotKey.parse("<ctrl>+q"), parseClipboard())
-
-with keyboard.Listener(on_press=for_canonical(hotkey.press), on_release=for_canonical(hotkey.release)) as listener:
-    listener.join()
+with keyboard.GlobalHotKeys({'<ctrl>+q': parseClipboard}) as h:
+    h.join()
