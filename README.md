@@ -9,6 +9,9 @@
     - [ ] Make PIL image readable to Google Cloud
     - [ ] Ensure snipping won't interfere with desktop
     - [ ] Make it work well with Minecraft
+- Error handling
+    - [x] No internet connection error
+    - [ ] Image with no text error
 - [x] Image recognition to text (Wednesday)
 - [x] Keyboard shortcut to parse clipboard
     - [ ] Parses text if text detected on clipboard
