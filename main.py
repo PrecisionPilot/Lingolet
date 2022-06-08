@@ -69,5 +69,5 @@ def parseClipboard():
         print("Error: You do not have an image copied to clipboard")
 
 # Hotkey implementation
-with keyboard.GlobalHotKeys({'<ctrl>+q': parseClipboard}) as h:
+with keyboard.GlobalHotKeys({'<alt>+q': parseClipboard}) as h:
     h.join()
