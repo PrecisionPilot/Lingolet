@@ -1,11 +1,28 @@
+from logging import exception
 from PIL import Image, ImageGrab
 from pynput import mouse
 from pynput import keyboard
 from PyQt5 import QtWidgets, QtCore, QtGui
 import pyperclip
 from ocr import parseImage
+
+import requests
+import time
 # import SnippingMenu
 
+
+# Adjustable variable
+debugMode = False
+
+# Initialize methods
+def isConnected() -> bool:
+    try:
+        request = requests.get("https://www.google.com", timeout=5)
+        connected = True
+    except (requests.ConnectionError, requests.Timeout) as exception:
+        connected = False
+    
+    return connected
 
 # Screenshot snipping implementation
 x1 = 0
@@ -37,7 +54,8 @@ def on_click(x, y, button, pressed):
             y2 = tmp
         
         im2 = ImageGrab.grab(bbox=(x1, y1, x2, y2))
-        im2.show()
+        im2.save("clipboard.png")
+        # Not working
 
 def on_scroll(x, y, dx, dy):
     print("scrolled")
@@ -54,20 +72,34 @@ def parseClipboard():
     if clipboard:
         # Check if clipboard is a list
         if isinstance(clipboard, list):
+            print("File name retured")
             # Use the clipboard image to parse
             clipboard = clipboard[0]
             text = parseImage(clipboard)
         else:
+            print("Image returned")
             clipboard.save("clipboard.png")
             text = parseImage("clipboard.png")
         
-        # Copy to clipboard
-        pyperclip.copy(text)
-        print(text)
+        # Copy to clipboard if text isn't empty
+        if text:
+            pyperclip.copy(text)
+            print(text)
 
     else:
         print("Error: You do not have an image copied to clipboard")
 
+
+# Check if connected to internet
+if not isConnected():
+    print("Warning: No internet connection")
+
 # Hotkey implementation
-with keyboard.GlobalHotKeys({'<alt>+q': parseClipboard}) as h:
-    h.join()
+if not debugMode:
+    with keyboard.GlobalHotKeys({'<alt>+q': parseClipboard}) as h:
+        h.join()
+
+# Debug mode
+if debugMode:
+    input("Whenever you're ready: ")
+    parseClipboard()
