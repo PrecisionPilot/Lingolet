@@ -1,5 +1,6 @@
 import io
 import os
+import requests
 from PIL import Image, ImageGrab
 from google.cloud import vision
 
@@ -10,6 +11,16 @@ os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = r'auth.json'
 client = vision.ImageAnnotatorClient()
 
 
+# Initialize functions
+def isConnected() -> bool:
+    try:
+        request = requests.get("https://www.google.com", timeout=5)
+        connected = True
+    except (requests.ConnectionError, requests.Timeout) as exception:
+        connected = False
+    
+    return connected
+
 def parseImage(dir):
     # Load image into memory
     with open(dir, "rb") as img:
@@ -17,9 +28,17 @@ def parseImage(dir):
     image = vision.Image(content=content)
 
     # OCR detection
-    response = client.text_detection(image=image)
-    texts = response.text_annotations
-    texts = texts[0].description
-
-    # Do stuff with the text
-    return texts
+    try:
+        response = client.text_detection(image=image)
+        texts = response.text_annotations
+        texts = texts[0].description
+        
+        return texts
+    except:
+        # check if it's connected to the internet
+        if not isConnected():
+            print("Error: Not connected to the internet")
+        else:
+            print("Something with the image recognition went wrong")
+        
+        return None
