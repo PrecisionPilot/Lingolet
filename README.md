@@ -20,7 +20,8 @@
     - [ ] Toggle widget without using clipboard (ctrl + alt + q)
     - [ ] Exit with "esc"
     - [ ] Parsing sound effect
-    - [ ] DeepL API
+    - [x] DeepL API
+    - [ ] Powered by DeepL sign
     - [ ] Save vocab
     - [ ] When Chinese Traditional is detected, have both Chinese Simplified & English output
     - [ ] Error messagebox when no text is detected

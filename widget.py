@@ -2,13 +2,17 @@ import tkinter as tk
 
 class Widget():
 
-    def __init__(self, inText="", outText="Translation text") -> None:
+    def __init__(self) -> None:
         # width x height
         self.size = (300, 150)
+        self.inText = None
+        self.outText = None
+
+    def open(self, inText="", outText="Translation text"):
+        # Set variables
         self.inText = inText
         self.outText = outText
 
-    def open(self):
         # Open widget
         self.root = tk.Tk()
         self.root.title("Screen OCR")
@@ -27,8 +31,8 @@ class Widget():
         self.root.mainloop()
 
 def main():
-    widget = Widget(inText="其实一切都如故", outText="Translation text")
-    widget.open()
+    widget = Widget()
+    widget.open(inText="其实一切都如故", outText="Translation text")
 
 if __name__ == "__main__":
     main()

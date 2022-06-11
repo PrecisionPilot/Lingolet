@@ -1,0 +1,6 @@
+deepl
+pynput
+PyQt5
+pyperclip
+google.cloud
+google.cloud.vision
