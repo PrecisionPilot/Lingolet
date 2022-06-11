@@ -68,7 +68,7 @@ def on_scroll(x, y, dx, dy):
 def parseClipboard():
     clipboard = ImageGrab.grabclipboard()
 
-    # Check if clipboard contains image
+    # If clipboard contains image
     if clipboard:
         # Check if clipboard is a list
         if isinstance(clipboard, list):
@@ -85,9 +85,17 @@ def parseClipboard():
         if text:
             pyperclip.copy(text)
             print(text)
+            # Open translation widget
 
+    # if clibpoard contains text or nothing
+    elif True:
+        pass
+        # Open translation widget
+
+    # Clipboard contains nothing
     else:
-        print("Error: You do not have an image copied to clipboard")
+        print("Error: You do not have anything on your clipboard")
+        # Open messagebox
 
 
 # Check if connected to internet

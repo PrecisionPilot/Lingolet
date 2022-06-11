@@ -1,30 +1,30 @@
 ## To-Do List
 - [ ] Learn to use the [debugger](https://code.visualstudio.com/docs/editor/debugging)
 - [ ] Give Project a name
-    - Language Experience Enchanter
-    - Languages Enhanced
-    - Enchanted Lingo
-    - Open-LingoVision
 - [ ] Snip feature
     - [ ] Make PIL image readable to Google Cloud
     - [ ] Ensure snipping won't interfere with desktop
     - [ ] Make it work well with Minecraft
 - Error handling
     - [x] No internet connection error
-    - [ ] Image with no text error
-- [x] Image recognition to text (Wednesday)
+    - [x] Image with no text error
+- [x] Image recognition to text
 - [x] Keyboard shortcut to parse clipboard
-    - [ ] Parses text if text detected on clipboard
-- [ ] Create a Python file which handles pynput
 - [ ] Have a way to quit software
 
 
-- [ ] Pop-up window with editable textbox (when hotkey is toggled)
-    - [ ] Parsing sound effect
-    - [ ] Google Translate API (Friday)
-    - [ ] When Chinese Traditional is detected, have both Chinese Simplified & English output
 - [ ] Welcome page
     - Instructions (hotkey etc), Features
+- [x] Pop-up window with editable textbox (when hotkey is toggled)
+    - [ ] Parse text no matter image or text on clipboard
+    - [ ] Toggle widget without using clipboard (ctrl + alt + q)
+    - [ ] Exit with "esc"
+    - [ ] Parsing sound effect
+    - [ ] DeepL API
+    - [ ] Save vocab
+    - [ ] When Chinese Traditional is detected, have both Chinese Simplified & English output
+    - [ ] Error messagebox when no text is detected
+    - [ ] Disable resizing
 - [ ] Create a settings menu
     - [ ] Automatic read aloud option
     - [ ] Custom hotkey
@@ -32,6 +32,7 @@
     - [ ] Run on startup option (Windows + MacOS support)
 - [ ] [Spotify API](https://youtu.be/c5sWvP9h3s8) (Satuday)
     - [ ] Automatically pull up lyrics document (for language learning)
+    - [ ] Search for lyrics automatically
 - [ ] Update features list
 
 
@@ -44,7 +45,8 @@ Features:
 - Works well with Minecraft
 - Automatic read aloud option
 - Automatically copy words to the clipboard
-- Save words to Google Translate
+- Uses DeepL translate engine
+- Save words/phrases, which can be exported to a flashcard-friendly csv file
 - Streams translated Spotify lyrics
 - For Chinese
     - Automatic PinYin (Latinized pronunciation)
@@ -54,6 +56,8 @@ Extra features:
 - Pop-up window
 - What language (Python, Java, C#)
 - Possible to hide terminal of python script?
+
+DeepL is the most accurate translator, however it can't save words without using the premium service. Using #Name, you can use the DeepL translator and save words on this software to export later to your favourite flashcard software
 
 
 ## Sales pitch:
