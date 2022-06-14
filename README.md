@@ -9,13 +9,14 @@
     - [x] No internet connection error
     - [x] Image with no text error
     - [x] No text error (when translating)
+    - [ ] Convert all print statements to message boxes
     - [ ] Empty clipboard error
 - [x] Image recognition to text
 - [x] Keyboard shortcut to parse clipboard
 - [ ] Have a way to quit software
 
 
-- [ ] Welcome page (6_14)
+- [ ] Welcome page
     - Instructions (hotkey etc), Features
 - [x] Pop-up window with editable textbox (when hotkey is toggled)
     - [x] Edit textbox to redo translation
@@ -25,11 +26,16 @@
     - [x] Make unresizable (6_14)
     - [ ] Text polish up (6_14)
         - [x] Bigger font size
-        - [ ] Let textbox support multiple lines
+        - [x] Let textbox support multiple lines
+        - [ ] Label shouldn't be centered
         - [ ] Error: Long texts don't show up
+    - [ ] Labels (Translation)
+    - [ ] Enhance UI design, make it look good!
+    - [ ] Change window size based on text size
     - [ ] Source language detection
         - [ ] Chinese: Pinyin + English
         - [ ] Chinese Traditional: have both Chinese Simplified & English output
+        - [ ] Pinying + simplified conversion supported offline
     - [ ] Playsound option
     - [ ] Priority window
     - [ ] Error: just pressing alt triggers shortcut

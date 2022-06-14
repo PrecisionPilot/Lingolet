@@ -6,8 +6,8 @@ from PyQt5 import QtWidgets, QtCore, QtGui
 import pyperclip
 
 from ocr import parseImage
+from internetConnection import isConnected
 import widget
-import requests
 import time
 # import SnippingMenu
 
@@ -15,17 +15,6 @@ popUp = widget.Widget()
 
 # Adjustable variable
 debugMode = False
-
-# Initialize methods
-def isConnected() -> bool:
-    try:
-        request = requests.get("https://www.google.com", timeout=5)
-        connected = True
-    except (requests.ConnectionError, requests.Timeout) as exception:
-        connected = False
-    
-    return connected
-
 
 # Screenshot snipping implementation
 x1 = 0
@@ -98,7 +87,7 @@ def parseClipboard():
 
     # Clipboard contains nothing
     else:
-        print("Error: You do not have anything on your clipboard")
+        print("Error: Empty clipboard")
         # Open messagebox
 
 
