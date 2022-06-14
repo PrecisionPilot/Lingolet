@@ -25,6 +25,7 @@
     - [ ] Resizazbility
     - [ ] Text polish up
         - [ ] Bigger font size
+        - [ ] Let textbox support multiple lines
         - [ ] Error: Long texts don't show up
     - [ ] Source language detection
         - [ ] Chinese: Pinyin + English
@@ -41,6 +42,7 @@
     - [ ] Save vocab
 - [ ] Create a settings menu
     - [ ] Automatic read aloud option
+    - [ ] Automatically bring you to Google Translate or DeepL translator option
     - [ ] Custom hotkey
     - [ ] Custom sound effect
     - [ ] Run on startup option (Windows + MacOS support)
