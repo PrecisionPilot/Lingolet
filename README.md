@@ -1,62 +1,66 @@
 ## To-Do List
-- [ ] Learn to use the [debugger](https://code.visualstudio.com/docs/editor/debugging)
-- [ ] Give Project a name
-- [ ] Snip feature
-    - [ ] Make PIL image readable to Google Cloud
-    - [ ] Ensure snipping won't interfere with desktop
-    - [ ] Make it work well with Minecraft
+- Learn something new
+    - [VSCode tips + tricks](https://youtu.be/ifTF3ags0XI)
 - Error handling
     - [x] No internet connection error
     - [x] Image with no text error
     - [x] No text error (when translating)
     - [ ] Convert all print statements to message boxes
     - [ ] Empty clipboard error
+
+
 - [x] Image recognition to text
 - [x] Keyboard shortcut to parse clipboard
-- [ ] Have a way to quit software
-
+- [x] Parse text no matter image or text on clipboard
+- [x] DeepL API
+- [x] Pop-up window with editable textbox (when hotkey is toggled)
+- [x] Edit textbox to redo translation
+- [x] Key presses
+    - [x] Enter to translate
+    - [x] Exit with "esc"
+- [x] Make unresizable
+- [ ] Text polish up
+    - [x] Bigger font size
+    - [x] Let textbox support multiple lines
+    - [ ] Label shouldn't be centered
+    - [ ] Error: Long texts don't show up
+- [ ] Give Project a name
+- [ ] Labels (Translation)
+- [ ] ctrl + enter to make a newline (add to instructions menu)
+- [ ] Enhance UI design, make it look good!
+- [ ] Powered by DeepL sign
+- [ ] Create a release
 
 - [ ] Welcome page
     - Instructions (hotkey etc), Features
-- [x] Pop-up window with editable textbox (when hotkey is toggled)
-    - [x] Edit textbox to redo translation
-    - [x] Key presses (6_14)
-        - [x] Enter to translate (6_14)
-        - [x] Exit with "esc"
-    - [x] Make unresizable (6_14)
-    - [ ] Text polish up (6_14)
-        - [x] Bigger font size
-        - [x] Let textbox support multiple lines
-        - [ ] Label shouldn't be centered
-        - [ ] Error: Long texts don't show up
-    - [ ] Labels (Translation)
-    - [ ] ctrl + enter to make a newline (add to instructions menu)
-    - [ ] Enhance UI design, make it look good!
-    - [ ] Large texts
-        - [ ] Change font size first if text too large
-        - [ ] Then change window size if necessary
-    - [ ] Source language detection
-        - [ ] Chinese: Pinyin + English
-        - [ ] Chinese Traditional: have both Chinese Simplified & English output
-        - [ ] Pinying + simplified conversion supported offline
-    - [ ] Playsound option
-    - [ ] Priority window
-    - [ ] Error: just pressing alt triggers shortcut
+- [ ] Large texts
+    - [ ] Change font size first if text too large
+    - [ ] Then change window size if necessary
+- [ ] Source language detection
+    - [ ] Chinese: Pinyin + English
+    - [ ] Chinese Traditional: have both Chinese Simplified & English output
+    - [ ] Pinying + simplified conversion supported offline
+- [ ] Parsing sound effect
+- [ ] Priority window
+- [ ] Error: just pressing alt triggers shortcut
+- [ ] Have a way to quit software
 
-    - [x] Parse text no matter image or text on clipboard
-    - [ ] Toggle widget without using clipboard (ctrl + alt + q)
-    - [ ] Parsing sound effect
-    - [x] DeepL API
-    - [ ] Powered by DeepL sign
-    - [ ] Save vocab
+- [ ] Toggle widget without using clipboard (ctrl + alt + q)
+- [ ] Save vocab
+- [ ] Snip feature
+    - [ ] Make PIL image readable to Google Cloud
+    - [ ] Ensure snipping won't interfere with desktop
+    - [ ] Make it work well with Minecraft
 - [ ] Create a settings menu
     - [ ] Automatic read aloud option
     - [ ] Automatically bring you to Google Translate or DeepL translator option
     - [ ] Adjustable font size
     - [ ] Adjustable window size
     - [ ] Custom hotkey
+    - [ ] Toggle sound effect
     - [ ] Custom sound effect
     - [ ] Run on startup option (Windows + MacOS support)
+
 - [ ] [Spotify API](https://youtu.be/c5sWvP9h3s8) (Satuday)
     - [ ] Automatically pull up lyrics document (for language learning)
     - [ ] Search for lyrics automatically
