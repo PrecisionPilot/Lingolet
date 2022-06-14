@@ -22,7 +22,7 @@
     - [x] Key presses (6_14)
         - [x] Enter to translate (6_14)
         - [x] Exit with "esc"
-    - [ ] Resizazbility (6_14)
+    - [x] Make unresizable (6_14)
     - [ ] Text polish up (6_14)
         - [ ] Bigger font size
         - [ ] Let textbox support multiple lines

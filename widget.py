@@ -1,10 +1,10 @@
 from fnmatch import translate
 import tkinter as tk
 from tkinter import messagebox
+from tkinter import font
 import deepl
 
 class Widget():
-
     def __init__(self) -> None:
         # width x height
         self.size = (300, 150)
@@ -26,18 +26,20 @@ class Widget():
         self.root.focus()
         self.root.grid_rowconfigure(0, weight=1)
         self.root.grid_columnconfigure(0, weight=1)
+        self.root.resizable(False, False)
 
         # Set variables
         self.inText = tk.StringVar()
         self.inText.set(inText)
         self.outText = tk.StringVar()
+        self.myFont = ("Arial", 12)
 
         # Textbox
-        self.inputBox = tk.Entry(self.root, textvariable=self.inText)
+        self.inputBox = tk.Entry(self.root, textvariable=self.inText, font=self.myFont)
         self.inputBox.place(x=0, y=0, width=self.size[0], height=20)
         # Translate text, then set the label accordingly
         self.translate()
-        self.outputText = tk.Label(self.root, textvariable=self.outText)
+        self.outputText = tk.Label(self.root, textvariable=self.outText, font=self.myFont)
         self.outputText.place(x=0, y=self.size[1] / 2)
 
         # Button
@@ -53,7 +55,6 @@ class Widget():
         self.root.mainloop()
     
     def translate(self, event=None):
-        print("Runned:", event)
         # No text error handling
         if self.inText.get() == "":
             messagebox.showwarning(title="Error", message="Text field cannot be empty!")
