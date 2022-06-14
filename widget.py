@@ -8,7 +8,7 @@ from internetConnection import isConnected
 class Widget():
     def __init__(self) -> None:
         # width x height
-        self.size = (400, 300)
+        self.size = (400, 250)
         self.inText = None
         self.outText = None
 

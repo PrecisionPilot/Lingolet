@@ -30,8 +30,11 @@
         - [ ] Label shouldn't be centered
         - [ ] Error: Long texts don't show up
     - [ ] Labels (Translation)
+    - [ ] ctrl + enter to make a newline (add to instructions menu)
     - [ ] Enhance UI design, make it look good!
-    - [ ] Change window size based on text size
+    - [ ] Large texts
+        - [ ] Change font size first if text too large
+        - [ ] Then change window size if necessary
     - [ ] Source language detection
         - [ ] Chinese: Pinyin + English
         - [ ] Chinese Traditional: have both Chinese Simplified & English output
