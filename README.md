@@ -8,6 +8,8 @@
 - Error handling
     - [x] No internet connection error
     - [x] Image with no text error
+    - [x] No text error (when translating)
+    - [ ] Empty clipboard error
 - [x] Image recognition to text
 - [x] Keyboard shortcut to parse clipboard
 - [ ] Have a way to quit software
@@ -16,17 +18,27 @@
 - [ ] Welcome page
     - Instructions (hotkey etc), Features
 - [x] Pop-up window with editable textbox (when hotkey is toggled)
-    - [ ] Detect source language
-    - [ ] Parse text no matter image or text on clipboard
+    - [x] Edit textbox to redo translation
+    - [ ] Key presses
+        - [ ] Enter to translate
+        - [ ] Exit with "esc"
+    - [ ] Resizazbility
+    - [ ] Text polish up
+        - [ ] Bigger font size
+        - [ ] Error: Long texts don't show up
+    - [ ] Source language detection
+        - [ ] Chinese: Pinyin + English
+        - [ ] Chinese Traditional: have both Chinese Simplified & English output
+    - [ ] Playsound option
+    - [ ] Priority window
+    - [ ] Error: just pressing alt triggers shortcut
+
+    - [x] Parse text no matter image or text on clipboard
     - [ ] Toggle widget without using clipboard (ctrl + alt + q)
-    - [ ] Exit with "esc"
     - [ ] Parsing sound effect
     - [x] DeepL API
     - [ ] Powered by DeepL sign
     - [ ] Save vocab
-    - [ ] When Chinese Traditional is detected, have both Chinese Simplified & English output
-    - [ ] Error messagebox when no text is detected
-    - [ ] Disable resizing
 - [ ] Create a settings menu
     - [ ] Automatic read aloud option
     - [ ] Custom hotkey

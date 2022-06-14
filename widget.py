@@ -1,5 +1,6 @@
 from fnmatch import translate
 import tkinter as tk
+from tkinter import messagebox
 import deepl
 
 class Widget():
@@ -16,6 +17,7 @@ class Widget():
             self.key = f.read()
         self.translator = deepl.Translator(self.key)
 
+    def open(self, inText=""):
         # Initialize window
         self.root = tk.Tk()
         self.root.title("Screen OCR")
@@ -25,16 +27,15 @@ class Widget():
         self.root.grid_rowconfigure(0, weight=1)
         self.root.grid_columnconfigure(0, weight=1)
 
-
-    def open(self, inText=""):
         # Set variables
-        self.inText = inText
+        self.inText = tk.StringVar()
+        self.inText.set(inText)
         self.outText = tk.StringVar()
 
         # Textbox
-        self.inputBox = tk.Entry(self.root)
+        self.inputBox = tk.Entry(self.root, textvariable=self.inText)
         self.inputBox.place(x=0, y=0, width=self.size[0], height=20)
-        self.inputBox.insert(0, self.inText)
+        # self.inputBox.insert(0, self.inText)
         # Translate text, then set the label accordingly
         self.translate()
         self.outputText = tk.Label(self.root, textvariable=self.outText)
@@ -48,8 +49,13 @@ class Widget():
         self.root.mainloop()
     
     def translate(self):
+        # No text error handling
+        if self.inText.get() == "":
+            messagebox.showwarning(title="Error", message="Text field cannot be empty!")
+            return
+
         # Get text from textbox and set it as the outText variable
-        self.targetText = self.translator.translate_text(self.inText, source_lang="ZH", target_lang="EN-US")
+        self.targetText = self.translator.translate_text(self.inText.get(), source_lang="ZH", target_lang="EN-US")
         self.outText.set(self.targetText)
     
     def close(self):
