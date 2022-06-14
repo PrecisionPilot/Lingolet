@@ -35,7 +35,6 @@ class Widget():
         # Textbox
         self.inputBox = tk.Entry(self.root, textvariable=self.inText)
         self.inputBox.place(x=0, y=0, width=self.size[0], height=20)
-        # self.inputBox.insert(0, self.inText)
         # Translate text, then set the label accordingly
         self.translate()
         self.outputText = tk.Label(self.root, textvariable=self.outText)
@@ -45,10 +44,16 @@ class Widget():
         self.translateButton = tk.Button(self.root, text="Translate", command=self.translate)
         # Place button at bottom right corder
         self.translateButton.grid(row=1, column=1, padx=10, pady=10, sticky="se")
+
+        # Key bindings
+        self.root.bind("<Escape>", self.close)
+        self.root.bind("<Return>", self.translate)
+
         
         self.root.mainloop()
     
-    def translate(self):
+    def translate(self, event=None):
+        print("Runned:", event)
         # No text error handling
         if self.inText.get() == "":
             messagebox.showwarning(title="Error", message="Text field cannot be empty!")
@@ -58,7 +63,7 @@ class Widget():
         self.targetText = self.translator.translate_text(self.inText.get(), source_lang="ZH", target_lang="EN-US")
         self.outText.set(self.targetText)
     
-    def close(self):
+    def close(self, event=None):
         self.root.destroy()
 
 def main():

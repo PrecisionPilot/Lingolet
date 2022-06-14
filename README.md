@@ -15,15 +15,15 @@
 - [ ] Have a way to quit software
 
 
-- [ ] Welcome page
+- [ ] Welcome page (6_14)
     - Instructions (hotkey etc), Features
 - [x] Pop-up window with editable textbox (when hotkey is toggled)
     - [x] Edit textbox to redo translation
-    - [ ] Key presses
-        - [ ] Enter to translate
-        - [ ] Exit with "esc"
-    - [ ] Resizazbility
-    - [ ] Text polish up
+    - [x] Key presses (6_14)
+        - [x] Enter to translate (6_14)
+        - [x] Exit with "esc"
+    - [ ] Resizazbility (6_14)
+    - [ ] Text polish up (6_14)
         - [ ] Bigger font size
         - [ ] Let textbox support multiple lines
         - [ ] Error: Long texts don't show up
