@@ -7,7 +7,7 @@ import deepl
 class Widget():
     def __init__(self) -> None:
         # width x height
-        self.size = (300, 150)
+        self.size = (400, 300)
         self.inText = None
         self.outText = None
 
@@ -33,10 +33,11 @@ class Widget():
         self.inText.set(inText)
         self.outText = tk.StringVar()
         self.myFont = ("Arial", 12)
+        self.textHeight = self.myFont[1] * 1.75
 
         # Textbox
         self.inputBox = tk.Entry(self.root, textvariable=self.inText, font=self.myFont)
-        self.inputBox.place(x=0, y=0, width=self.size[0], height=20)
+        self.inputBox.place(x=0, y=0, width=self.size[0], height=self.textHeight)
         # Translate text, then set the label accordingly
         self.translate()
         self.outputText = tk.Label(self.root, textvariable=self.outText, font=self.myFont)

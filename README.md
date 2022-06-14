@@ -24,7 +24,7 @@
         - [x] Exit with "esc"
     - [x] Make unresizable (6_14)
     - [ ] Text polish up (6_14)
-        - [ ] Bigger font size
+        - [x] Bigger font size
         - [ ] Let textbox support multiple lines
         - [ ] Error: Long texts don't show up
     - [ ] Source language detection
@@ -43,6 +43,8 @@
 - [ ] Create a settings menu
     - [ ] Automatic read aloud option
     - [ ] Automatically bring you to Google Translate or DeepL translator option
+    - [ ] Adjustable font size
+    - [ ] Adjustable window size
     - [ ] Custom hotkey
     - [ ] Custom sound effect
     - [ ] Run on startup option (Windows + MacOS support)
