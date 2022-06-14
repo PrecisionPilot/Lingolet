@@ -1,4 +1,6 @@
+from fnmatch import translate
 import tkinter as tk
+import deepl
 
 class Widget():
 
@@ -8,31 +10,54 @@ class Widget():
         self.inText = None
         self.outText = None
 
-    def open(self, inText="", outText="Translation text"):
-        # Set variables
-        self.inText = inText
-        self.outText = outText
+        # Initialize deepL API
+        self.key = ""
+        with open("deepL auth.txt", "r") as f:
+            self.key = f.read()
+        self.translator = deepl.Translator(self.key)
 
-        # Open widget
+        # Initialize window
         self.root = tk.Tk()
         self.root.title("Screen OCR")
         self.root.iconbitmap("icon.ico")
         self.root.geometry(str(self.size[0]) + "x" + str(self.size[1]))
+        self.root.focus()
+        self.root.grid_rowconfigure(0, weight=1)
+        self.root.grid_columnconfigure(0, weight=1)
+
+
+    def open(self, inText=""):
+        # Set variables
+        self.inText = inText
+        self.outText = tk.StringVar()
 
         # Textbox
         self.inputBox = tk.Entry(self.root)
         self.inputBox.place(x=0, y=0, width=self.size[0], height=20)
         self.inputBox.insert(0, self.inText)
-
-        self.outputText = tk.Label(self.root, text=self.outText)
+        # Translate text, then set the label accordingly
+        self.translate()
+        self.outputText = tk.Label(self.root, textvariable=self.outText)
         self.outputText.place(x=0, y=self.size[1] / 2)
-        
 
+        # Button
+        self.translateButton = tk.Button(self.root, text="Translate", command=self.translate)
+        # Place button at bottom right corder
+        self.translateButton.grid(row=1, column=1, padx=10, pady=10, sticky="se")
+        
         self.root.mainloop()
+    
+    def translate(self):
+        # Get text from textbox and set it as the outText variable
+        self.targetText = self.translator.translate_text(self.inText, source_lang="ZH", target_lang="EN-US")
+        self.outText.set(self.targetText)
+    
+    def close(self):
+        self.root.destroy()
 
 def main():
     widget = Widget()
-    widget.open(inText="其实一切都如故", outText="Translation text")
+    widget.open(inText="其实一切都如故")
 
 if __name__ == "__main__":
     main()

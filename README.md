@@ -16,6 +16,7 @@
 - [ ] Welcome page
     - Instructions (hotkey etc), Features
 - [x] Pop-up window with editable textbox (when hotkey is toggled)
+    - [ ] Detect source language
     - [ ] Parse text no matter image or text on clipboard
     - [ ] Toggle widget without using clipboard (ctrl + alt + q)
     - [ ] Exit with "esc"

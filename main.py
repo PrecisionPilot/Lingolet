@@ -6,7 +6,6 @@ from PyQt5 import QtWidgets, QtCore, QtGui
 import pyperclip
 
 from ocr import parseImage
-import deepl
 import widget
 import requests
 import time
@@ -26,12 +25,6 @@ def isConnected() -> bool:
         connected = False
     
     return connected
-
-# Initialize deepL API
-key = ""
-with open("deepL auth.txt", "r") as f:
-    key = f.read()
-translator = deepl.Translator(key)
 
 
 # Screenshot snipping implementation
@@ -96,12 +89,12 @@ def parseClipboard():
             pyperclip.copy(text)
             print(text)
             # Open translation widget
-            popUp.open(text, translator.translate_text(text, source_lang="ZH", target_lang="EN-US"))
+            popUp.open(text)
 
     # if clibpoard contains text
     elif pyperclip.paste():
         # Open translation widget
-        popUp.open(pyperclip.paste(), "translation")
+        popUp.open(pyperclip.paste())
 
     # Clipboard contains nothing
     else:
