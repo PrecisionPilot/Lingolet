@@ -1,4 +1,3 @@
-from logging import exception
 from PIL import Image, ImageGrab
 from pynput import mouse
 from pynput import keyboard

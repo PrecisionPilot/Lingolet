@@ -4,3 +4,4 @@ PyQt5
 pyperclip
 google.cloud
 google.cloud.vision
+pillow
