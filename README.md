@@ -19,11 +19,15 @@
     - [x] Enter to translate
     - [x] Exit with "esc"
 - [x] Make unresizable
-- [ ] Text polish up
+- [x] Text polish up (6_16)
     - [x] Bigger font size
     - [x] Let textbox support multiple lines
-    - [ ] Label shouldn't be centered
-    - [ ] Error: Long texts don't show up
+    - [x] Label shouldn't be centered
+- [ ] Large text displaying
+    - [x] Adjust up to max size
+    - Try out grids
+    - [ ] If greater than max size, shrink font size
+    - [ ] If still no space, add scroll bar
 - [ ] Give Project a name
 - [ ] Labels (Translation)
 - [ ] ctrl + enter to make a newline (add to instructions menu)

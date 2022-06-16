@@ -6,13 +6,10 @@ window = tk.Tk()
 window.title("Text Widget Example")
 window.geometry('400x200')
 
-ttk.Label(window, text="Enter your comment :",
-		font=("Times New Roman", 15)).grid(
-column=0, row=15, padx=10, pady=25)
-
 # Text Widget
-t = tk.Text(window, width=20, height=3, font=("Arial", 12))
+t = tk.Text(window, font=("Arial", 12))
 
-t.grid(column=1, row=15)
+t.place(x=0, y=0, width=400, height=100)
+t.place(x=0, y=0, width=400, height=50)
 
 window.mainloop()
