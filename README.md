@@ -26,10 +26,10 @@
 - [ ] Large text displaying
     - [x] Adjust up to max size
     - Try out grids
-    - [ ] If greater than max size, shrink font size
+    - [ ] If greater than max size, shrink font size (doesn't work)
     - [ ] If still no space, add scroll bar
-- [ ] Give Project a name
-- [ ] Labels (Translation)
+- [x] Give Project a name
+- [ ] Labels (Translation) (6_17)
 - [ ] ctrl + enter to make a newline (add to instructions menu)
 - [ ] Enhance UI design, make it look good!
 - [ ] Powered by DeepL sign
@@ -37,9 +37,7 @@
 
 - [ ] Welcome page
     - Instructions (hotkey etc), Features
-- [ ] Large texts
-    - [ ] Change font size first if text too large
-    - [ ] Then change window size if necessary
+- [ ] Highlight for definitions
 - [ ] Source language detection
     - [ ] Chinese: Pinyin + English
     - [ ] Chinese Traditional: have both Chinese Simplified & English output

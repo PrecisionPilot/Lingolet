@@ -9,11 +9,12 @@ class Widget():
     def __init__(self) -> None:
         self.debugMode = False
         
-        # width x height
+        # User defined variables
         self.minSize = (400, 250)
         self.maxSize = (600, 500)
-        self.inText = None
-        self.outText = None
+        self.myFont = ("Arial", 12)
+        self.smallFont = (self.myFont[0], int(self.myFont[1] / 1.5))
+        self.textHeight = self.myFont[1] * 1.75
 
         # Initialize deepL API
         self.key = ""
@@ -27,7 +28,7 @@ class Widget():
     def open(self, inText=""):
         # Initialize window
         self.root = tk.Tk()
-        self.root.title("Screen OCR")
+        self.root.title("Lingolet")
         self.root.iconbitmap("icon.ico")
         self.root.geometry(str(self.minSize[0]) + "x" + str(self.minSize[1]))
         self.root.focus()
@@ -38,8 +39,6 @@ class Widget():
         # Set variables
         self.inText = inText
         self.outText = tk.StringVar()
-        self.myFont = ("Arial", 12)
-        self.textHeight = self.myFont[1] * 1.75
 
         # Button
         self.translateButton = tk.Button(self.root, text="Translate", command=self.translate)
@@ -99,13 +98,20 @@ class Widget():
         self.outputText.update()
         self.outputTextSize = [self.outputText.winfo_width(), self.outputText.winfo_height()]
         
-        # Update size based on texts
+        # Update text based on output text
         self.newSize = list(self.minSize)
         # If x of text is bigger than x of newSize, newSize = x
         if self.outputTextSize[0] > self.newSize[0]:
             # If x exceeds max value, cap it
             if self.newSize[0] > self.maxSize[0]:
                 self.newSize[0] = self.maxSize[0]
+                # Since the text in one line exceeds the max window width, shrink font size
+                # self.outputText.configure(font=self.smallFont)
+                print("small font set")
+            else:
+                # If text isn't too big, set font size to default
+                # self.outputText.configure(font=self.myFont)
+                print("small font set")
             self.newSize[0] = self.outputTextSize[0]
         # Do same thing with y
         if self.outputTextSize[1] > self.newSize[1]:
@@ -125,7 +131,7 @@ class Widget():
 
 def main():
     widget = Widget()
-    widget.open(inText="其实一切都如故")
+    widget.open(inText="一二三四五六七 使出必殺技，哥能否追到你，七六五四三二一，真的太可惜，喜歡的人不是你")
 
 if __name__ == "__main__":
     main()
