@@ -29,7 +29,7 @@
     - [ ] If greater than max size, shrink font size (doesn't work)
     - [ ] If still no space, add scroll bar
 - [x] Give Project a name
-- [ ] Labels (Translation) (6_17)
+- [x] Labels (Translation) (6_17)
 - [ ] ctrl + enter to make a newline (add to instructions menu)
 - [ ] Enhance UI design, make it look good!
 - [ ] Powered by DeepL sign

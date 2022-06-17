@@ -13,6 +13,7 @@ class Widget():
         self.minSize = (400, 250)
         self.maxSize = (600, 500)
         self.myFont = ("Arial", 12)
+        self.myBoldFont = (self.myFont[0], self.myFont[1], "underline", "bold")
         self.smallFont = (self.myFont[0], int(self.myFont[1] / 1.5))
         self.textHeight = self.myFont[1] * 1.75
 
@@ -52,9 +53,11 @@ class Widget():
 
         # Output Text
         # Set outputText's "textvariable" to "outText", then translate
-        # Translate text, then set the label accordingly
         self.outputText = tk.Label(self.root, textvariable=self.outText, font=self.myFont, justify=tk.LEFT)
         self.outputText.place(x=0, y=self.minSize[1] / 2)
+        # Place "Translation:"
+        tk.Label(self.root, text="Translation:", font=self.myBoldFont, justify=tk.LEFT).place(x=0, y=self.minSize[1] / 2 - self.textHeight)
+        # Translate text, then set the label accordingly
         self.translate()
 
         # Key bindings
