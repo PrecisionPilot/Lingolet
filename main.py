@@ -1,6 +1,8 @@
+import threading
 from PIL import Image, ImageGrab
 from pynput import mouse
 from pynput import keyboard
+from pynput.keyboard import Key, Controller
 from PyQt5 import QtWidgets, QtCore, QtGui
 import pyperclip
 
@@ -12,8 +14,9 @@ import time
 
 popUp = widget.Widget()
 
-# Adjustable variable
+# Variables
 debugMode = False
+key = Controller()
 
 # Screenshot snipping implementation
 x1 = 0
@@ -83,7 +86,10 @@ def parseClipboard():
     elif pyperclip.paste():
         # Open translation widget
         popUp.open(pyperclip.paste())
-
+        time.sleep(0.2)
+        # Prevent key-binding bugs
+        key.release("q")
+        key.release(Key.alt)
     # Clipboard contains nothing
     else:
         print("Error: Empty clipboard")

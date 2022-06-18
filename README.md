@@ -1,6 +1,12 @@
 ## To-Do List
 - Learn something new
-    - [VSCode tips + tricks](https://youtu.be/ifTF3ags0XI)
+    - VSCode tips + tricks
+        - https://youtu.be/ifTF3ags0XI
+    - Discover features deepL API features
+    - Python
+        - Video: https://youtu.be/p15xzjzR9j0
+        - *Args
+    - Get a to-do list for VSCode
 - Error handling
     - [x] No internet connection error
     - [x] Image with no text error
@@ -31,6 +37,7 @@
 - [x] Give Project a name
 - [x] Labels (Translation) (6_17)
 - [x] ctrl + enter to make a newline
+- [x] Key binding bug
 - [ ] Enhance UI design, make it look good!
 - [ ] Powered by DeepL sign
 - [ ] Create a release
