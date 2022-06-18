@@ -7,10 +7,11 @@
         - Video: https://youtu.be/p15xzjzR9j0
         - *Args
     - Get a to-do list for VSCode
-- Error handling
+- Errors
     - [x] No internet connection error
     - [x] Image with no text error
     - [x] No text error (when translating)
+    - [ ] Hidden "translate" button error
     - [ ] Convert all print statements to message boxes
     - [ ] Empty clipboard error
 

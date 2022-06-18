@@ -62,16 +62,18 @@ def on_scroll(x, y, dx, dy):
 def parseClipboard():
     clipboard = ImageGrab.grabclipboard()
 
+    # Play sound
+
+    # Check clipboard contents
     # If clipboard contains image
     if clipboard:
-        # Check if clipboard is a list
+        # File name returned
         if isinstance(clipboard, list):
-            print("File name retured")
             # Use the clipboard image to parse
             clipboard = clipboard[0]
             text = parseImage(clipboard)
+        # Image file returned
         else:
-            print("Image returned")
             clipboard.save("clipboard.png")
             text = parseImage("clipboard.png")
         
@@ -84,12 +86,17 @@ def parseClipboard():
 
     # if clibpoard contains text
     elif pyperclip.paste():
+        # No need to copy to clipboard
+        text = pyperclip.paste()
+        print(text)
         # Open translation widget
-        popUp.open(pyperclip.paste())
-        time.sleep(0.2)
+        popUp.open(text)
+        
         # Prevent key-binding bugs
+        time.sleep(0.2)
         key.release("q")
         key.release(Key.alt)
+    
     # Clipboard contains nothing
     else:
         print("Error: Empty clipboard")
