@@ -62,7 +62,7 @@ class Widget():
 
         # Key bindings
         self.root.bind("<Escape>", self.close)
-        self.root.bind("<Return>", self.translate)
+        self.root.bind("<Control-Return>", self.translate)
 
 
         # Open widget if connected, otherwise close it
@@ -70,7 +70,6 @@ class Widget():
             self.root.mainloop()
         else:
             self.close()
-        
         
     
     def translate(self, event=None):

@@ -30,24 +30,26 @@
     - [ ] If still no space, add scroll bar
 - [x] Give Project a name
 - [x] Labels (Translation) (6_17)
-- [ ] ctrl + enter to make a newline (add to instructions menu)
+- [x] ctrl + enter to make a newline
 - [ ] Enhance UI design, make it look good!
 - [ ] Powered by DeepL sign
 - [ ] Create a release
 
 - [ ] Welcome page
     - Instructions (hotkey etc), Features
-- [ ] Highlight for definitions
+    - ctrl + enter to translate
 - [ ] Source language detection
     - [ ] Chinese: Pinyin + English
     - [ ] Chinese Traditional: have both Chinese Simplified & English output
     - [ ] Pinying + simplified conversion supported offline
+- [ ] Highlight for definitions (to show tranlation of that text, and definitions if available)
+- [ ] Toggle widget without using clipboard (ctrl + alt + q)
+- [ ] Read aloud
 - [ ] Parsing sound effect
 - [ ] Priority window
 - [ ] Error: just pressing alt triggers shortcut
 - [ ] Have a way to quit software
 
-- [ ] Toggle widget without using clipboard (ctrl + alt + q)
 - [ ] Save vocab
 - [ ] Snip feature
     - [ ] Make PIL image readable to Google Cloud
