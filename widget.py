@@ -49,8 +49,7 @@ class Widget():
 
         # Input text
         self.inputBox = tk.Text(self.root, font=self.myFont, borderwidth=self.borderOutline, relief=tk.SUNKEN)
-        # self.inputBox.place(x=0, y=0, width=self.minSize[0], height=self.minSize[1] / 2 - self.textHeight)
-        self.inputBox.insert(tk.END, inText)
+        self.inputBox.insert(1.0, inText)
 
         # Output frame
         self.outputFrame = tk.Frame(self.root, borderwidth=self.borderOutline, relief=tk.SUNKEN)
@@ -59,7 +58,7 @@ class Widget():
 
         # Output Text
         # Set outputText's "textvariable" to "outText", then translate
-        self.outputText = tk.Label(self.outputFrame, textvariable=self.outText, font=self.myFont, justify=tk.LEFT)
+        self.outputText = tk.Label(self.outputFrame, textvariable=self.outText, font=self.myFont, justify=tk.LEFT, anchor="nw")
         # Place "Translation:"
         self.translationText = tk.Label(self.outputFrame, text="Translation:", font=self.myBoldFont, justify=tk.LEFT)
 
@@ -84,8 +83,12 @@ class Widget():
         
     
     def translate(self, event=None):
-        # Update "self.inText"
+        # Update "inText"
         self.inText = self.inputBox.get(1.0, tk.END)
+        # Remove all trailing edges
+        self.inText = self.inText.strip()
+        self.inputBox.delete(1.0, tk.END)
+        self.inputBox.insert(1.0, self.inText)
 
         # No text error handling
         if self.inText == "":
@@ -126,6 +129,9 @@ class Widget():
                 # Since the text in one line exceeds the max window width, shrink font size
                 self.outputText.configure(font=self.mySmallFont)
                 print("small font set")
+                # Update outputTextSize
+                self.outputText.update()
+                self.outputTextSize = [self.outputText.winfo_width(), self.outputText.winfo_height()]
             else:
                 # If text isn't too big, set font size to default
                 print("normal font")
@@ -144,7 +150,7 @@ class Widget():
         self.outputFrame.place(x=self.margins, y=self.newSize[1] / 2 - self.textHeight + self.margins, width=self.newSize[0], height=self.newSize[1] / 2 + self.textHeight)
         self.translationText.place(x=0, y=0)
         # outputText y value is mid-point + 1 margin unit
-        self.outputText.place(x=0, y=self.textHeight)
+        self.outputText.place(x=0, y=self.textHeight, width=self.newSize[0] - self.borderOutline * 2, height=self.newSize[1  ] / 2 - self.margins)
 
     
     def close(self, event=None):

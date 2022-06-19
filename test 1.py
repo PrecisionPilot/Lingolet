@@ -10,8 +10,7 @@ window.grid_rowconfigure(0, weight=1)
 window.grid_columnconfigure(0, weight=2)
 
 # Text Widget
-tk.Label(window, font=("Arial", 12), text="Yo: ").grid(row=0, column=0, padx=10, pady=10)
-tk.Text(window, font=("Arial", 12)).grid(row=0, column=1, padx=10, pady=10)
+tk.Label(window, font=("Arial", 12), text="Yo: ", bg="green").place(x=0, y=0, width=100, height=100)
 
 
 window.mainloop()
