@@ -33,7 +33,7 @@
     - [x] Adjust up to max size
     - Try out grids
     - [x] If greater than max size, shrink font size
-    - [x] If still no space, add newline
+    - [ ] If still no space, add newline
     - [ ] Make this work for long y value
 - [x] Give Project a name
 - [x] Labels (Translation) (6_17)
@@ -52,6 +52,7 @@
     - [ ] Chinese: Pinyin + English
     - [ ] Chinese Traditional: have both Chinese Simplified & English output
     - [ ] Pinying + simplified conversion supported offline
+- [ ] Input and output clickable text language lables for options
 - [ ] Highlight for definitions (to show tranlation of that text, and definitions if available)
 - [ ] Toggle widget without using clipboard (ctrl + alt + q)
 - [ ] Read aloud
