@@ -39,7 +39,7 @@
 - [x] Labels (Translation) (6_17)
 - [x] ctrl + enter to make a newline
 - [x] Key binding bug
-- [] Enhance UI design, make it look good!
+- [ ] Enhance UI design, make it look good!
     - [x] Add margins
     - [x] Create Entry frame
 - [ ] Powered by DeepL sign
