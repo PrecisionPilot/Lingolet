@@ -13,6 +13,7 @@ class Widget():
         self.minSize = (400, 250)
         self.maxSize = (600, 500)
         self.myFont = ("Arial", 12)
+        self.margins = 10
         self.myBoldFont = (self.myFont[0], self.myFont[1], "underline", "bold")
         self.smallFont = (self.myFont[0], int(self.myFont[1] / 1.5))
         self.textHeight = self.myFont[1] * 1.75
@@ -48,15 +49,15 @@ class Widget():
 
         # Input text
         self.inputBox = tk.Text(self.root, font=self.myFont)
-        self.inputBox.place(x=0, y=0, width=self.minSize[0], height=self.minSize[1] / 2 - self.textHeight)
+        # self.inputBox.place(x=0, y=0, width=self.minSize[0], height=self.minSize[1] / 2 - self.textHeight)
         self.inputBox.insert(tk.END, inText)
 
         # Output Text
         # Set outputText's "textvariable" to "outText", then translate
         self.outputText = tk.Label(self.root, textvariable=self.outText, font=self.myFont, justify=tk.LEFT)
-        self.outputText.place(x=0, y=self.minSize[1] / 2)
+        self.outputText.place(x=0, y=0)
         # Place "Translation:"
-        tk.Label(self.root, text="Translation:", font=self.myBoldFont, justify=tk.LEFT).place(x=0, y=self.minSize[1] / 2 - self.textHeight)
+        self.translationText = tk.Label(self.root, text="Translation:", font=self.myBoldFont, justify=tk.LEFT)
         # Translate text, then set the label accordingly
         self.translate()
 
@@ -121,11 +122,16 @@ class Widget():
                 self.newSize[1] = self.maxSize[1]
             self.newSize[1] = self.outputTextSize[1]
 
-        #Update newSize to fit contents
-        self.root.geometry(str(self.newSize[0]) + "x" + str(self.newSize[1]))
-        #Resize contents
-        self.inputBox.place(x=0, y=0, width=self.newSize[0], height=self.newSize[1] / 2 - self.textHeight)
-
+        # Update newSize to fit contents
+        self.root.geometry(str(self.newSize[0] + self.margins * 2) + "x" + str(self.newSize[1] + self.margins * 2))
+        # Resize contents
+        # inputBox should be 1 margin unit from the window top extending directly to the window y (mid-point - textHeight)
+        self.inputBox.place(x=self.margins, y=self.margins, width=self.newSize[0], height=self.newSize[1] / 2 - self.textHeight - self.margins)
+        # translationText begins from y (mid-point - textHeight) + 1 margin unit to mid-point + 1 margin unit
+        self.translationText.place(x=self.margins, y=self.newSize[1] / 2 - self.textHeight + self.margins)
+        # outputText y value is mid-point + 1 margin unit
+        self.outputText.place(x=self.margins, y=self.newSize[1] / 2 + self.margins)
+        print(self.minSize, self.newSize)
 
     
     def close(self, event=None):
