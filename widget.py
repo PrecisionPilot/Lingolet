@@ -48,14 +48,13 @@ class Widget():
         self.translateButton.grid(row=1, column=1, padx=10, pady=10, sticky="se")
 
         # Input text
-        self.inputBox = tk.Text(self.root, font=self.myFont)
+        self.inputBox = tk.Text(self.root, font=self.myFont, relief=tk.SUNKEN)
         # self.inputBox.place(x=0, y=0, width=self.minSize[0], height=self.minSize[1] / 2 - self.textHeight)
         self.inputBox.insert(tk.END, inText)
 
         # Output Text
         # Set outputText's "textvariable" to "outText", then translate
         self.outputText = tk.Label(self.root, textvariable=self.outText, font=self.myFont, justify=tk.LEFT)
-        self.outputText.place(x=0, y=0)
         # Place "Translation:"
         self.translationText = tk.Label(self.root, text="Translation:", font=self.myBoldFont, justify=tk.LEFT)
         # Translate text, then set the label accordingly
@@ -98,6 +97,8 @@ class Widget():
         
     def resize(self):
         # Update outputTextSize upon "outputText" change
+        self.outputText.place(x=0, y=0)
+        self.outputText.configure(font=self.myFont)
         self.outputText.update()
         self.outputTextSize = [self.outputText.winfo_width(), self.outputText.winfo_height()]
         
@@ -116,7 +117,6 @@ class Widget():
                 print("small font set")
             else:
                 # If text isn't too big, set font size to default
-                self.outputText.configure(font=self.myFont)
                 print("normal font")
         # Do same thing with y
         if self.outputTextSize[1] > self.newSize[1]:
@@ -144,6 +144,7 @@ def main():
     text1 = "安靜的夜晚裡 頭腦還不想停"
     text2 = "你說藍色是你最愛的顏色 你說如果沒有愛那又如何"
     text3 = "一二三四五六七 使出必殺技，哥能否追到你，七六五四三二一，真的太可惜，喜歡的人不是你"
+    text4 = "愁看殘紅亂舞 憶花底初度逢 難禁垂頭淚湧 此際幸月朦朧 愁悴如何自控 悲哀都一樣同 情意如能互通 相分不必相送"
     widget.open(inText=text3)
 
 if __name__ == "__main__":

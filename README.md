@@ -11,7 +11,6 @@
     - [x] No internet connection error
     - [x] Image with no text error
     - [x] No text error (when translating)
-    - [ ] Hidden "translate" button error
     - [ ] Convert all print statements to message boxes
     - [ ] Empty clipboard error
 
@@ -34,14 +33,15 @@
     - [x] Adjust up to max size
     - Try out grids
     - [x] If greater than max size, shrink font size
-    - [ ] If still no space, add newline
+    - [x] If still no space, add newline
     - [ ] Make this work for long y value
 - [x] Give Project a name
 - [x] Labels (Translation) (6_17)
 - [x] ctrl + enter to make a newline
 - [x] Key binding bug
-- [x] Enhance UI design, make it look good!
+- [] Enhance UI design, make it look good!
     - [x] Add margins
+    - [ ] Create Entry frame
 - [ ] Powered by DeepL sign
 - [ ] Create a release
 
