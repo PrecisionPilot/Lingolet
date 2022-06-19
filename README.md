@@ -33,8 +33,9 @@
 - [ ] Large text displaying
     - [x] Adjust up to max size
     - Try out grids
-    - [ ] If greater than max size, shrink font size (doesn't work)
-    - [ ] If still no space, add scroll bar
+    - [x] If greater than max size, shrink font size
+    - [ ] If still no space, add newline
+    - [ ] Make this work for long y value
 - [x] Give Project a name
 - [x] Labels (Translation) (6_17)
 - [x] ctrl + enter to make a newline

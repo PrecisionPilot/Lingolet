@@ -4,7 +4,7 @@ from tkinter import ttk
 
 window = tk.Tk()
 window.title("Text Widget Example")
-window.geometry('400x200')
+window.geometry('600x500')
 # Configure grid
 window.grid_rowconfigure(0, weight=1)
 window.grid_columnconfigure(0, weight=2)

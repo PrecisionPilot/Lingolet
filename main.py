@@ -93,7 +93,7 @@ def parseClipboard():
         popUp.open(text)
         
         # Prevent key-binding bugs
-        time.sleep(0.2)
+        time.sleep(0.5)
         key.release("q")
         key.release(Key.alt)
     

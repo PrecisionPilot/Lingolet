@@ -12,10 +12,10 @@ class Widget():
         # User defined variables
         self.minSize = (400, 250)
         self.maxSize = (600, 500)
-        self.myFont = ("Arial", 12)
         self.margins = 10
+        self.myFont = ("Arial", 12)
         self.myBoldFont = (self.myFont[0], self.myFont[1], "underline", "bold")
-        self.smallFont = (self.myFont[0], int(self.myFont[1] / 1.5))
+        self.mySmallFont = (self.myFont[0], int(self.myFont[1] / 1.3))
         self.textHeight = self.myFont[1] * 1.75
 
         # Initialize deepL API
@@ -102,25 +102,27 @@ class Widget():
         self.outputTextSize = [self.outputText.winfo_width(), self.outputText.winfo_height()]
         
         # Update text based on output text
+
         self.newSize = list(self.minSize)
-        # If x of text is bigger than x of newSize, newSize = x
+        # If x of text is bigger than x of min window size, newSize = x
         if self.outputTextSize[0] > self.newSize[0]:
+            self.newSize[0] = self.outputTextSize[0]
+
             # If x exceeds max value, cap it
             if self.newSize[0] > self.maxSize[0]:
                 self.newSize[0] = self.maxSize[0]
                 # Since the text in one line exceeds the max window width, shrink font size
-                # self.outputText.configure(font=self.smallFont)
+                self.outputText.configure(font=self.mySmallFont)
                 print("small font set")
             else:
                 # If text isn't too big, set font size to default
-                # self.outputText.configure(font=self.myFont)
-                print("small font set")
-            self.newSize[0] = self.outputTextSize[0]
+                self.outputText.configure(font=self.myFont)
+                print("normal font")
         # Do same thing with y
         if self.outputTextSize[1] > self.newSize[1]:
+            self.newSize[1] = self.outputTextSize[1]
             if self.newSize[1] > self.maxSize[1]:
                 self.newSize[1] = self.maxSize[1]
-            self.newSize[1] = self.outputTextSize[1]
 
         # Update newSize to fit contents
         self.root.geometry(str(self.newSize[0] + self.margins * 2) + "x" + str(self.newSize[1] + self.margins * 2))
@@ -131,15 +133,18 @@ class Widget():
         self.translationText.place(x=self.margins, y=self.newSize[1] / 2 - self.textHeight + self.margins)
         # outputText y value is mid-point + 1 margin unit
         self.outputText.place(x=self.margins, y=self.newSize[1] / 2 + self.margins)
-        print(self.minSize, self.newSize)
 
     
     def close(self, event=None):
         self.root.destroy()
 
+# Testing purposes
 def main():
     widget = Widget()
-    widget.open(inText="一二三四五六七 使出必殺技，哥能否追到你，七六五四三二一，真的太可惜，喜歡的人不是你")
+    text1 = "安靜的夜晚裡 頭腦還不想停"
+    text2 = "你說藍色是你最愛的顏色 你說如果沒有愛那又如何"
+    text3 = "一二三四五六七 使出必殺技，哥能否追到你，七六五四三二一，真的太可惜，喜歡的人不是你"
+    widget.open(inText=text3)
 
 if __name__ == "__main__":
     main()
