@@ -41,7 +41,7 @@
 - [x] Key binding bug
 - [] Enhance UI design, make it look good!
     - [x] Add margins
-    - [ ] Create Entry frame
+    - [x] Create Entry frame
 - [ ] Powered by DeepL sign
 - [ ] Create a release
 
