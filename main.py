@@ -1,10 +1,10 @@
-import threading
 from PIL import Image, ImageGrab
 from pynput import mouse
 from pynput import keyboard
 from pynput.keyboard import Key, Controller
 from PyQt5 import QtWidgets, QtCore, QtGui
 import pyperclip
+from tkinter import messagebox
 
 from ocr import parseImage
 from internetConnection import isConnected
@@ -100,8 +100,7 @@ def parseClipboard():
     # Clipboard contains nothing
     else:
         print("Error: Empty clipboard")
-        # Open messagebox
-
+        messagebox.showwarning(title="Error", message="Your clipboard is empty")
 
 # Check if connected to internet
 if not isConnected():

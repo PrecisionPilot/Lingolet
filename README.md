@@ -7,12 +7,13 @@
         - Video: https://youtu.be/p15xzjzR9j0
         - *Args
     - Get a to-do list for VSCode
-- Errors
+- Errors (6_20)
     - [x] No internet connection error
     - [x] Image with no text error
     - [x] No text error (when translating)
-    - [ ] Convert all print statements to message boxes
-    - [ ] Empty clipboard error
+    - [x] Empty clipboard error
+    - [x] Convert all print statements to message boxes
+    - [ ] Windows behind other windows error
 
 
 - [x] Image recognition to text
@@ -29,7 +30,7 @@
     - [x] Bigger font size
     - [x] Let textbox support multiple lines
     - [x] Label shouldn't be centered
-- [ ] Large text displaying
+- [ ] Large text displaying (06_20)
     - [x] Adjust up to max size
     - Try out grids
     - [x] If greater than max size, shrink font size
@@ -42,7 +43,8 @@
 - [ ] Enhance UI design, make it look good!
     - [x] Add margins
     - [x] Create Entry frame
-- [ ] Powered by DeepL sign
+- [x] Warns you when not connected, but works the moment it is
+- [ ] Powered by DeepL sign (06_20)
 - [ ] Create a release
 
 - [ ] Welcome page

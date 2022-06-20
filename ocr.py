@@ -1,6 +1,6 @@
 import os
-from PIL import Image, ImageGrab
 from internetConnection import isConnected
+from tkinter import messagebox
 from google.cloud import vision
 
 # Authentication
@@ -27,8 +27,9 @@ def parseImage(dir):
         # check if it's connected to the internet
         if not isConnected():
             print("Error: Not connected to the internet")
+            messagebox.showwarning(title="Error", message="No internet connection!")
         else:
             print("Something with the image recognition went wrong")
-            print("Make sure selected image contains text")
+            messagebox.showerror(title="Error", message="Something went wrong")
         
         return None

@@ -1,4 +1,3 @@
-from fnmatch import translate
 import tkinter as tk
 from tkinter import messagebox
 from tkinter import font
@@ -26,12 +25,15 @@ class Widget():
             self.key = f.read()
         self.translator = deepl.Translator(self.key)
 
-        # Other variables
-        self.connected = True
-
     def open(self, inText=""):
         # Avoid hotkey bug
         time.sleep(0.5)
+
+        # Check for internet connection
+        if not isConnected():
+            print("Error: No internet connection!")
+            messagebox.showwarning(title="Error", message="No internet connection!")
+            return
 
         # Initialize window
         self.root = tk.Tk()
@@ -67,11 +69,7 @@ class Widget():
         self.root.bind("<Control-Return>", self.translate)
 
 
-        # Open widget if connected, otherwise close it
-        if self.connected or self.debugMode:
-            self.root.mainloop()
-        else:
-            self.close()
+        self.root.mainloop()
         
     
     def translate(self, event=None):
@@ -97,19 +95,14 @@ class Widget():
             messagebox.showwarning(title="Error", message="Text field cannot be empty!")
             return
 
-        # Check if there's internet connnection
-        if isConnected():
-            # Get text from textbox and set it as the outText variable
-            if self.debugMode:
-                self.targetText = "Translation"
-            else:
-                self.targetText = self.translator.translate_text(self.inText, source_lang="ZH", target_lang="EN-US")
-            # Set the text ok the label
-            self.outText.set(self.targetText)
-            self.resize()
+        # Get text from textbox and set it as the outText variable
+        if self.debugMode:
+            self.targetText = "Translation"
         else:
-            self.connected = False
-            messagebox.showwarning(title="Error", message="No Internet connection!")
+            self.targetText = self.translator.translate_text(self.inText, source_lang="ZH", target_lang="EN-US")
+        # Set the text ok the label
+        self.outText.set(self.targetText)
+        self.resize()
         
     def resize(self):
         # Update outputTextSize upon "outputText" change
