@@ -30,6 +30,6 @@ def parseImage(dir):
             messagebox.showwarning(title="Error", message="No internet connection!")
         else:
             print("Something with the image recognition went wrong")
-            messagebox.showerror(title="Error", message="Something went wrong")
+            messagebox.showwarning(title="Warning", message="No text detected in the copied image")
         
         return None
