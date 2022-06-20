@@ -56,16 +56,8 @@ class Widget():
         self.outputFrame.grid_rowconfigure(0, weight=2)
         self.outputFrame.grid_columnconfigure(0, weight=1)
 
-        # Output Text
-        # Set outputText's "textvariable" to "outText", then translate
-        self.outputText = tk.Label(self.outputFrame, textvariable=self.outText, font=self.myFont, justify=tk.LEFT, anchor="nw")
         # Place "Translation:"
         self.translationText = tk.Label(self.outputFrame, text="Translation:", font=self.myBoldFont, justify=tk.LEFT)
-
-        # Button
-        self.translateButton = tk.Button(self.outputFrame, text="Translate", command=self.translate)
-        # Place button at bottom right corder
-        self.translateButton.grid(row=2, column=1, padx=10, pady=10, sticky="se")
 
         # Translate text, then set the label accordingly
         self.translate()
@@ -90,6 +82,16 @@ class Widget():
         self.inputBox.delete(1.0, tk.END)
         self.inputBox.insert(1.0, self.inText)
 
+        # Output text
+        # Set outputText's "textvariable" to "outText", then translate
+        self.outputText = tk.Label(self.outputFrame, textvariable=self.outText, font=self.myFont, justify=tk.LEFT, anchor="nw")
+
+        # Button
+        self.translateButton = tk.Button(self.outputFrame, text="Translate", command=self.translate)
+        # Place button at bottom right corder
+        self.translateButton.grid(row=2, column=1, padx=10, pady=10, sticky="se")
+
+
         # No text error handling
         if self.inText == "":
             messagebox.showwarning(title="Error", message="Text field cannot be empty!")
@@ -111,6 +113,7 @@ class Widget():
         
     def resize(self):
         # Update outputTextSize upon "outputText" change
+        # Output Text
         self.outputText.place(x=0, y=0)
         self.outputText.configure(font=self.myFont)
         self.outputText.update()
@@ -163,7 +166,7 @@ def main():
     text2 = "你說藍色是你最愛的顏色 你說如果沒有愛那又如何"
     text3 = "一二三四五六七 使出必殺技，哥能否追到你，七六五四三二一，真的太可惜，喜歡的人不是你"
     text4 = "愁看殘紅亂舞 憶花底初度逢 難禁垂頭淚湧 此際幸月朦朧 愁悴如何自控 悲哀都一樣同 情意如能互通 相分不必相送"
-    widget.open(inText=text2)
+    widget.open(inText=text3)
 
 if __name__ == "__main__":
     main()
