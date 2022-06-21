@@ -10,9 +10,12 @@ window.grid_rowconfigure(0, weight=1)
 window.grid_columnconfigure(0, weight=2)
 
 # Text Widget
-text = tk.Label(window, font=("Arial", 12), text="Yo: ", bg="green")
-text.place(x=0, y=0, width=100, height=100)
-text.place(x=0, y=0, width=0, height=0)
+
+text = tk.StringVar()
+label = tk.Label(window, font=("Arial", 12), textvariable=text, bg="green", anchor="nw", wraplength=100, justify=tk.LEFT)
+label.place(x=0, y=0, width=100, height=100)
+
+text.set("qwertyuiopasdfghjkl")
 
 
 window.mainloop()

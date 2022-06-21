@@ -137,17 +137,21 @@ class Widget():
             if self.newSize[1] > self.maxSize[1]:
                 self.newSize[1] = self.maxSize[1]
 
+
         # Resize contents
         # Update newSize to fit contents
         self.root.geometry(str(self.newSize[0] + self.margins * 2) + "x" + str(self.newSize[1] + self.margins * 2))
+        
         # inputBox should be 1 margin unit from the window top extending directly to the window y (mid-point - textHeight)
         self.inputBox.place(x=self.margins, y=self.margins, width=self.newSize[0], height=self.newSize[1] / 2 - self.textHeight - self.margins)
+        
+        # Update "wraplength" of outputText the same as its width for to automatically have newlines when text reaches out of the textbox
+        self.outputText.configure(wraplength=self.newSize[0])
         # translationText begins from y (mid-point - textHeight) + 1 margin unit to mid-point + 1 margin unit
         self.outputFrame.place(x=self.margins, y=self.newSize[1] / 2 - self.textHeight + self.margins, width=self.newSize[0], height=self.newSize[1] / 2 + self.textHeight)
         self.translationText.place(x=0, y=0)
         # outputText y value is mid-point + 1 margin unit
         self.outputText.place(x=0, y=self.textHeight, width=self.newSize[0] - self.borderOutline * 2, height=self.newSize[1  ] / 2 - self.margins)
-
     
     def close(self, event=None):
         self.root.destroy()
@@ -159,7 +163,7 @@ def main():
     text2 = "你說藍色是你最愛的顏色 你說如果沒有愛那又如何"
     text3 = "一二三四五六七 使出必殺技，哥能否追到你，七六五四三二一，真的太可惜，喜歡的人不是你"
     text4 = "愁看殘紅亂舞 憶花底初度逢 難禁垂頭淚湧 此際幸月朦朧 愁悴如何自控 悲哀都一樣同 情意如能互通 相分不必相送"
-    widget.open(inText=text3)
+    widget.open(inText=text4)
 
 if __name__ == "__main__":
     main()

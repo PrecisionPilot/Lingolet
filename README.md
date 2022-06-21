@@ -34,13 +34,13 @@
     - [x] Adjust up to max size
     - Try out grids
     - [x] If greater than max size, shrink font size
-    - [ ] If still no space, add newline
+    - [x] If still no space, add newline
     - [ ] Make this work for long y value
 - [x] Give Project a name
 - [x] Labels (Translation) (6_17)
 - [x] ctrl + enter to make a newline
 - [x] Key binding bug
-- [ ] Enhance UI design, make it look good!
+- [x] Enhance UI design, make it look good!
     - [x] Add margins
     - [x] Create Entry frame
 - [x] Warns you when not connected, but works the moment it is
