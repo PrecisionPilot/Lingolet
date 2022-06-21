@@ -13,7 +13,7 @@
     - [x] No text error (when translating)
     - [x] Empty clipboard error
     - [x] Convert all print statements to message boxes
-    - [ ] Windows behind other windows error
+    - [ ] Windows behind other windows error (06_20)
 
 
 - [x] Image recognition to text
@@ -26,18 +26,18 @@
     - [x] Enter to translate
     - [x] Exit with "esc"
 - [x] Make unresizable
-- [x] Text polish up (6_16)
+- [x] Text polish up
     - [x] Bigger font size
     - [x] Let textbox support multiple lines
     - [x] Label shouldn't be centered
-- [ ] Large text displaying (06_20)
+- [ ] Large text displaying
     - [x] Adjust up to max size
     - Try out grids
     - [x] If greater than max size, shrink font size
     - [x] If still no space, add newline
-    - [ ] Make this work for long y value
+    - [ ] Make this work for long y value (06_20)
 - [x] Give Project a name
-- [x] Labels (Translation) (6_17)
+- [x] Labels (Translation)
 - [x] ctrl + enter to make a newline
 - [x] Key binding bug
 - [x] Enhance UI design, make it look good!
@@ -45,12 +45,12 @@
     - [x] Create Entry frame
 - [x] Warns you when not connected, but works the moment it is
 - [ ] Powered by DeepL sign (06_20)
-- [ ] Create a release
+- [ ] Create a release (06_20)
 
-- [ ] Welcome page
+- [ ] Welcome page (06_20)
     - Instructions (hotkey etc), Features
     - ctrl + enter to translate
-- [ ] Source language detection
+- [ ] Source language detection (06_20)
     - [ ] Chinese: Pinyin + English
     - [ ] Chinese Traditional: have both Chinese Simplified & English output
     - [ ] Pinying + simplified conversion supported offline

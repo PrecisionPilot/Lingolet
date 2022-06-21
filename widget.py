@@ -4,6 +4,7 @@ from tkinter import font
 import deepl
 from internetConnection import isConnected
 import time
+import math
 
 class Widget():
     def __init__(self) -> None:
@@ -115,7 +116,7 @@ class Widget():
         # Update text based on output text
 
         self.newSize = list(self.minSize)
-        # If x of text is bigger than x of min window size, newSize = x
+        # If x of outputText is bigger than x of min window size, newSize = x
         if self.outputTextSize[0] > self.newSize[0]:
             self.newSize[0] = self.outputTextSize[0]
 
@@ -131,16 +132,22 @@ class Widget():
             else:
                 # If text isn't too big, set font size to default
                 print("normal font")
-        # Do same thing with y
-        if self.outputTextSize[1] > self.newSize[1]:
-            self.newSize[1] = self.outputTextSize[1]
+        # If y of outputText is greater than height of outputFrame
+        self.outputFrameHeight = self.newSize[1] / 2 + self.textHeight
+        if self.outputTextSize[1] > self.outputFrameHeight:
+            print("Horizontal resize")
+            print(self.outText.get())
+            # outputFrameHeight needs to be enlarged to outputTextSize, to do so, change newSize[1] 
+            self.newSize[1] = (self.outputTextSize[1] - self.textHeight) * 2
+            self.newSize[1] =  math.ceil(self.newSize[1])
             if self.newSize[1] > self.maxSize[1]:
                 self.newSize[1] = self.maxSize[1]
 
 
-        # Resize contents
+        # Resize contents: place the elements first, then add margins and resize the whole window
         # Update newSize to fit contents
         self.root.geometry(str(self.newSize[0] + self.margins * 2) + "x" + str(self.newSize[1] + self.margins * 2))
+        print("Width:", self.root.winfo_width(), self.root.winfo_height())
         
         # inputBox should be 1 margin unit from the window top extending directly to the window y (mid-point - textHeight)
         self.inputBox.place(x=self.margins, y=self.margins, width=self.newSize[0], height=self.newSize[1] / 2 - self.textHeight - self.margins)
@@ -151,7 +158,7 @@ class Widget():
         self.outputFrame.place(x=self.margins, y=self.newSize[1] / 2 - self.textHeight + self.margins, width=self.newSize[0], height=self.newSize[1] / 2 + self.textHeight)
         self.translationText.place(x=0, y=0)
         # outputText y value is mid-point + 1 margin unit
-        self.outputText.place(x=0, y=self.textHeight, width=self.newSize[0] - self.borderOutline * 2, height=self.newSize[1  ] / 2 - self.margins)
+        self.outputText.place(x=0, y=self.textHeight, width=self.newSize[0] - self.borderOutline * 2, height=self.newSize[1] / 2 - self.margins)
     
     def close(self, event=None):
         self.root.destroy()
@@ -163,7 +170,8 @@ def main():
     text2 = "你說藍色是你最愛的顏色 你說如果沒有愛那又如何"
     text3 = "一二三四五六七 使出必殺技，哥能否追到你，七六五四三二一，真的太可惜，喜歡的人不是你"
     text4 = "愁看殘紅亂舞 憶花底初度逢 難禁垂頭淚湧 此際幸月朦朧 愁悴如何自控 悲哀都一樣同 情意如能互通 相分不必相送"
-    widget.open(inText=text4)
+    text5 = "安靜的夜晚裡 頭腦還不想停\n我還騎著腳踏車載著妳\n潜入了大海裡 我笑著看著妳\n片段的回憶抓著我的心\n緣分還是第一 像悲劇的電影\n我學會至少我們擁有了會經\n這是我的決定\n決定把我們變成美好的記憶\n妳付出愛我的時候\n擁抱妳的人還是我\n爭吵時我都不會走"
+    widget.open(inText=text5)
 
 if __name__ == "__main__":
     main()
