@@ -5,6 +5,7 @@ import deepl
 from internetConnection import isConnected
 import time
 import math
+import json
 
 class Widget():
     def __init__(self) -> None:
@@ -29,6 +30,17 @@ class Widget():
         self.translator = deepl.Translator(self.key)
 
     def welcome(self):
+        # Only show welcome text once
+        with open("Assets/data.json", "r+") as f:
+            self.data = json.load(f)
+            if self.data["showWelcomePage"] == False:
+                return
+            else:
+                f.seek(0)
+                self.data["showWelcomePage"] = False
+                json.dump(self.data, f)
+                
+
         # Initialize window
         self.root = tk.Tk()
         self.root.title("Welcome!")
