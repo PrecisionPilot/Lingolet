@@ -134,7 +134,7 @@ class Widget():
         if self.debugMode:
             self.targetText = "Translation"
         else:
-            self.targetText = self.translator.translate_text(self.inText, source_lang="ZH", target_lang="EN-US")
+            self.targetText = self.translator.translate_text(self.inText, target_lang="EN-US")
         # Set the text ok the label
         self.outText.set(self.targetText)
         self.resize()

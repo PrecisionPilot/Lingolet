@@ -46,11 +46,12 @@
 - [x] Welcome page (06_20)
     - Instructions (hotkey etc), Features
     - ctrl + enter to translate
-- [ ] Update READMe.md
+    - [ ] Show only once
 - [ ] Source language detection (06_20)
     - [ ] Chinese: Pinyin + English
     - [ ] Chinese Traditional: have both Chinese Simplified & English output
     - [ ] Pinying + simplified conversion supported offline
+- [ ] Update README.md
 - [ ] Powered by DeepL sign (06_20)
 - [ ] Create a release (06_20)
 
