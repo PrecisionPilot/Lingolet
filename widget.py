@@ -11,11 +11,13 @@ class Widget():
         self.debugMode = False
         
         # User defined variables
+        self.initSize = (600, 600)
         self.minSize = (500, 300)
         self.maxSize = (700, 500)
         self.margins = 10
         self.borderOutline = 3
         self.myFont = ("Arial", 13)
+        self.icon = "Assets/icon.ico"
         self.myBoldFont = (self.myFont[0], self.myFont[1], "underline", "bold")
         self.mySmallFont = (self.myFont[0], int(self.myFont[1] / 1.3))
         self.textHeight = self.myFont[1] * 1.75
@@ -25,6 +27,38 @@ class Widget():
         with open("Assets/deepL auth.txt", "r") as f:
             self.key = f.read()
         self.translator = deepl.Translator(self.key)
+
+    def welcome(self):
+        # Initialize window
+        self.root = tk.Tk()
+        self.root.title("Welcome!")
+        self.root.iconbitmap(self.icon)
+        self.root.geometry(str(self.initSize[0]) + "x" + str(self.initSize[1]))
+        self.root.focus()
+        self.root.resizable(False, False)
+        self.root.grid_rowconfigure(0, weight=1)
+        self.root.grid_columnconfigure(0, weight=1)
+
+        # Text
+        with open("Assets/welcome page.txt", "r") as f:
+            self.contents = f.read().split("\n")
+        self.textFrame = tk.Frame(self.root)
+        self.textFrame.place(x=self.margins, y=0, width=self.initSize[0] - self.margins * 2, height=self.initSize[1])
+        self.textFrame.update()
+        self.initSize = (self.textFrame.winfo_width(), self.textFrame.winfo_height())
+        tk.Label(self.textFrame, text=self.contents[0], justify=tk.CENTER, font=self.myBoldFont).pack()
+        for i in range(1, len(self.contents)):
+            # Markdown formatting
+            if self.contents[i][0:3] == "## ":
+                tk.Label(self.textFrame, text=self.contents[i][3:], justify=tk.LEFT, font=self.myBoldFont, wraplength=self.initSize[0]).pack(anchor="w")
+            else:
+                tk.Label(self.textFrame, text=self.contents[i], justify=tk.LEFT, font=self.myFont, wraplength=self.initSize[0]).pack(anchor="w")
+
+        # Ok button
+        tk.Button(self.root, text="Use Lingolet", command=self.root.destroy).grid(row=0, column=0, padx=10, pady=10, sticky="se")
+
+
+        self.root.mainloop()
 
     def open(self, inText=""):
         # Avoid hotkey bug
@@ -39,7 +73,7 @@ class Widget():
         # Initialize window
         self.root = tk.Tk()
         self.root.title("Lingolet")
-        self.root.iconbitmap("Assets/icon.ico")
+        self.root.iconbitmap(self.icon)
         self.root.geometry(str(self.minSize[0]) + "x" + str(self.minSize[1]))
         self.root.focus()
         self.root.grid_rowconfigure(0, weight=1)
@@ -173,8 +207,13 @@ def main():
     text5 = "安靜的夜晚裡 頭腦還不想停\n我還騎著腳踏車載著妳\n潜入了大海裡 我笑著看著妳\n片段的回憶抓著我的心\n緣分還是第一 像悲劇的電影\n我學會至少我們擁有了會經\n這是我的決定\n決定把我們變成美好的記憶\n妳付出愛我的時候\n擁抱妳的人還是我\n爭吵時我都不會走"
     widget.open(inText=text5)
 
+def welcomeUser():
+    widget = Widget()
+    widget.welcome()
+
 if __name__ == "__main__":
-    main()
+    # main()
+    welcomeUser()
 
 
 # Make it so that you can show or hide window

@@ -1,111 +1,12 @@
-## To-Do List
-- Learn something new
-    - VSCode tips + tricks
-        - https://youtu.be/ifTF3ags0XI
-    - Discover features deepL API features
-    - Python
-        - Video: https://youtu.be/p15xzjzR9j0
-        - *Args
-    - Get a to-do list for VSCode
-- Errors (6_20)
-    - [x] No internet connection error
-    - [x] Image with no text error
-    - [x] No text error (when translating)
-    - [x] Empty clipboard error
-    - [x] Convert all print statements to message boxes
-    - [ ] Windows behind other windows error (06_20)
-
-
-- [x] Image recognition to text
-- [x] Keyboard shortcut to parse clipboard
-- [x] Parse text no matter image or text on clipboard
-- [x] DeepL API
-- [x] Pop-up window with editable textbox (when hotkey is toggled)
-- [x] Edit textbox to redo translation
-- [x] Key presses
-    - [x] Enter to translate
-    - [x] Exit with "esc"
-- [x] Make unresizable
-- [x] Text polish up
-    - [x] Bigger font size
-    - [x] Let textbox support multiple lines
-    - [x] Label shouldn't be centered
-- [ ] Large text displaying
-    - [x] Adjust up to max size
-    - Try out grids
-    - [x] If greater than max size, shrink font size
-    - [x] If still no space, add newline
-    - [ ] Make this work for long y value (half working, ensure correct formula) (06_20)
-- [x] Give Project a name
-- [x] Labels (Translation)
-- [x] ctrl + enter to make a newline
-- [x] Key binding bug
-- [x] Enhance UI design, make it look good!
-    - [x] Add margins
-    - [x] Create Entry frame
-- [x] Warns you when not connected, but works the moment it is
-- [ ] Powered by DeepL sign (06_20)
-- [ ] Create a release (06_20)
-
-- [ ] Welcome page (06_20)
-    - Instructions (hotkey etc), Features
-    - ctrl + enter to translate
-- [ ] Source language detection (06_20)
-    - [ ] Chinese: Pinyin + English
-    - [ ] Chinese Traditional: have both Chinese Simplified & English output
-    - [ ] Pinying + simplified conversion supported offline
-- [ ] Input and output clickable text language lables for options
-- [ ] Highlight for definitions (to show tranlation of that text, and definitions if available)
-- [ ] Toggle widget without using clipboard (ctrl + alt + q)
-- [ ] Read aloud
-- [ ] Parsing sound effect
-- [ ] Priority window
-- [ ] Error: just pressing alt triggers shortcut
-- [ ] Have a way to quit software
-
-- [ ] Save vocab
-- [ ] Snip feature
-    - [ ] Make PIL image readable to Google Cloud
-    - [ ] Ensure snipping won't interfere with desktop
-    - [ ] Make it work well with Minecraft
-- [ ] Create a settings menu
-    - [ ] Automatic read aloud option
-    - [ ] Automatically bring you to Google Translate or DeepL translator option
-    - [ ] Adjustable font size
-    - [ ] Adjustable window size
-    - [ ] Custom hotkey
-    - [ ] Toggle sound effect
-    - [ ] Custom sound effect
-    - [ ] Run on startup option (Windows + MacOS support)
-
-- [ ] [Spotify API](https://youtu.be/c5sWvP9h3s8) (Satuday)
-    - [ ] Automatically pull up lyrics document (for language learning)
-    - [ ] Search for lyrics automatically
-- [ ] Update features list
-
-
 ## Application
 Using computer vision to help learn the Chinese language.
 > Learning languages is like living multiple lives
-Features:
-- Snip a screnshot for image to text recognition
-- Smart image recognition AI
-- Works well with Minecraft
-- Automatic read aloud option
-- Automatically copy words to the clipboard
-- Uses DeepL translate engine
-- Save words/phrases, which can be exported to a flashcard-friendly csv file
-- Streams translated Spotify lyrics
-- For Chinese
-    - Automatic PinYin (Latinized pronunciation)
-    - Chinese Traditional to Chinese Simplified
-Extra features:
-- Copying unhighlightable text without translating (eg. programming tutorials on YouTube)
-- Pop-up window
-- What language (Python, Java, C#)
-- Possible to hide terminal of python script?
 
-DeepL is the most accurate translator, however it can't save words without using the premium service. Using #Name, you can use the DeepL translator and save words on this software to export later to your favourite flashcard software
+You are just about to take your language learning experience to another level. Lingolet makes language learning more accessible and convenient by allowing you to expose yourself to the language you're learning with 100% confidence. For example, learning song lyrics, playing Minecraft, or setting your system language. Whatever you decide, Linglet will be your handy assistant to guide you through the learning process!
+
+Features:
+- Automatically copies image text to clipboard
+- Powered by DeepL, the internet's most accurate translator
 
 
 ## Sales pitch:

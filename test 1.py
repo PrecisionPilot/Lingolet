@@ -1,5 +1,6 @@
 import tkinter as tk
 from tkinter import ttk
+from PIL import ImageTk, Image
 
 
 window = tk.Tk()
@@ -9,16 +10,13 @@ window.geometry('600x500')
 window.grid_rowconfigure(0, weight=1)
 window.grid_columnconfigure(0, weight=2)
 
-# Text
-text = tk.StringVar()
-label = tk.Label(window, font=("Arial", 12), textvariable=text, bg="green", anchor="nw", wraplength=100, justify=tk.LEFT)
-label.place(x=0, y=0, width=100, height=100)
-
 # Image
-image = tk.Label(window, image="Assets/Powered by DeepL.png")
+img = Image.open(r"Assets/Powered by DeepL.png")
+img.resize((200, 100), Image.ANTIALIAS)
+img = ImageTk.PhotoImage(img)
+label = tk.Label(window, image=img)
+label.place(x=100, y=100)
 
-
-text.set("qwertyuiopasdfghjkl")
 
 
 window.mainloop()

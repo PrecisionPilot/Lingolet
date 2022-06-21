@@ -1,0 +1,20 @@
+Welcome to Lingolet!
+
+"Learning languages is like living multiple lives"
+
+You are just about to take your language learning experience to another level. Lingolet makes language learning more accessible and convenient by allowing you to expose yourself to the language you're learning with 100% confidence. For example, learning song lyrics, playing Minecraft, or setting your system language. Whatever you decide, Linglet will be your handy assistant to guide you through the learning process!
+
+## Instructions
+1. Copy image or text of target language
+2. Press alt + q to parse clipboard for translation
+
+## Shortcuts
+1. Esc: close the pop-up window
+2. Ctrl + Enter: translate text from textbox
+
+## Features
+- Automatically copies image text to clipboard
+- Powered by DeepL, the internet's most accurate translator
+
+
+Enjoy!
