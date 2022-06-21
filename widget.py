@@ -104,9 +104,7 @@ class Widget():
         self.outputFrame = tk.Frame(self.root, borderwidth=self.borderOutline, relief=tk.SUNKEN)
         self.outputFrame.grid_rowconfigure(0, weight=2)
         self.outputFrame.grid_columnconfigure(0, weight=1)
-
-        # Place "Translation:"
-        self.translationText = tk.Label(self.outputFrame, text="Translation:", font=self.myBoldFont, justify=tk.LEFT)
+        
 
         # Translate text, then set the label accordingly
         self.translate()
@@ -200,9 +198,11 @@ class Widget():
         
         # Update "wraplength" of outputText the same as its width for to automatically have newlines when text reaches out of the textbox
         self.outputText.configure(wraplength=self.newSize[0])
-        # translationText begins from y (mid-point - textHeight) + 1 margin unit to mid-point + 1 margin unit
+        # Create outputFrame, which begins from y (mid-point - textHeight) + 1 margin unit
+        # The place elements into outputFrame
         self.outputFrame.place(x=self.margins, y=self.newSize[1] / 2 - self.textHeight + self.margins, width=self.newSize[0], height=self.newSize[1] / 2 + self.textHeight)
-        self.translationText.place(x=0, y=0)
+        tk.Label(self.outputFrame, text="Translation:", font=self.myBoldFont, justify=tk.LEFT).place(x=0, y=0)
+        tk.Label(self.outputFrame, text="English", font=self.myFont, justify=tk.RIGHT).grid(row=0, column=1, padx=10, sticky="ne")
         # outputText y value is mid-point + 1 margin unit
         self.outputText.place(x=0, y=self.textHeight, width=self.newSize[0] - self.borderOutline * 2, height=self.newSize[1] / 2 - self.margins)
     
@@ -217,15 +217,15 @@ def main():
     text3 = "一二三四五六七 使出必殺技，哥能否追到你，七六五四三二一，真的太可惜，喜歡的人不是你"
     text4 = "愁看殘紅亂舞 憶花底初度逢 難禁垂頭淚湧 此際幸月朦朧 愁悴如何自控 悲哀都一樣同 情意如能互通 相分不必相送"
     text5 = "安靜的夜晚裡 頭腦還不想停\n我還騎著腳踏車載著妳\n潜入了大海裡 我笑著看著妳\n片段的回憶抓著我的心\n緣分還是第一 像悲劇的電影\n我學會至少我們擁有了會經\n這是我的決定\n決定把我們變成美好的記憶\n妳付出愛我的時候\n擁抱妳的人還是我\n爭吵時我都不會走"
-    widget.open(inText=text5)
+    widget.open(inText=text4)
 
 def welcomeUser():
     widget = Widget()
     widget.welcome()
 
 if __name__ == "__main__":
-    # main()
-    welcomeUser()
+    main()
+    # welcomeUser()
 
 
 # Make it so that you can show or hide window
