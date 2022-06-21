@@ -1,4 +1,4 @@
-auth.json
-*.pyc
-clipboard.png
+google auth.json
 deepL auth.txt
+clipboard.png
+*.pyc

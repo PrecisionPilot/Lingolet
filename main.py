@@ -38,8 +38,8 @@ def parseClipboard():
             text = parseImage(clipboard)
         # Image file returned
         else:
-            clipboard.save("clipboard.png")
-            text = parseImage("clipboard.png")
+            clipboard.save("Assets/clipboard.png")
+            text = parseImage("Assets/clipboard.png")
         
         # Copy to clipboard if text isn't empty
         if text:
