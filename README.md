@@ -2,7 +2,7 @@
 Using computer vision to help learn the Chinese language.
 > Learning languages is like living multiple lives
 
-You are just about to take your language learning experience to another level. Lingolet makes language learning more accessible and convenient by allowing you to expose yourself to the language you're learning with 100% confidence. For example, learning song lyrics, playing Minecraft, or setting your system language. Whatever you decide, Linglet will be your handy assistant to guide you through the learning process!
+You're about to take your language learning experience to another level. Lingolet makes language learning more accessible and convenient by exposing you to the language you're learning with 100% confidence. Song lyrics, playing Minecraft, or setting your system language. Whatever you decide, Lingolet will be your handy assistant to guide you through the learning process!
 
 Features:
 - Automatically copies image text to clipboard
