@@ -35,7 +35,7 @@
     - Try out grids
     - [x] If greater than max size, shrink font size
     - [x] If still no space, add newline
-    - [ ] Make this work for long y value (06_20)
+    - [ ] Make this work for long y value (half working, ensure correct formula) (06_20)
 - [x] Give Project a name
 - [x] Labels (Translation)
 - [x] ctrl + enter to make a newline

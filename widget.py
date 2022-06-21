@@ -22,7 +22,7 @@ class Widget():
 
         # Initialize deepL API
         self.key = ""
-        with open("deepL auth.txt", "r") as f:
+        with open("Assets/deepL auth.txt", "r") as f:
             self.key = f.read()
         self.translator = deepl.Translator(self.key)
 
@@ -39,7 +39,7 @@ class Widget():
         # Initialize window
         self.root = tk.Tk()
         self.root.title("Lingolet")
-        self.root.iconbitmap("icon.ico")
+        self.root.iconbitmap("Assets/icon.ico")
         self.root.geometry(str(self.minSize[0]) + "x" + str(self.minSize[1]))
         self.root.focus()
         self.root.grid_rowconfigure(0, weight=1)
@@ -137,17 +137,17 @@ class Widget():
         if self.outputTextSize[1] > self.outputFrameHeight:
             print("Horizontal resize")
             print(self.outText.get())
-            # outputFrameHeight needs to be enlarged to outputTextSize, to do so, change newSize[1] 
+            # outputFrameHeight needs to be enlarged to outputTextSize[1], to do so, change newSize[1] 
             self.newSize[1] = (self.outputTextSize[1] - self.textHeight) * 2
             self.newSize[1] =  math.ceil(self.newSize[1])
             if self.newSize[1] > self.maxSize[1]:
                 self.newSize[1] = self.maxSize[1]
+            print(self.newSize[1])
 
 
         # Resize contents: place the elements first, then add margins and resize the whole window
         # Update newSize to fit contents
         self.root.geometry(str(self.newSize[0] + self.margins * 2) + "x" + str(self.newSize[1] + self.margins * 2))
-        print("Width:", self.root.winfo_width(), self.root.winfo_height())
         
         # inputBox should be 1 margin unit from the window top extending directly to the window y (mid-point - textHeight)
         self.inputBox.place(x=self.margins, y=self.margins, width=self.newSize[0], height=self.newSize[1] / 2 - self.textHeight - self.margins)
