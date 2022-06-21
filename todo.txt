@@ -1,11 +1,13 @@
 - Learn something new
     - VSCode tips + tricks
         - https://youtu.be/ifTF3ags0XI
-    - Discover features deepL API features
     - Python
         - Video: https://youtu.be/p15xzjzR9j0
         - *Args
-    - Get a to-do list for VSCode
+    - Discover features deepL API features
+- Resources
+    - https://thenewstack.io/getting-started-with-the-deepl-language-translation-api-in-python/#:~:text=DeepL%20can%20automatically%20detect%20the,explicitly%20using%20the%20source_lang%20parameter%20.&text=%3D%22DE%22)-,print(result)%20%23%20%E2%80%9CHallo%2C%20Welt!%E2%80%9D,same%20target%20language%20at%20once.
+
 - Errors (6_20)
     - [x] No internet connection error
     - [x] Image with no text error
