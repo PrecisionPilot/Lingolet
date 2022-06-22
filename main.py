@@ -68,7 +68,6 @@ def parseClipboard():
         # Prevent key-binding bugs
         time.sleep(0.5)
         key.release("q")
-        time.sleep(0.1)
         key.release(Key.alt)
     
     # Clipboard contains nothing
