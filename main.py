@@ -1,15 +1,22 @@
-from PIL import Image, ImageGrab
-from pynput import keyboard
-from pynput.keyboard import Key, Controller
-import pyperclip
-import tkinter as tk
-from tkinter import messagebox
+import os
+try:
+    from PIL import Image, ImageGrab
+    from pynput import keyboard
+    from pynput.keyboard import Key, Controller
+    import pyperclip
+    import tkinter as tk
+    from tkinter import messagebox
 
-from ocr import parseImage
-from internetConnection import isConnected
-import widget
-import time
-# import SnippingMenu
+    from ocr import parseImage
+    from internetConnection import isConnected
+    import widget
+    import time
+    # import SnippingMenu
+except:
+    # Automatically install packages if they don't exist
+    os.system("pip install -r requirements.txt")
+
+
 
 popUp = widget.Widget()
 
