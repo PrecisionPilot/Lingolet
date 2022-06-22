@@ -1,5 +1,5 @@
 import os
-def importPackages():
+try:
     from PIL import Image, ImageGrab
     from pynput import keyboard
     from pynput.keyboard import Key, Controller
@@ -12,12 +12,10 @@ def importPackages():
     import widget
     import time
     # import SnippingMenu
-try:
-    importPackages()
 except:
     # Automatically install packages if they don't exist
     os.system("pip install -r requirements.txt")
-    importPackages()
+
 
 
 popUp = widget.Widget()
