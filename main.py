@@ -1,28 +1,23 @@
 import os
+import widget
+import time
+import tkinter as tk
+from tkinter import messagebox
+from internetConnection import isConnected
+from ocr import parseImage
 try:
     from PIL import Image, ImageGrab
     from pynput import keyboard
-    from pynput.keyboard import Key, Controller
     import pyperclip
-    import tkinter as tk
-    from tkinter import messagebox
-
-    from ocr import parseImage
-    from internetConnection import isConnected
-    import widget
-    import time
     # import SnippingMenu
 except:
     # Automatically install packages if they don't exist
     os.system("pip install -r requirements.txt")
 
-
-
 popUp = widget.Widget()
 
 # Variables
 debugMode = False
-key = Controller()
 
 
 # Open welcome window
@@ -62,12 +57,7 @@ def parseClipboard():
         print(text)
         # Open translation widget
         popUp.open(text)
-        
-        # Prevent key-binding bugs
-        time.sleep(0.5)
-        key.release("q")
-        key.release(Key.alt)
-    
+            
     # Clipboard contains nothing
     else:
         print("Error: Empty clipboard")

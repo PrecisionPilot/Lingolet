@@ -55,6 +55,7 @@
 - [x] Update README.md (06_21)
 - [ ] Create a release
 
+- [ ] Automatically import packages
 - [ ] Source language detection
     - [ ] Chinese: Pinyin + English
     - [ ] Chinese Traditional: have both Chinese Simplified & English output

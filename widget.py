@@ -1,11 +1,11 @@
 import tkinter as tk
 from tkinter import messagebox
-from tkinter import font
-import deepl
 from internetConnection import isConnected
+from pynput.keyboard import Key, Controller
 import time
 import math
 import json
+import deepl
 
 class Widget():
     def __init__(self) -> None:
@@ -24,11 +24,14 @@ class Widget():
         self.mySmallFont = (self.myFont[0], int(self.myFont[1] / 1.3))
         self.textHeight = self.myFont[1] * 1.75
 
+        # Variables
+        self.key = Controller()
+
         # Initialize deepL API
-        self.key = ""
+        self.apiKey = ""
         with open("Assets/deepL auth.txt", "r") as f:
-            self.key = f.read()
-        self.translator = deepl.Translator(self.key)
+            self.apiKey = f.read()
+        self.translator = deepl.Translator(self.apiKey)
 
     def welcome(self):
         # Only show welcome text once
@@ -117,6 +120,7 @@ class Widget():
 
         self.root.lift()
         self.root.mainloop()
+        self.releaseKeys()
         
     
     def translate(self, event=None):
@@ -215,6 +219,12 @@ class Widget():
     
     def close(self, event=None):
         self.root.destroy()
+    
+    def releaseKeys(self):
+        # Prevent key-binding bugs
+        time.sleep(0.5)
+        self.key.release("q")
+        self.key.release(Key.alt)
 
 # Testing purposes
 def main():
