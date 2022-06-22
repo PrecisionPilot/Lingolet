@@ -45,14 +45,14 @@
     - [x] Add margins
     - [x] Create Entry frame
 - [x] Warns you when not connected, but works the moment it is
-- [x] Welcome page (06_21)
+- [x] Welcome page
     - Instructions (hotkey etc), Features
     - ctrl + enter to translate
     - [x] Show only once
-- [ ] Translation (06_21)
+- [ ] Translation
     - [ ] Detected language Label
     - [ ] Target language selection
-- [ ] Update README.md (06_21)
+- [x] Update README.md (06_21)
 - [ ] Create a release
 
 - [ ] Source language detection

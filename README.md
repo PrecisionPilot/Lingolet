@@ -9,14 +9,13 @@ Features:
 - Powered by DeepL, the internet's most accurate translator
 
 
-## Sales pitch:
+## Inspiration
 The power of learning languages:
 - There is something magical to language learning. As an enthusiast once said, "Learning languages is like living multiple lives." Something that was once jibberish now you
 can understand and see another world
 - Classes are boring: nobody likes classes
 - Extrinsic: motivation for language classes
 
-Context:
 - Second generation people losing their language and culture, partly due to boring classes
 - What if their are different ways?
 - What if you could learn languages through watching TV shows and playing Minecraft, singing songs?
