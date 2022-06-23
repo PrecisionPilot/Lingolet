@@ -71,12 +71,14 @@
 - [ ] Priority window
 - [ ] Have a way to quit software
 
-- [ ] Save vocab
+- [ ] Feature: Language sheets manager
+    - [ ] Save vocab option
+    - [ ] Language 
     - [ ] Export flashcard friendly CSV option
 - [ ] Snip feature
     - [ ] Ensure snipping won't interfere with desktop
     - [ ] Make it work well with Minecraft
-- [ ] Create a settings menu
+- [ ] Settings menu
     - [ ] Automatic read aloud option
     - [ ] Automatically bring you to Google Translate or DeepL translator option
     - [ ] Adjustable font size
@@ -86,7 +88,11 @@
     - [ ] Custom sound effect
     - [ ] Run on startup option (Windows + MacOS support)
 
-- [ ] [Spotify API](https://youtu.be/c5sWvP9h3s8) (Satuday)
+- [ ] [Spotify API](https://youtu.be/c5sWvP9h3s8)
     - [ ] Automatically pull up lyrics document (for language learning)
     - [ ] Search for lyrics automatically
-- [ ] Update features list
+- Hardware integration
+    - Display translation / Spotify song on LCD display
+- Gamification
+    - Quiz user on vocabulary, then highlight mastered words, increase “learned words count using this software”
+    - Perhaps make an Anki add-on to track new words progress
