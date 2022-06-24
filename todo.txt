@@ -49,6 +49,14 @@
     - Instructions (hotkey etc), Features
     - ctrl + enter to translate
     - [x] Show only once
+- [ ] Source language detection
+    - [ ] Detect language
+    - [ ] Map languages
+    - [ ] Remove debug mode
+    - [x] Chinese: Pinyin + English
+    - [ ] Chinese Traditional: have both Chinese Simplified & English output
+    - [ ] Pinying + simplified conversion supported offline
+    - [ ] Mandarin and Cantonese Pinyin option
 - [ ] Translation
     - [ ] Detected language Label
     - [ ] Target language selection
@@ -56,10 +64,6 @@
 - [ ] Create a release
 
 - [ ] Automatically import packages
-- [ ] Source language detection
-    - [ ] Chinese: Pinyin + English
-    - [ ] Chinese Traditional: have both Chinese Simplified & English output
-    - [ ] Pinying + simplified conversion supported offline
 - [ ] Powered by DeepL sign
 - [ ] Implement own screen snipping
 - [ ] Allow toggle alt + q while window is open

@@ -1,20 +1,11 @@
-# Import the required libraries
-from tkinter import *
+from xpinyin import Pinyin
+import pycantonese
 
-# Create an instance of tkinter frame or window
-win=Tk()
+p = Pinyin()
+def pinyin(x: str) -> str:
+   p.decode_pinyin
+   return p.get_pinyin(x, tone_marks="marks", splitter=" ")
 
-# Set the size of the window
-win.geometry("700x350")
-
-def stay_on_top():
-   win.lift()
-   win.after(2000, stay_on_top)
-
-# Add a Label widget
-Label(win, text="This window will always stay on Top", font=('Aerial 14')).pack(pady=30, anchor =CENTER)
-
-# Call function to make the window stay on top
-stay_on_top()
-
-win.mainloop()
+text = pycantonese.parse_text("安靜的夜晚裡 頭腦還不想停")
+print(pycantonese.characters_to_jyutping(text))
+print(p.decode_pinyin("sau4"))

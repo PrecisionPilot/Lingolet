@@ -2,6 +2,7 @@ import tkinter as tk
 from tkinter import messagebox
 from internetConnection import isConnected
 from pynput.keyboard import Key, Controller
+from xpinyin import Pinyin
 import time
 import math
 import json
@@ -26,6 +27,7 @@ class Widget():
 
         # Variables
         self.key = Controller()
+        self.pinyin = Pinyin()
 
         # Initialize deepL API
         self.apiKey = ""
@@ -151,6 +153,9 @@ class Widget():
             self.targetText = "Translation"
         else:
             self.targetText = self.translator.translate_text(self.inText, target_lang="EN-US")
+            if self.targetText.detected_source_lang == "ZH":
+                self.outputPinyin = self.pinyin.get_pinyin(self.inText, splitter=" ", tone_marks="marks")
+                self.targetText = f"{self.outputPinyin}\n\n" + self.targetText.text
         # Set the text ok the label
         self.outText.set(self.targetText)
         self.resize()
@@ -175,13 +180,9 @@ class Widget():
                 self.newSize[0] = self.maxSize[0]
                 # Since the text in one line exceeds the max window width, shrink font size
                 self.outputText.configure(font=self.mySmallFont)
-                print("small font set")
                 # Update outputTextSize
                 self.outputText.update()
                 self.outputTextSize = [self.outputText.winfo_width(), self.outputText.winfo_height()]
-            else:
-                # If text isn't too big, set font size to default
-                print("normal font")
         # If y of outputText is greater than height of outputFrame
         self.outputFrameHeight = self.newSize[1] / 2 + self.textHeight
         if self.outputTextSize[1] > self.outputFrameHeight:
@@ -205,7 +206,6 @@ class Widget():
         self.inputBox.grid_rowconfigure(0, weight=1)
         self.inputBox.grid_columnconfigure(0, weight=1)
         # tk.Label(self.inputBox, text="Chinese", font=self.myUnderlineFont, justify=tk.LEFT, bg="white").grid(row=0, column=1, padx=10, sticky="se")
-
 
         # Update "wraplength" of outputText the same as its width for to automatically have newlines when text reaches out of the textbox
         self.outputText.configure(wraplength=self.newSize[0])
