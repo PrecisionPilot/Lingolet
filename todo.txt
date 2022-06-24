@@ -49,6 +49,7 @@
     - Instructions (hotkey etc), Features
     - ctrl + enter to translate
     - [x] Show only once
+- [ ] Fix bug: output textbox extra newlines
 - [ ] Source language detection
     - [ ] Detect language
     - [ ] Map languages
@@ -63,10 +64,12 @@
 - [x] Update README.md (06_21)
 - [ ] Create a release
 
+- [ ] Allow toggle alt + q while window is open
+- [ ] Search for dictionary definition first
+- [ ] Highlight for dictionary definition
 - [ ] Automatically import packages
 - [ ] Powered by DeepL sign
 - [ ] Implement own screen snipping
-- [ ] Allow toggle alt + q while window is open
 - [ ] Input and output clickable text language lables for options
 - [ ] Highlight for definitions (to show tranlation of that text, and definitions if available)
 - [ ] Toggle widget without using clipboard (ctrl + alt + q)
@@ -83,6 +86,8 @@
     - [ ] Ensure snipping won't interfere with desktop
     - [ ] Make it work well with Minecraft
 - [ ] Settings menu
+    - [ ] Show in system tray
+    - [ ] No window pop-up options
     - [ ] Automatic read aloud option
     - [ ] Automatically bring you to Google Translate or DeepL translator option
     - [ ] Adjustable font size
