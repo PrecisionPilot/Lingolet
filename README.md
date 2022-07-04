@@ -12,6 +12,7 @@ Features:
 
 
 ## Inspiration
+Chinese is hard:
 First of all, I'm trying to improve my Chinese. Second of all, I love listening to C-pop. The main problem is that Spotify's lyrics isn't highlightable, so it can't be copied. Since Chinese texts also cannot be pronounced, there's no way to search up a word you don't know. This is what drove me to create Lingolet. In my experience, nobody, including myself, enjoys Chinese school. Our favourite part of it is the moment it ends. Instead of reading boring texts all day, you can now learn Chinese by having fun, playing Minecraft, becoming more cultured by singing songs, and reading interesting articles. 
 
 
