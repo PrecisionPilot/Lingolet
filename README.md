@@ -8,6 +8,34 @@ Features:
 - Automatically copies image text to clipboard
 - Powered by DeepL, the internet's most accurate translator
 
+Supported Languages:
+- Bulgarian
+- Czech
+- Danish
+- German
+- Greek
+- English
+- Spanish
+- Estonian
+- Finnish
+- French
+- Hungarian
+- Indonesian
+- Italian
+- Japanese
+- Lithuanian
+- Latvian
+- Dutch
+- Polish
+- Portuguese (all Portuguese varieties mixed)
+- Romanian
+- Russian
+- Slovak
+- Slovenian
+- Swedish
+- Turkish
+- Chinese
+
 
 ## Inspiration
 The power of learning languages:

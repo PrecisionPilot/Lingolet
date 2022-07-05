@@ -4,6 +4,7 @@ PyQt5
 pyperclip
 google.cloud
 google.cloud.vision
+google.cloud.translate
 pillow
 xpinyin
 pycantonese
