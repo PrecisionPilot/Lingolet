@@ -63,16 +63,20 @@ def parseClipboard():
         print("Error: Empty clipboard")
         messagebox.showwarning(title="Error", message="Your clipboard is empty")
 
-# Check if connected to internet
-if not isConnected():
-    print("Warning: No internet connection")
+def main():
+    # Check if connected to internet
+    if not isConnected():
+        print("Warning: No internet connection")
 
-# Hotkey implementation
-if not debugMode:
-    with keyboard.GlobalHotKeys({'<alt>+q': parseClipboard}) as h:
-        h.join()
+    # Hotkey implementation
+    if not debugMode:
+        with keyboard.GlobalHotKeys({'<alt>+q': parseClipboard}) as h:
+            h.join()
 
-# Debug mode
-if debugMode:
-    input("Whenever you're ready: ")
-    parseClipboard()
+    # Debug mode
+    if debugMode:
+        input("Whenever you're ready: ")
+        parseClipboard()
+
+if __name__ == "__main__":
+    main()
