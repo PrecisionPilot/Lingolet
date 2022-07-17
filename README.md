@@ -1,4 +1,4 @@
-## Application
+# Application
 Using computer vision to help learn the Chinese language.
 > Learning languages is like living multiple lives
 
@@ -13,12 +13,12 @@ You're about to take your language learning experience to another level. Lingole
 - Powered by DeepL, the internet's most accurate translator
 
 
-## Installation
+# Installation
 1. Open the terminal of your OS and navigate into the Lingolet folder using the ```cd [directory]``` command
 2. Run: ```pip install -r requirements.txt```
 3. Simply double-click on the python file and Lingolet will automatically run in the background
 
-## Inspiration
+# Inspiration
 **Chinese is hard:**
 
 First of all, I'm trying to improve my Chinese. Second of all, I love listening to C-pop. The main problem is that Spotify's lyrics isn't highlightable, so it can't be copied. Since Chinese texts also cannot be pronounced, there's no way to search up a word you don't know. This is what drove me to create Lingolet. In my experience, nobody, including myself, enjoys Chinese school. Our favourite part of it is the moment it ends. Instead of reading boring texts all day, you can now learn Chinese by having fun, playing Minecraft, becoming more cultured by singing songs, and reading interesting articles. 
@@ -36,7 +36,7 @@ can understand and see another world
 - Mission: Making language learning and enchanting experience
 
 
-## Supported Languages:
+# Supported Languages:
 - Bulgarian
 - Czech
 - Danish
