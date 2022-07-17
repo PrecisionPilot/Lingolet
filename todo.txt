@@ -92,6 +92,7 @@
     - [ ] Automatically bring you to Google Translate or DeepL translator option
     - [ ] Adjustable font size
     - [ ] Adjustable window size
+    - [ ] Cantonese: tone marks or number marking
     - [ ] Custom hotkey
     - [ ] Toggle sound effect
     - [ ] Custom sound effect
