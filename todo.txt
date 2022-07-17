@@ -49,20 +49,25 @@
     - Instructions (hotkey etc), Features
     - ctrl + enter to translate
     - [x] Show only once
-- [ ] Fix bug: output textbox extra newlines
+    - [ ] Show supported languages
+- [x] Fix bug: output textbox extra newlines
 - [ ] Source language detection
-    - [ ] Detect language
-    - [ ] Map languages
+    - [ ] Korean support
     - [ ] Remove debug mode
     - [x] Chinese: Pinyin + English
     - [ ] Chinese Traditional: have both Chinese Simplified & English output
     - [ ] Pinying + simplified conversion supported offline
-    - [ ] Mandarin and Cantonese Pinyin option
+    - [x] Mandarin and Cantonese Pinyin option
+- Middle bar
+    - [ ] Detect language (map languages first)
+    - [ ] Chinese: Mandarin / Cantonese option
+    - [ ] Chinese traditional: show simplified option
 - [ ] Translation
     - [ ] Detected language Label
     - [ ] Target language selection
-- [x] Update README.md (06_21)
-- [ ] Create a release
+- [x] Update README.md
+    - [ ] Add supported languges
+- [ ] Create a release (Friday)
 
 - [ ] Allow toggle alt + q while window is open
 - [ ] Search for dictionary definition first
@@ -106,3 +111,10 @@
 - Gamification
     - Quiz user on vocabulary, then highlight mastered words, increase “learned words count using this software”
     - Perhaps make an Anki add-on to track new words progress
+
+
+
+
+Finished product:
+- Built-in snip feature
+- Can display translation of Spotify lyrics live

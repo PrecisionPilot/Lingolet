@@ -3,6 +3,7 @@ from tkinter import messagebox
 from internetConnection import isConnected
 from pynput.keyboard import Key, Controller
 from xpinyin import Pinyin
+import pycantonese
 import time
 import math
 import json
@@ -26,6 +27,7 @@ class Widget():
         self.textHeight = self.myFont[1] * 1.75
 
         # Variables
+        self.cantonese = True;
         self.key = Controller()
         self.pinyin = Pinyin()
 
@@ -125,6 +127,14 @@ class Widget():
         self.releaseKeys()
         
     
+    def cantonese2pinyin(self, text=""):
+        # Loop through all the tuples and get the second element to append it to the text
+        self.jyuping = ""
+        for text in pycantonese.characters_to_jyutping(text):
+            self.jyuping += self.pinyin.decode_pinyin(text[1]) + " "
+        
+        return self.jyuping
+
     def translate(self, event=None):
         # Update "inText"
         self.inText = self.inputBox.get(1.0, tk.END)
@@ -154,7 +164,11 @@ class Widget():
         else:
             self.targetText = self.translator.translate_text(self.inText, target_lang="EN-US")
             if self.targetText.detected_source_lang == "ZH":
-                self.outputPinyin = self.pinyin.get_pinyin(self.inText, splitter=" ", tone_marks="marks")
+                # Mandarin or Cantonese Pinyin?
+                if self.cantonese:
+                    self.outputPinyin = self.cantonese2pinyin(self.inText)
+                else:
+                    self.outputPinyin = self.pinyin.get_pinyin(self.inText, splitter=" ", tone_marks="marks")
                 self.targetText = f"{self.outputPinyin}\n\n" + self.targetText.text
         # Set the text ok the label
         self.outText.set(self.targetText)
