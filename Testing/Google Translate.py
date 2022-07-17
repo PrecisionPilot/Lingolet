@@ -1,11 +1,12 @@
 import os
-from google.cloud import translate
+from google.cloud import translate_v2 as translate
 
 # Authentication
 os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = r'Assets/google auth.json'
 
-client = translate.TranslationServiceClient()
+client = translate.Client()
+# result = client.translate(values="ok then", target_language="ja")["translatedText"]
 
-print(client.translate_text(contents="ok then", target_language_code="ja"))
+print(client.detect_language("是")["language"])
 
-# output = client.translate_text(contents="ok then", target_language_code="ZH-CN")
+# output = client.translate(contents="ok then", target_language_code="ZH-CN")
