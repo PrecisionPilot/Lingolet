@@ -7,6 +7,8 @@ Using computer vision to help learn the Chinese language.
 You're about to take your language learning experience to another level. Lingolet makes language learning more accessible and convenient by exposing you to the language you're learning with 100% confidence. Song lyrics, playing Minecraft, or setting your system language. Whatever you decide, Lingolet will be your handy assistant to guide you through the learning process!
 
 **Features:**
+- Features UI pop-up window for translated texts: you can edit the text to translate
+- Supports image and text parsing
 - Automatically copies image text to clipboard
 - Powered by DeepL, the internet's most accurate translator
 

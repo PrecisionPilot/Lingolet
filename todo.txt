@@ -65,8 +65,6 @@
 - [ ] Translation
     - [ ] Detected language Label
     - [ ] Target language selection
-- [x] Update README.md
-    - [ ] Add supported languges
 - [ ] Create a release (Friday)
 
 - [ ] Allow toggle alt + q while window is open
