@@ -27,7 +27,7 @@ class Widget():
         self.textHeight = self.myFont[1] * 1.75
 
         # Variables
-        self.cantonese = True;
+        self.cantonese = False;
         self.key = Controller()
         self.pinyin = Pinyin()
 
