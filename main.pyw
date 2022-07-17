@@ -5,14 +5,10 @@ import tkinter as tk
 from tkinter import messagebox
 from internetConnection import isConnected
 from ocr import parseImage
-try:
-    from PIL import Image, ImageGrab
-    from pynput import keyboard
-    import pyperclip
-    # import SnippingMenu
-except:
-    # Automatically install packages if they don't exist
-    os.system("pip install -r requirements.txt")
+from PIL import Image, ImageGrab
+from pynput import keyboard
+import pyperclip
+# import SnippingMenu
 
 popUp = widget.Widget()
 
