@@ -13,10 +13,13 @@ You're about to take your language learning experience to another level. Lingole
 - Powered by DeepL, the internet's most accurate translator
 
 
+
 # Installation
 1. Open the terminal of your OS and navigate into the Lingolet folder using the ```cd [directory]``` command
 2. Run: ```pip install -r requirements.txt```
 3. Simply double-click on the python file and Lingolet will automatically run in the background
+
+
 
 # Inspiration
 **Chinese is hard:**
@@ -33,6 +36,7 @@ can understand and see another world
 - What if their are different ways?
 - What if you could learn languages through watching TV shows and playing Minecraft, singing songs?
 - Mission: Making language learning and enchanting experience
+
 
 
 # Supported Languages:
