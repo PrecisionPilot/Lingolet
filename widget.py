@@ -16,7 +16,7 @@ class Widget():
         # User defined variables
         self.initSize = (600, 600)
         self.minSize = (500, 300)
-        self.maxSize = (700, 500)
+        self.maxSize = (700, 600)
         self.margins = 10
         self.borderOutline = 3
         self.myFont = ("Arial", 13)
@@ -103,7 +103,7 @@ class Widget():
 
         # Set variables
         self.inText = inText
-        self.outText = tk.StringVar()
+        self.outText = ""
 
         # Input text
         self.inputBox = tk.Text(self.root, font=self.myFont, borderwidth=self.borderOutline, relief=tk.SUNKEN)
@@ -149,7 +149,7 @@ class Widget():
 
         # Output text
         # Set outputText's "textvariable" to "outText", then translate
-        self.outputText = tk.Label(self.outputFrame, textvariable=self.outText, font=self.myFont, justify=tk.LEFT, anchor="nw")
+        self.outputText = tk.Text(self.outputFrame, font=self.myFont)
 
         # Button
         self.translateButton = tk.Button(self.outputFrame, text="Translate", command=self.translate)
@@ -164,18 +164,19 @@ class Widget():
 
         # Get text from textbox and set it as the outText variable
         if self.debugMode:
-            self.targetText = "Translation"
+            self.outText = "Translation"
         else:
-            self.targetText = self.translator.translate_text(self.inText, target_lang="EN-US")
-            if self.targetText.detected_source_lang == "ZH":
+            self.outText = self.translator.translate_text(self.inText, target_lang="EN-US")
+            if self.outText.detected_source_lang == "ZH":
                 # Mandarin or Cantonese Pinyin?
                 if self.cantonese:
                     self.outputPinyin = self.cantonese2pinyin(self.inText)
                 else:
                     self.outputPinyin = self.pinyin.get_pinyin(self.inText, splitter=" ", tone_marks="marks")
-                self.targetText = f"{self.outputPinyin}\n\n" + self.targetText.text
+                self.outText = f"{self.outputPinyin}\n\n" + self.outText.text
         # Set the text ok the label
-        self.outText.set(self.targetText)
+        self.outputText.insert(1.0, "\n\n" + self.outText)  # Newlines prevent text overlapping w/ "Translate" text
+        self.outputText.insert(1.0, "Bruh moment")
         self.resize()
         
     def resize(self):
@@ -205,7 +206,7 @@ class Widget():
         self.outputFrameHeight = self.newSize[1] / 2 + self.textHeight
         if self.outputTextSize[1] > self.outputFrameHeight:
             print("Horizontal resize")
-            print(self.outText.get())
+            print(self.outText)
             # outputFrameHeight needs to be enlarged to outputTextSize[1], to do so, change newSize[1] 
             self.newSize[1] = (self.outputTextSize[1] - self.textHeight) * 2
             self.newSize[1] =  math.ceil(self.newSize[1])
@@ -227,8 +228,6 @@ class Widget():
         self.inputBox.grid_columnconfigure(0, weight=1)
         # tk.Label(self.inputBox, text="Chinese", font=self.myUnderlineFont, justify=tk.LEFT, bg="white").grid(row=0, column=1, padx=10, sticky="se")
 
-        # Update "wraplength" of outputText to its width to automatically generate newlines
-        self.outputText.configure(wraplength=self.newSize[0])
         # Create outputFrame, which begins from y (mid-point(not including top bar) - textHeight) + 1 margin unit
         # The place elements into outputFrame
         self.outputFrameY = self.inputBoxY + self.inputBoxHeight + self.margins
@@ -237,8 +236,10 @@ class Widget():
         tk.Label(self.outputFrame, text="Translation:", font=self.myBoldFont, justify=tk.LEFT).place(x=0, y=0)
         tk.Label(self.outputFrame, text="English", font=self.myUnderlineFont, justify=tk.LEFT).grid(row=0, column=1, padx=10, sticky="ne")
         # outputText y value is mid-point + 1 margin unit
-        self.outputText.place(x=0, y=self.textHeight, width=self.newSize[0] - self.borderOutline * 2, height=self.outputFrameHeight - self.textHeight - self.borderOutline * 2)
-    
+        self.outputText.place(x=0, y=0, width=self.newSize[0] - self.borderOutline * 2, height=self.outputFrameHeight - self.borderOutline * 2)
+        # Set outputText text field uneditable
+        self.outputText.config(state=tk.DISABLED)
+
     def close(self, event=None):
         self.root.destroy()
     
