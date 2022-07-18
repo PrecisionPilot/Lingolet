@@ -175,6 +175,8 @@ class Widget():
                     self.outputPinyin = self.pinyin.get_pinyin(self.inText, splitter=" ", tone_marks="marks")
                 self.outText = f"{self.outputPinyin}\n\n" + self.outText.text
         # Set the text ok the label
+        if not isinstance(self.outText, str):
+            self.outText = self.outText.text
         self.outputText.insert(1.0, "\n\n" + self.outText)  # Newlines prevent text overlapping w/ "Translate" text
         self.outputText.insert(1.0, "Bruh moment")
         self.resize()
@@ -252,12 +254,13 @@ class Widget():
 # Testing purposes
 def main():
     widget = Widget()
+    text0 = "大手牽"
     text1 = "安靜的夜晚裡 頭腦還不想停"
     text2 = "你說藍色是你最愛的顏色 你說如果沒有愛那又如何"
     text3 = "一二三四五六七 使出必殺技，哥能否追到你，七六五四三二一，真的太可惜，喜歡的人不是你"
     text4 = "愁看殘紅亂舞 憶花底初度逢 難禁垂頭淚湧 此際幸月朦朧 愁悴如何自控 悲哀都一樣同 情意如能互通 相分不必相送"
     text5 = "安靜的夜晚裡 頭腦還不想停\n我還騎著腳踏車載著妳\n潜入了大海裡 我笑著看著妳\n片段的回憶抓著我的心\n緣分還是第一 像悲劇的電影\n我學會至少我們擁有了會經\n這是我的決定\n決定把我們變成美好的記憶\n妳付出愛我的時候\n擁抱妳的人還是我\n爭吵時我都不會走"
-    widget.open(inText=text3)
+    widget.open(inText=text0)
 
 def welcomeUser():
     widget = Widget()
