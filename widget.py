@@ -237,7 +237,7 @@ class Widget():
         tk.Label(self.outputFrame, text="Translation:", font=self.myBoldFont, justify=tk.LEFT).place(x=0, y=0)
         tk.Label(self.outputFrame, text="English", font=self.myUnderlineFont, justify=tk.LEFT).grid(row=0, column=1, padx=10, sticky="ne")
         # outputText y value is mid-point + 1 margin unit
-        self.outputText.place(x=0, y=self.textHeight, width=self.newSize[0] - self.borderOutline * 2, height=self.inputBoxHeight + self.textHeight)
+        self.outputText.place(x=0, y=self.textHeight, width=self.newSize[0] - self.borderOutline * 2, height=self.outputFrameHeight - self.textHeight - self.borderOutline * 2)
     
     def close(self, event=None):
         self.root.destroy()
