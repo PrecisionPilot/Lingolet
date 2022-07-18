@@ -53,6 +53,7 @@
 - [x] Fix bug: output textbox extra newlines
 - [x] Converted outputText from label to text field
 - [ ] outputText text field scrolling
+- [ ] Resizing bug?
 - [ ] Keep resizing feature?
 - [ ] Source language detection
     - [ ] Korean support
