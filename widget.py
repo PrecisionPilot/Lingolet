@@ -25,6 +25,7 @@ class Widget():
         self.myUnderlineFont = (self.myFont[0], self.myFont[1], "underline")
         self.mySmallFont = (self.myFont[0], int(self.myFont[1] / 1.3))
         self.textHeight = self.myFont[1] * 1.75
+        self.buttonHeight = 30
 
         # Variables
         self.cantonese = False;
@@ -136,6 +137,9 @@ class Widget():
         return self.jyuping
 
     def translate(self, event=None):
+        # Create settings button
+        tk.Button(self.root, text="Settings").place(x=self.margins, y=self.margins, height=self.buttonHeight)
+        
         # Update "inText"
         self.inText = self.inputBox.get(1.0, tk.END)
         # Remove all trailing edges
@@ -216,20 +220,24 @@ class Widget():
         
         # inputBox should be 1 margin unit from the window top extending directly to the window y (mid-point - textHeight)
         # Place source language text in input box
-        self.inputBox.place(x=self.margins, y=self.margins, width=self.newSize[0], height=self.newSize[1] / 2 - self.textHeight - self.margins)
+        self.inputBoxY = self.margins * 2 + self.buttonHeight
+        self.inputBoxHeight = ((self.newSize[1] - self.inputBoxY) / 2) - self.textHeight
+        self.inputBox.place(x=self.margins, y=self.inputBoxY, width=self.newSize[0], height=self.inputBoxHeight)
         self.inputBox.grid_rowconfigure(0, weight=1)
         self.inputBox.grid_columnconfigure(0, weight=1)
         # tk.Label(self.inputBox, text="Chinese", font=self.myUnderlineFont, justify=tk.LEFT, bg="white").grid(row=0, column=1, padx=10, sticky="se")
 
-        # Update "wraplength" of outputText the same as its width for to automatically have newlines when text reaches out of the textbox
+        # Update "wraplength" of outputText to its width to automatically generate newlines
         self.outputText.configure(wraplength=self.newSize[0])
-        # Create outputFrame, which begins from y (mid-point - textHeight) + 1 margin unit
+        # Create outputFrame, which begins from y (mid-point(not including top bar) - textHeight) + 1 margin unit
         # The place elements into outputFrame
-        self.outputFrame.place(x=self.margins, y=self.newSize[1] / 2 - self.textHeight + self.margins, width=self.newSize[0], height=self.newSize[1] / 2 + self.textHeight)
+        self.outputFrameY = self.inputBoxY + self.inputBoxHeight + self.margins
+        self.outputFrameHeight = ((self.newSize[1] - self.inputBoxY) / 2) + self.textHeight
+        self.outputFrame.place(x=self.margins, y=self.outputFrameY, width=self.newSize[0], height=self.outputFrameHeight)
         tk.Label(self.outputFrame, text="Translation:", font=self.myBoldFont, justify=tk.LEFT).place(x=0, y=0)
         tk.Label(self.outputFrame, text="English", font=self.myUnderlineFont, justify=tk.LEFT).grid(row=0, column=1, padx=10, sticky="ne")
         # outputText y value is mid-point + 1 margin unit
-        self.outputText.place(x=0, y=self.textHeight, width=self.newSize[0] - self.borderOutline * 2, height=self.newSize[1] / 2 - self.margins)
+        self.outputText.place(x=0, y=self.textHeight, width=self.newSize[0] - self.borderOutline * 2, height=self.inputBoxHeight + self.textHeight)
     
     def close(self, event=None):
         self.root.destroy()
