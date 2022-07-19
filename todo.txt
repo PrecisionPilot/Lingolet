@@ -52,9 +52,12 @@
     - [ ] Show supported languages
 - [x] Fix bug: output textbox extra newlines
 - [x] Converted outputText from label to text field
+- [x] Text doesn't interfere with outputFrame 
+- Scaling error
+    - [x] Horizontal
+    - [ ] Vertical
 - [ ] outputText text field scrolling
 - [x] Parsing small text bug
-- [ ] Resizing bug?
 - [ ] Keep resizing feature?
 - [ ] Source language detection
     - [ ] Korean support

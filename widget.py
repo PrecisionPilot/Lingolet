@@ -8,6 +8,8 @@ import time
 import math
 import json
 import deepl
+import os
+from google.cloud import translate_v2 as translate
 
 class Widget():
     def __init__(self) -> None:
@@ -21,6 +23,7 @@ class Widget():
         self.borderOutline = 3
         self.myFont = ("Arial", 13)
         self.icon = "Assets/icon.ico"
+        # self.outerColor = (0, 0, 0)
         self.myBoldFont = (self.myFont[0], self.myFont[1], "underline", "bold")
         self.myUnderlineFont = (self.myFont[0], self.myFont[1], "underline")
         self.mySmallFont = (self.myFont[0], int(self.myFont[1] / 1.3))
@@ -32,11 +35,19 @@ class Widget():
         self.key = Controller()
         self.pinyin = Pinyin()
 
-        # Initialize deepL API
+        # Initialize DeepL API
         self.apiKey = ""
         with open("Assets/deepL auth.txt", "r") as f:
             self.apiKey = f.read()
-        self.translator = deepl.Translator(self.apiKey)
+        self.DeepLTranslator = deepl.Translator(self.apiKey)
+
+        # Initialize Google Translate API
+        os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = r'Assets/google auth.json'
+        self.GoogleTranslate = translate.Client()
+        self.inputLanguage = self.getLanguage("ok")
+        print(self.inputLanguage)
+
+
 
     def welcome(self):
         # Only show welcome text once
@@ -135,11 +146,17 @@ class Widget():
             self.jyuping += self.pinyin.decode_pinyin(text[1]) + " "
         
         return self.jyuping
+    def getLanguage(self, text=""):
+        return self.GoogleTranslate.detect_language(text)["language"]
 
     def translate(self, event=None):
         # Create settings button
-        tk.Button(self.root, text="Settings").place(x=self.margins, y=self.margins, height=self.buttonHeight)
-        
+        tk.Button(self.root, text="Settings").grid(row=0, column=0, padx=10, pady=10, sticky="nw")
+
+        # Translate button
+        # Old: tk.Button(self.inputBox, text="Translate", command=self.translate).grid(row=2, column=1, padx=10, pady=10, sticky="se")
+        tk.Button(self.root, text="Translate", command=self.translate).grid(row=0, column=1, padx=10, pady=10, sticky="ne")
+
         # Update "inText"
         self.inText = self.inputBox.get(1.0, tk.END)
         # Remove all trailing edges
@@ -151,12 +168,6 @@ class Widget():
         # Set outputText's "textvariable" to "outText", then translate
         self.outputText = tk.Text(self.outputFrame, font=self.myFont)
 
-        # Button
-        self.translateButton = tk.Button(self.outputFrame, text="Translate", command=self.translate)
-        # Place button at bottom right corder
-        self.translateButton.grid(row=2, column=1, padx=10, pady=10, sticky="se")
-
-
         # No text error handling
         if self.inText == "":
             messagebox.showwarning(title="Error", message="Text field cannot be empty!")
@@ -166,7 +177,7 @@ class Widget():
         if self.debugMode:
             self.outText = "Translation"
         else:
-            self.outText = self.translator.translate_text(self.inText, target_lang="EN-US")
+            self.outText = self.DeepLTranslator.translate_text(self.inText, target_lang="EN-US")
             if self.outText.detected_source_lang == "ZH":
                 # Mandarin or Cantonese Pinyin?
                 if self.cantonese:
@@ -174,27 +185,27 @@ class Widget():
                 else:
                     self.outputPinyin = self.pinyin.get_pinyin(self.inText, splitter=" ", tone_marks="marks")
                 self.outText = f"{self.outputPinyin}\n\n" + self.outText.text
-        # Set the text ok the label
+        # Polish up self.outText
         if not isinstance(self.outText, str):
             self.outText = self.outText.text
+
+        # Calculate outputTextSize using "outputLabel" (in order to resize "outputText" text field)
+        self.outputLabel = tk.Label(self.outputFrame, text=self.outText, font=self.myFont, bg="white")
+        self.outputLabel.place(x=2, y=2)
+        self.outputLabel.update()
+        self.outputTextSize = [self.outputLabel.winfo_width(), self.outputLabel.winfo_height()]
+        self.outputLabel.configure(text="")
+
+        # Set the text to outputText and outputLabel
         self.outputText.insert(1.0, "\n\n" + self.outText)  # Newlines prevent text overlapping w/ "Translate" text
-        self.outputText.insert(1.0, "Bruh moment")
         self.resize()
         
     def resize(self):
-        # Update outputTextSize upon "outputText" change
-        # Output Text
-        self.outputText.place(x=0, y=0)
-        self.outputText.configure(font=self.myFont)
-        self.outputText.update()
-        self.outputTextSize = [self.outputText.winfo_width(), self.outputText.winfo_height()]
-        
         # Update text based on output text
-
         self.newSize = list(self.minSize)
         # If x of outputText is bigger than x of min window size, newSize = x
         if self.outputTextSize[0] > self.newSize[0]:
-            self.newSize[0] = self.outputTextSize[0]
+            self.newSize[0] = self.outputTextSize[0] + self.borderOutline * 2
 
             # If x exceeds max value, cap it
             if self.newSize[0] > self.maxSize[0]:
@@ -205,16 +216,18 @@ class Widget():
                 self.outputText.update()
                 self.outputTextSize = [self.outputText.winfo_width(), self.outputText.winfo_height()]
         # If y of outputText is greater than height of outputFrame
-        self.outputFrameHeight = self.newSize[1] / 2 + self.textHeight
-        if self.outputTextSize[1] > self.outputFrameHeight:
-            print("Horizontal resize")
-            print(self.outText)
-            # outputFrameHeight needs to be enlarged to outputTextSize[1], to do so, change newSize[1] 
-            self.newSize[1] = (self.outputTextSize[1] - self.textHeight) * 2
-            self.newSize[1] =  math.ceil(self.newSize[1])
-            if self.newSize[1] > self.maxSize[1]:
-                self.newSize[1] = self.maxSize[1]
-            print(self.newSize[1])
+        # Old: self.outputFrameHeight = self.newSize[1] / 2 + self.textHeight
+        # self.inputBoxY = self.margins * 2 + self.buttonHeight
+        # self.outputFrameHeight = ((self.newSize[1] - self.inputBoxY) / 2)
+        # if self.outputTextSize[1] > self.outputFrameHeight:
+        #     print("Vertical resize")
+        #     print(self.outText)
+        #     # outputFrameHeight needs to be enlarged to outputTextSize[1], to do so, change newSize[1] 
+        #     self.newSize[1] = (self.outputTextSize[1] - self.textHeight) * 2
+        #     self.newSize[1] =  math.ceil(self.newSize[1])
+        #     if self.newSize[1] > self.maxSize[1]:
+        #         self.newSize[1] = self.maxSize[1]
+        #     print(self.newSize[1])
 
 
         # Resize contents: place the elements first, then add margins and resize the whole window
@@ -235,8 +248,8 @@ class Widget():
         self.outputFrameY = self.inputBoxY + self.inputBoxHeight + self.margins
         self.outputFrameHeight = ((self.newSize[1] - self.inputBoxY) / 2) + self.textHeight
         self.outputFrame.place(x=self.margins, y=self.outputFrameY, width=self.newSize[0], height=self.outputFrameHeight)
-        tk.Label(self.outputFrame, text="Translation:", font=self.myBoldFont, justify=tk.LEFT).place(x=0, y=0)
-        tk.Label(self.outputFrame, text="English", font=self.myUnderlineFont, justify=tk.LEFT).grid(row=0, column=1, padx=10, sticky="ne")
+        tk.Label(self.outputFrame, text="Translation:", font=self.myBoldFont, justify=tk.LEFT, bg="white").grid(row=0, column=0, padx=2, pady=2, sticky="nw")
+        tk.Label(self.outputFrame, text="English", font=self.myUnderlineFont, justify=tk.LEFT, bg="white").grid(row=0, column=1, padx=2, pady=2, sticky="ne")
         # outputText y value is mid-point + 1 margin unit
         self.outputText.place(x=0, y=0, width=self.newSize[0] - self.borderOutline * 2, height=self.outputFrameHeight - self.borderOutline * 2)
         # Set outputText text field uneditable
