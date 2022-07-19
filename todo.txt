@@ -52,13 +52,23 @@
     - [ ] Show supported languages
 - [x] Fix bug: output textbox extra newlines
 - [x] Converted outputText from label to text field
-- [x] Text doesn't interfere with outputFrame 
-- Scaling error
-    - [x] Horizontal
-    - [ ] Vertical
-- [ ] outputText text field scrolling
+- [x] Text doesn't interfere with outputFrame
 - [x] Parsing small text bug
+- [ ] outputText text field scrolling
 - [ ] Keep resizing feature?
+- [ ] Settings menu
+    - [ ] Show in system tray
+    - [ ] No window pop-up options
+    - [ ] Automatic read aloud option
+    - [ ] Automatically bring you to Google Translate or DeepL translator option
+    - [ ] Adjustable font size
+    - [ ] Adjustable window size
+    - [ ] Cantonese: tone marks or number marking
+    - [ ] Custom hotkey
+    - [ ] Toggle sound effect
+    - [ ] Custom sound effect
+    - [ ] Run on startup option (Windows + MacOS support)
+
 - [ ] Source language detection
     - [ ] Korean support
     - [ ] Remove debug mode
@@ -66,7 +76,7 @@
     - [ ] Chinese Traditional: have both Chinese Simplified & English output
     - [ ] Pinying + simplified conversion supported offline
     - [x] Mandarin and Cantonese Pinyin option
-- Middle bar
+- Top bar
     - [ ] Detect language (map languages first)
     - [ ] Chinese: Mandarin / Cantonese option
     - [ ] Chinese traditional: show simplified option
@@ -96,18 +106,6 @@
 - [ ] Snip feature
     - [ ] Ensure snipping won't interfere with desktop
     - [ ] Make it work well with Minecraft
-- [ ] Settings menu
-    - [ ] Show in system tray
-    - [ ] No window pop-up options
-    - [ ] Automatic read aloud option
-    - [ ] Automatically bring you to Google Translate or DeepL translator option
-    - [ ] Adjustable font size
-    - [ ] Adjustable window size
-    - [ ] Cantonese: tone marks or number marking
-    - [ ] Custom hotkey
-    - [ ] Toggle sound effect
-    - [ ] Custom sound effect
-    - [ ] Run on startup option (Windows + MacOS support)
 
 - [ ] [Spotify API](https://youtu.be/c5sWvP9h3s8)
     - [ ] Automatically pull up lyrics document (for language learning)
