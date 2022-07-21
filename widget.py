@@ -151,7 +151,7 @@ class Widget():
 
     def translate(self, event=None):
         # Create settings button
-        tk.Button(self.root, text="Settings").grid(row=0, column=0, padx=10, pady=10, sticky="nw")
+        tk.Button(self.root, text="Settings", command=self.openSettings).grid(row=0, column=0, padx=10, pady=10, sticky="nw")
 
         # Translate button
         # Old: tk.Button(self.inputBox, text="Translate", command=self.translate).grid(row=2, column=1, padx=10, pady=10, sticky="se")
@@ -264,6 +264,38 @@ class Widget():
         self.key.release("q")
         self.key.release(Key.alt)
 
+    def closeSettings(self):
+        self.settingsWindow.destroy()
+        self.settingsWindow = None
+
+    def openSettings(self):
+        def saveSettings():
+            self.cantonese = [True, False][self.selectedPinyin.get() == "Mandarin"]
+            self.settingsWindow.destroy()
+
+        # Open a new tkinter window to display settings
+        self.settingsWindow = tk.Toplevel(self.root)
+        self.settingsWindow.title("Settings")
+        self.settingsWindow.resizable(False, False)
+        self.settingsWindow.configure(bg="white")
+        self.settingsWindow.focus_force()
+        self.settingsWindow.grab_set()
+        self.settingsWindow.transient(self.root)
+        self.settingsWindow.bind("<Escape>", self.closeSettings)
+
+        # Option 1, Chinese or Cantonese romanization, dropdown menu
+        self.selectedPinyin = tk.StringVar()
+        self.selectedPinyin.set("Mandarin")
+        # Create option 1 text
+        tk.Label(self.settingsWindow, text="Pinyin:     ", font=self.myFont, bg="white").grid(row=0, column=0, padx=2, pady=2, sticky="w")
+        # Create option 1 dropdown menu
+        self.option1 = tk.OptionMenu(self.settingsWindow, self.selectedPinyin, "Mandarin", "Cantonese")
+        self.option1.configure(font=self.myFont)
+        self.option1.grid(row=0, column=1, padx=2, pady=2)
+
+
+        tk.Button(self.settingsWindow, text="Save Changes", font=self.myFont, command=saveSettings).grid(row=1, column=1, padx=2, pady=2, sticky="sw")
+
 # Testing purposes
 def main():
     widget = Widget()
@@ -273,7 +305,7 @@ def main():
     text3 = "一二三四五六七 使出必殺技，哥能否追到你，七六五四三二一，真的太可惜，喜歡的人不是你"
     text4 = "愁看殘紅亂舞 憶花底初度逢 難禁垂頭淚湧 此際幸月朦朧 愁悴如何自控 悲哀都一樣同 情意如能互通 相分不必相送"
     text5 = "安靜的夜晚裡 頭腦還不想停\n我還騎著腳踏車載著妳\n潜入了大海裡 我笑著看著妳\n片段的回憶抓著我的心\n緣分還是第一 像悲劇的電影\n我學會至少我們擁有了會經\n這是我的決定\n決定把我們變成美好的記憶\n妳付出愛我的時候\n擁抱妳的人還是我\n爭吵時我都不會走"
-    widget.open(inText=text0)
+    widget.open(inText=text4)
 
 def welcomeUser():
     widget = Widget()

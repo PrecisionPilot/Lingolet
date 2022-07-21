@@ -3,25 +3,25 @@ from tkinter import ttk
 from PIL import ImageTk, Image
 
 
-window = tk.Tk()
-window.title("Text Widget Example")
-window.geometry('200x200')
-# Configure grid
-window.grid_rowconfigure(0, weight=1)
-window.grid_columnconfigure(0, weight=2)
-
-# Label
-label = tk.Label(window, text="", font=("Arial", 12), bg="blue")
-label.place(x=0, y=0)
-label.update()
-print(label.winfo_width(), label.winfo_height())
-
-# Text Field
-# text = tk.Text(window, font=("Arial", 12))
-# text.place(width=label.winfo_width(), height=label.winfo_height())
-# text.insert(1.0, "Ok then")
-# text.update()
-# print(text.winfo_width(), text.winfo_height())
-
-
-window.mainloop()
+master = tk.Tk()
+ 
+# this will create a label widget
+l1 = tk.Label(master, text = "First:")
+l2 = tk.Label(master, text = "Second:")
+ 
+# grid method to arrange labels in respective
+# rows and columns as specified
+l1.grid(row = 0, column = 0, sticky = tk.W, pady = 2)
+l2.grid(row = 1, column = 0, sticky = tk.W, pady = 2)
+ 
+# entry widgets, used to take entry from user
+e1 = tk.Entry(master)
+e2 = tk.Entry(master)
+ 
+# this will arrange entry widgets
+e1.grid(row = 0, column = 1, pady = 2)
+e2.grid(row = 1, column = 1, pady = 2)
+ 
+# infinite loop which can be terminated by keyboard
+# or mouse interrupt
+tk.mainloop()
