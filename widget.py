@@ -44,9 +44,6 @@ class Widget():
         # Initialize Google Translate API
         os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = r'Assets/google auth.json'
         self.GoogleTranslate = translate.Client()
-        self.inputLanguage = self.getLanguage("ok")
-        print(self.inputLanguage)
-
 
 
     def welcome(self):
@@ -285,7 +282,12 @@ class Widget():
 
         # Option 1, Chinese or Cantonese romanization, dropdown menu
         self.selectedPinyin = tk.StringVar()
-        self.selectedPinyin.set("Mandarin")
+        if self.cantonese:  # Button shows selected option
+            self.selectedPinyin.set("Cantonese")
+            print("Cantonese")
+        else:
+            self.selectedPinyin.set("Mandarin")
+            print("Mandarin")
         # Create option 1 text
         tk.Label(self.settingsWindow, text="Pinyin:     ", font=self.myFont, bg="white").grid(row=0, column=0, padx=2, pady=2, sticky="w")
         # Create option 1 dropdown menu
