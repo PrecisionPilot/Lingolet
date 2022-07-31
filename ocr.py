@@ -4,7 +4,7 @@ from tkinter import messagebox
 from google.cloud import vision
 
 # Authentication
-os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = r'Assets/google auth.json'
+os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = r'Assets/Authentication/Google Cloud.json'
 
 # Instantiates the client
 client = vision.ImageAnnotatorClient()

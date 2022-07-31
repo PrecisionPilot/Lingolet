@@ -37,12 +37,12 @@ class Widget():
 
         # Initialize DeepL API
         self.apiKey = ""
-        with open("Assets/deepL auth.txt", "r") as f:
+        with open("Assets/Authentication/DeepL.txt", "r") as f:
             self.apiKey = f.read()
         self.DeepLTranslator = deepl.Translator(self.apiKey)
 
         # Initialize Google Translate API
-        os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = r'Assets/google auth.json'
+        os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = r'Assets/Authentication/Google Cloud.json'
         self.GoogleTranslate = translate.Client()
 
 
