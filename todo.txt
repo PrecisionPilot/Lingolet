@@ -56,6 +56,7 @@
 - [x] Parsing small text bug
 - [ ] outputText text field scrolling
 - [ ] Keep resizing feature?
+- [ ] Add don't show menu option again
 - [ ] Settings menu
     - [ ] Show in system tray
     - [ ] No window pop-up options
