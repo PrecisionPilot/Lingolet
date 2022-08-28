@@ -34,6 +34,11 @@ class Widget():
         self.cantonese = False;
         self.key = Controller()
         self.pinyin = Pinyin()
+        self.sourceLanguage = ""
+        with open("Assets/DeepL translate codes.json") as f:
+            self.deeplCodes = json.load(f)
+        with open("Assets/Google translate codes.json") as f:
+            self.googleCodes = json.load(f)
 
         # Initialize DeepL API
         self.apiKey = ""
@@ -145,6 +150,33 @@ class Widget():
         return self.jyuping
     def getLanguage(self, text=""):
         return self.GoogleTranslate.detect_language(text)["language"]
+    
+    def code2language(self, isGoogle: bool, code: str) -> str:
+        if code == "":
+            return "Detect language"
+        if isGoogle:
+            for codeItem, languageItem in self.googleCodes.items():
+                if codeItem == code:
+                    return languageItem
+        else:
+            for codeItem, languageItem in self.deeplCodes.items():
+                if codeItem == code:
+                    return languageItem
+        return None
+
+    def language2code(self, isGoogle: bool, language: str) -> str:
+        if language == "Detect language":
+            return ""
+        if isGoogle:
+            for codeItem, languageItem in self.googleCodes.items():
+                if languageItem == language:
+                    return codeItem
+            return None
+        else:
+            for codeItem, languageItem in self.deeplCodes.items():
+                if languageItem == language:
+                    return codeItem
+            return None
 
     def translate(self, event=None):
         # Create settings button
@@ -174,7 +206,12 @@ class Widget():
         if self.debugMode:
             self.outText = "Translation"
         else:
-            self.outText = self.DeepLTranslator.translate_text(self.inText, target_lang="EN-US")
+            # Detect language if source language isn't set
+            if self.sourceLanguage == "":
+                self.outText = self.DeepLTranslator.translate_text(self.inText, target_lang="EN-US")
+            else:
+                self.outText = self.DeepLTranslator.translate_text(self.inText, source_lang=self.sourceLanguage, target_lang="EN-US")
+            
             if self.outText.detected_source_lang == "ZH":
                 # Mandarin or Cantonese Pinyin?
                 if self.cantonese:
@@ -267,13 +304,16 @@ class Widget():
 
     def openSettings(self):
         def saveSettings():
+            # Apply changes
             self.cantonese = [True, False][self.selectedPinyin.get() == "Mandarin"]
+            self.sourceLanguage = self.language2code(isGoogle=False, language=self.selectedSourceLanguage.get())
+            print(self.sourceLanguage)
             self.settingsWindow.destroy()
 
         # Open a new tkinter window to display settings
         self.settingsWindow = tk.Toplevel(self.root)
         self.settingsWindow.title("Settings")
-        self.settingsWindow.resizable(False, False)
+        # self.settingsWindow.resizable(False, False)
         self.settingsWindow.configure(bg="white")
         self.settingsWindow.focus_force()
         self.settingsWindow.grab_set()
@@ -293,10 +333,26 @@ class Widget():
         # Create option 1 dropdown menu
         self.option1 = tk.OptionMenu(self.settingsWindow, self.selectedPinyin, "Mandarin", "Cantonese")
         self.option1.configure(font=self.myFont)
-        self.option1.grid(row=0, column=1, padx=2, pady=2)
+        self.option1.grid(row=0, column=1, padx=2, pady=2, sticky="w")
 
+        # Option 2, source language selection, dropdown menu
+        self.selectedSourceLanguage = tk.StringVar()
+        self.selectedSourceLanguage.set(self.code2language(isGoogle=False, code=self.sourceLanguage))
+        print(self.selectedSourceLanguage.get())
+        # Create option 2 text
+        tk.Label(self.settingsWindow, text="Source language:     ", font=self.myFont, bg="white").grid(row=1, column=0, padx=2, pady=2, sticky="w")
+        # Create option 2 dropdown menu
+        self.option2 = tk.OptionMenu(self.settingsWindow, self.selectedSourceLanguage, "Detect language")
+        # Add language options based on DeepL API
+        for code, language in self.deeplCodes.items():
+            self.option2["menu"].add_command(label=language, command=tk._setit(self.selectedSourceLanguage, language))
+        self.option2.configure(font=self.myFont)
+        self.option2.grid(row=1, column=1, padx=2, pady=2, sticky="w")
 
-        tk.Button(self.settingsWindow, text="Save Changes", font=self.myFont, command=saveSettings).grid(row=1, column=1, padx=2, pady=2, sticky="sw")
+        
+        # Save button with some space above it
+        tk.Label(self.settingsWindow, text="", font=self.myFont, bg="white").grid(row=2, column=0, padx=2, pady=2)
+        tk.Button(self.settingsWindow, text="Save Changes", font=self.myFont, command=saveSettings).grid(row=3, column=1, padx=2, pady=2, sticky="sw")
 
 # Testing purposes
 def main():
