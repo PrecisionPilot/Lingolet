@@ -54,6 +54,7 @@
 - [x] Converted outputText from label to text field
 - [x] Text doesn't interfere with outputFrame
 - [x] Parsing small text bug
+- [ ] Google translate option
 - [ ] outputText text field scrolling
 - [ ] Keep resizing feature?
 - [ ] Show in system tray
