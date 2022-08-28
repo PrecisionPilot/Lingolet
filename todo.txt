@@ -57,6 +57,9 @@
 - [ ] outputText text field scrolling
 - [ ] Keep resizing feature?
 - [ ] Show in system tray
+- [ ] Add don't show menu option again
+- [ ] Settings menu
+    - [ ] Show in system tray
     - [ ] No window pop-up options
 - [x] Settings menu
     - [ ] Automatic read aloud option
