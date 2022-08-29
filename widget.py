@@ -238,7 +238,7 @@ class Widget():
         # Generate audio file (text to speech)
         if os.path.exists("Assets/audio.mp3"):
             os.remove("Assets/audio.mp3")
-        gTTS(text=self.inText, lang=self.detectedSourceLanguage.lower(), slow=True).save("Assets/audio.mp3")
+        gTTS(text=self.inText, lang=self.detectedSourceLanguage.lower(), slow=False).save("Assets/audio.mp3")
 
         # Polish up self.outText
         if not isinstance(self.outText, str):
