@@ -184,15 +184,16 @@ class Widget():
             return None
     
     def textToSpeech(self, text, lang="en"):
-        gTTS(text=text,lang=lang,slow=True).save("audio.mp3")
-        threading.Thread(target=playsound.playsound, args=("audio.mp3",)).start()
+        gTTS(text=text,lang=lang,slow=True).save("Assets/audio.mp3")
+        threading.Thread(target=playsound.playsound, args=("Assets/audio.mp3",)).start()
 
     def translate(self, event=None):
         # Settings button
         tk.Button(self.root, text="Settings", command=self.openSettings).grid(row=0, column=0, padx=10, pady=10, sticky="nw")
 
         # Playsound button
-        tk.Button(self.root, text="Play sound", command=lambda: self.textToSpeech(self.inText, self.detectedSourceLanguage.lower())).grid(row=0, column=1, padx=10, pady=10, sticky="ne")
+        self.speakerImage = tk.PhotoImage(file="Assets/Speaker small.png")
+        tk.Button(self.root, text="Play sound", image=self.speakerImage, command=lambda: self.textToSpeech(self.inText, self.detectedSourceLanguage.lower())).grid(row=0, column=1, padx=10, pady=10, sticky="ne")
 
         # Translate button
         # Old: tk.Button(self.inputBox, text="Translate", command=self.translate).grid(row=2, column=1, padx=10, pady=10, sticky="se")
