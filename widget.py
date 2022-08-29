@@ -183,9 +183,9 @@ class Widget():
                     return codeItem
             return None
     
-    def textToSpeech(self, text, lang="en"):
-        gTTS(text=text,lang=lang,slow=True).save("Assets/audio.mp3")
-        threading.Thread(target=playsound.playsound, args=("Assets/audio.mp3",)).start()
+    def playAudio(self):
+        playsound.playsound("Assets/audio.mp3")
+        os.remove("Assets/audio.mp3")
 
     def translate(self, event=None):
         # Settings button
@@ -193,7 +193,8 @@ class Widget():
 
         # Playsound button
         self.speakerImage = tk.PhotoImage(file="Assets/Speaker.png")
-        tk.Button(self.root, text="Play sound", image=self.speakerImage, command=lambda: self.textToSpeech(self.inText, self.detectedSourceLanguage.lower())).grid(row=0, column=1, padx=10, pady=10, sticky="ne")
+        playsoundFunction = lambda:threading.Thread(target=self.playAudio).start()
+        tk.Button(self.root, text="Play sound", image=self.speakerImage, command=playsoundFunction).grid(row=0, column=1, padx=10, pady=10, sticky="ne")
 
         # Translate button
         # Old: tk.Button(self.inputBox, text="Translate", command=self.translate).grid(row=2, column=1, padx=10, pady=10, sticky="se")
@@ -234,7 +235,10 @@ class Widget():
                 else:
                     self.outputPinyin = self.pinyin.get_pinyin(self.inText, splitter=" ", tone_marks="marks")
                 self.outText = f"{self.outputPinyin}\n\n" + self.outText.text
-            
+        
+        # Generate audio file (text to speech)
+        gTTS(text=self.inText, lang=self.detectedSourceLanguage.lower(), slow=True).save("Assets/audio.mp3")
+
         # Polish up self.outText
         if not isinstance(self.outText, str):
             self.outText = self.outText.text
