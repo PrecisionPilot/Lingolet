@@ -1,3 +1,4 @@
+from inspect import isgenerator
 import tkinter as tk
 from tkinter import messagebox
 from internetConnection import isConnected
@@ -9,7 +10,10 @@ import math
 import json
 import deepl
 import os
+import playsound as playsound
+import threading
 from google.cloud import translate_v2 as translate
+from gtts import gTTS
 
 class Widget():
     def __init__(self) -> None:
@@ -35,6 +39,7 @@ class Widget():
         self.key = Controller()
         self.pinyin = Pinyin()
         self.sourceLanguage = ""
+        self.detectedSourceLanguage = ""
         with open("Assets/DeepL translate codes.json") as f:
             self.deeplCodes = json.load(f)
         with open("Assets/Google translate codes.json") as f:
@@ -46,7 +51,7 @@ class Widget():
             self.apiKey = f.read()
         self.DeepLTranslator = deepl.Translator(self.apiKey)
 
-        # Initialize Google Translate API
+        # Initialize Google APIs
         os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = r'Assets/Authentication/Google Cloud.json'
         self.GoogleTranslate = translate.Client()
 
@@ -177,14 +182,21 @@ class Widget():
                 if languageItem == language:
                     return codeItem
             return None
+    
+    def textToSpeech(self, text, lang="en"):
+        gTTS(text=text,lang=lang,slow=True).save("audio.mp3")
+        threading.Thread(target=playsound.playsound, args=("audio.mp3",)).start()
 
     def translate(self, event=None):
-        # Create settings button
+        # Settings button
         tk.Button(self.root, text="Settings", command=self.openSettings).grid(row=0, column=0, padx=10, pady=10, sticky="nw")
+
+        # Playsound button
+        tk.Button(self.root, text="Play sound", command=lambda: self.textToSpeech(self.inText, self.detectedSourceLanguage.lower())).grid(row=0, column=1, padx=10, pady=10, sticky="ne")
 
         # Translate button
         # Old: tk.Button(self.inputBox, text="Translate", command=self.translate).grid(row=2, column=1, padx=10, pady=10, sticky="se")
-        tk.Button(self.root, text="Translate", command=self.translate).grid(row=0, column=1, padx=10, pady=10, sticky="ne")
+        tk.Button(self.root, text="Translate", command=self.translate).grid(row=0, column=2, padx=10, pady=10, sticky="ne")
 
         # Update "inText"
         self.inText = self.inputBox.get(1.0, tk.END)
@@ -212,13 +224,16 @@ class Widget():
             else:
                 self.outText = self.DeepLTranslator.translate_text(self.inText, source_lang=self.sourceLanguage, target_lang="EN-US")
             
-            if self.outText.detected_source_lang == "ZH":
+            self.detectedSourceLanguage = self.outText.detected_source_lang
+
+            if self.detectedSourceLanguage == "ZH":
                 # Mandarin or Cantonese Pinyin?
                 if self.cantonese:
                     self.outputPinyin = self.cantonese2pinyin(self.inText)
                 else:
                     self.outputPinyin = self.pinyin.get_pinyin(self.inText, splitter=" ", tone_marks="marks")
                 self.outText = f"{self.outputPinyin}\n\n" + self.outText.text
+            
         # Polish up self.outText
         if not isinstance(self.outText, str):
             self.outText = self.outText.text

@@ -8,3 +8,6 @@ google.cloud.translate
 pillow
 xpinyin
 pycantonese
+google-cloud-texttospeech
+playsound==1.2.2
+gTTS

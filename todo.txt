@@ -54,6 +54,7 @@
 - [x] Converted outputText from label to text field
 - [x] Text doesn't interfere with outputFrame
 - [x] Parsing small text bug
+- [x] Play sound option
 - [ ] Google translate option
 - [ ] outputText text field scrolling
 - [ ] Keep resizing feature?
@@ -82,7 +83,6 @@
     - [x] Mandarin and Cantonese Pinyin option
 - Top bar
     - [ ] Detect language (map languages first)
-    - [ ] Chinese: Mandarin / Cantonese option
     - [ ] Chinese traditional: show simplified option
 - [ ] Translation
     - [ ] Detected language Label
