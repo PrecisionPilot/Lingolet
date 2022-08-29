@@ -185,7 +185,6 @@ class Widget():
     
     def playAudio(self):
         playsound.playsound("Assets/audio.mp3")
-        os.remove("Assets/audio.mp3")
 
     def translate(self, event=None):
         # Settings button
@@ -237,6 +236,8 @@ class Widget():
                 self.outText = f"{self.outputPinyin}\n\n" + self.outText.text
         
         # Generate audio file (text to speech)
+        if os.path.exists("Assets/audio.mp3"):
+            os.remove("Assets/audio.mp3")
         gTTS(text=self.inText, lang=self.detectedSourceLanguage.lower(), slow=True).save("Assets/audio.mp3")
 
         # Polish up self.outText

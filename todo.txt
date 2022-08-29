@@ -55,6 +55,7 @@
 - [x] Text doesn't interfere with outputFrame
 - [x] Parsing small text bug
 - [x] Play sound option
+- [ ] Show detected language
 - [ ] Google translate option
 - [ ] outputText text field scrolling
 - [ ] Keep resizing feature?
