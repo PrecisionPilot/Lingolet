@@ -192,7 +192,7 @@ class Widget():
         tk.Button(self.root, text="Settings", command=self.openSettings).grid(row=0, column=0, padx=10, pady=10, sticky="nw")
 
         # Playsound button
-        self.speakerImage = tk.PhotoImage(file="Assets/Speaker small.png")
+        self.speakerImage = tk.PhotoImage(file="Assets/Speaker.png")
         tk.Button(self.root, text="Play sound", image=self.speakerImage, command=lambda: self.textToSpeech(self.inText, self.detectedSourceLanguage.lower())).grid(row=0, column=1, padx=10, pady=10, sticky="ne")
 
         # Translate button
