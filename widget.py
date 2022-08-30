@@ -13,7 +13,7 @@ import os
 import playsound as playsound
 import threading
 from google.cloud import translate_v2 as translate
-from gtts import gTTS
+import googleTTS
 
 class Widget():
     def __init__(self) -> None:
@@ -182,9 +182,6 @@ class Widget():
                 if languageItem == language:
                     return codeItem
             return None
-    
-    def playAudio(self):
-        playsound.playsound("Assets/audio.mp3")
 
     def translate(self, event=None):
         # Settings button
@@ -192,8 +189,7 @@ class Widget():
 
         # Playsound button
         self.speakerImage = tk.PhotoImage(file="Assets/Speaker.png")
-        playsoundFunction = lambda:threading.Thread(target=self.playAudio).start()
-        tk.Button(self.root, text="Play sound", image=self.speakerImage, command=playsoundFunction).grid(row=0, column=1, padx=10, pady=10, sticky="ne")
+        tk.Button(self.root, text="Play sound", image=self.speakerImage, command=googleTTS.playSpeech).grid(row=0, column=1, padx=10, pady=10, sticky="ne")
 
         # Translate button
         # Old: tk.Button(self.inputBox, text="Translate", command=self.translate).grid(row=2, column=1, padx=10, pady=10, sticky="se")
@@ -235,10 +231,18 @@ class Widget():
                     self.outputPinyin = self.pinyin.get_pinyin(self.inText, splitter=" ", tone_marks="marks")
                 self.outText = f"{self.outputPinyin}\n\n" + self.outText.text
         
-        # Generate audio file (text to speech)
-        if os.path.exists("Assets/audio.mp3"):
-            os.remove("Assets/audio.mp3")
-        gTTS(text=self.inText, lang=self.detectedSourceLanguage.lower(), slow=False).save("Assets/audio.mp3")
+        # Generate text to speech audio file
+        if self.detectedSourceLanguage == "EN":
+            googleTTS.cloudTextToSpeech(self.inText, "en-US", "en-US-Wavenet-B", 1)
+        elif self.detectedSourceLanguage == "ZH":
+            if self.cantonese:
+                googleTTS.cloudTextToSpeech(self.inText, "yue-HK", "yue-HK-Standard-C", 0.8)
+            else:
+                googleTTS.cloudTextToSpeech(self.inText, "cmn-CN", "cmn-CN-Wavenet-A", 1)
+        elif self.detectedSourceLanguage == "DE":
+            googleTTS.cloudTextToSpeech(self.inText, "de-DE", "de-DE-Wavenet-B", 1)
+        else:
+            googleTTS.textToSpeech(self.inText, self.detectedSourceLanguage.lower())
 
         # Polish up self.outText
         if not isinstance(self.outText, str):
@@ -328,8 +332,8 @@ class Widget():
             # Apply changes
             self.cantonese = [True, False][self.selectedPinyin.get() == "Mandarin"]
             self.sourceLanguage = self.language2code(isGoogle=False, language=self.selectedSourceLanguage.get())
-            print(self.sourceLanguage)
             self.settingsWindow.destroy()
+            self.translate()
 
         # Open a new tkinter window to display settings
         self.settingsWindow = tk.Toplevel(self.root)
@@ -345,10 +349,8 @@ class Widget():
         self.selectedPinyin = tk.StringVar()
         if self.cantonese:  # Button shows selected option
             self.selectedPinyin.set("Cantonese")
-            print("Cantonese")
         else:
             self.selectedPinyin.set("Mandarin")
-            print("Mandarin")
         # Create option 1 text
         tk.Label(self.settingsWindow, text="Pinyin:     ", font=self.myFont, bg="white").grid(row=0, column=0, padx=2, pady=2, sticky="w")
         # Create option 1 dropdown menu
@@ -359,7 +361,6 @@ class Widget():
         # Option 2, source language selection, dropdown menu
         self.selectedSourceLanguage = tk.StringVar()
         self.selectedSourceLanguage.set(self.code2language(isGoogle=False, code=self.sourceLanguage))
-        print(self.selectedSourceLanguage.get())
         # Create option 2 text
         tk.Label(self.settingsWindow, text="Source language:     ", font=self.myFont, bg="white").grid(row=1, column=0, padx=2, pady=2, sticky="w")
         # Create option 2 dropdown menu
@@ -384,7 +385,7 @@ def main():
     text3 = "一二三四五六七 使出必殺技，哥能否追到你，七六五四三二一，真的太可惜，喜歡的人不是你"
     text4 = "愁看殘紅亂舞 憶花底初度逢 難禁垂頭淚湧 此際幸月朦朧 愁悴如何自控 悲哀都一樣同 情意如能互通 相分不必相送"
     text5 = "安靜的夜晚裡 頭腦還不想停\n我還騎著腳踏車載著妳\n潜入了大海裡 我笑著看著妳\n片段的回憶抓著我的心\n緣分還是第一 像悲劇的電影\n我學會至少我們擁有了會經\n這是我的決定\n決定把我們變成美好的記憶\n妳付出愛我的時候\n擁抱妳的人還是我\n爭吵時我都不會走"
-    widget.open(inText=text4)
+    widget.open(inText=text2)
 
 def welcomeUser():
     widget = Widget()
