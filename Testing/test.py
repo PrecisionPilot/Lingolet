@@ -1,1 +1,3 @@
-print([0, 1][False])
+var = None
+
+print(str(var))

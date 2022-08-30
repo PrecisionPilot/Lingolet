@@ -19,12 +19,12 @@ debugMode = False
 # Open welcome window
 popUp.welcome()
 
-
 # Activation hotkey triggers this procedure
 def parseClipboard():
     clipboard = ImageGrab.grabclipboard()
 
     # Play sound
+    popUp.playSoundEffect("Coin.mp3")
 
     # Check clipboard contents
     # If clipboard contains image

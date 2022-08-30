@@ -35,7 +35,9 @@ class Widget():
         self.buttonHeight = 30
 
         # Variables
-        self.cantonese = False;
+        self.soundEffects = True
+        self.cantonese = False
+        self.tone_marks = False
         self.key = Controller()
         self.pinyin = Pinyin()
         self.sourceLanguage = ""
@@ -134,7 +136,7 @@ class Widget():
         
 
         # Translate text, then set the label accordingly
-        self.translate()
+        self.translate(sound_effect=False)
 
         # Key bindings
         self.root.bind("<Escape>", self.close)
@@ -144,15 +146,23 @@ class Widget():
         self.root.lift()
         self.root.mainloop()
         self.releaseKeys()
-        
     
-    def cantonese2pinyin(self, text=""):
+    def playSoundEffect(self, sound_effect: str):
+        if self.soundEffects:
+            threading.Thread(target=playsound.playsound, args=(f"Assets/Sound Effects/{sound_effect}",)).start()
+    
+    def cantonese2pinyin(self, text="", tone_marks=False):
         # Loop through all the tuples and get the second element to append it to the text
         self.jyuping = ""
-        for text in pycantonese.characters_to_jyutping(text):
-            self.jyuping += self.pinyin.decode_pinyin(text[1]) + " "
+        if tone_marks:
+            for text in pycantonese.characters_to_jyutping(text):
+                self.jyuping += self.pinyin.decode_pinyin(text[1]) + " "
+        else:
+            for text in pycantonese.characters_to_jyutping(text):
+                self.jyuping += str(text[1]) + " "
         
         return self.jyuping
+    
     def getLanguage(self, text=""):
         return self.GoogleTranslate.detect_language(text)["language"]
     
@@ -183,7 +193,7 @@ class Widget():
                     return codeItem
             return None
 
-    def translate(self, event=None):
+    def translate(self, sound_effect=True, event=None):
         # Settings button
         tk.Button(self.root, text="Settings", command=self.openSettings).grid(row=0, column=0, padx=10, pady=10, sticky="nw")
 
@@ -226,7 +236,7 @@ class Widget():
             if self.detectedSourceLanguage == "ZH":
                 # Mandarin or Cantonese Pinyin?
                 if self.cantonese:
-                    self.outputPinyin = self.cantonese2pinyin(self.inText)
+                    self.outputPinyin = self.cantonese2pinyin(self.inText, self.tone_marks)
                 else:
                     self.outputPinyin = self.pinyin.get_pinyin(self.inText, splitter=" ", tone_marks="marks")
                 self.outText = f"{self.outputPinyin}\n\n" + self.outText.text
@@ -236,7 +246,7 @@ class Widget():
             googleTTS.cloudTextToSpeech(self.inText, "en-US", "en-US-Wavenet-B", 1)
         elif self.detectedSourceLanguage == "ZH":
             if self.cantonese:
-                googleTTS.cloudTextToSpeech(self.inText, "yue-HK", "yue-HK-Standard-C", 0.8)
+                googleTTS.cloudTextToSpeech(self.inText, "yue-HK", "yue-HK-Standard-B", 1)
             else:
                 googleTTS.cloudTextToSpeech(self.inText, "cmn-CN", "cmn-CN-Wavenet-A", 1)
         elif self.detectedSourceLanguage == "DE":
@@ -258,6 +268,8 @@ class Widget():
         # Set the text to outputText and outputLabel
         self.outputText.insert(1.0, "\n\n" + self.outText)  # Newlines prevent text overlapping w/ "Translate" text
         self.resize()
+        if sound_effect:
+            self.playSoundEffect("1-Up.mp3")
         
     def resize(self):
         # Update text based on output text
@@ -330,9 +342,18 @@ class Widget():
     def openSettings(self):
         def saveSettings():
             # Apply changes
-            self.cantonese = [True, False][self.selectedPinyin.get() == "Mandarin"]
+            if self.selectedPinyin.get() == "Mandarin":
+                self.cantonese = False
+            else:
+                self.cantonese = True
+                if self.selectedPinyin.get() == "Cantonese (jyutping)":
+                    self.tone_marks = False
+                else:
+                    self.tone_marks = True
             self.sourceLanguage = self.language2code(isGoogle=False, language=self.selectedSourceLanguage.get())
             self.settingsWindow.destroy()
+            self.soundEffects = [False, True][self.selectedSoundEffect.get() == 1]
+            self.playSoundEffect("powerup_appears.wav")
             self.translate()
 
         # Open a new tkinter window to display settings
@@ -348,13 +369,16 @@ class Widget():
         # Option 1, Chinese or Cantonese romanization, dropdown menu
         self.selectedPinyin = tk.StringVar()
         if self.cantonese:  # Button shows selected option
-            self.selectedPinyin.set("Cantonese")
+            if self.tone_marks:
+                self.selectedPinyin.set("Cantonese (Jyutping) w/ tone marks")
+            else:
+                self.selectedPinyin.set("Cantonese (jyutping)")
         else:
             self.selectedPinyin.set("Mandarin")
         # Create option 1 text
         tk.Label(self.settingsWindow, text="Pinyin:     ", font=self.myFont, bg="white").grid(row=0, column=0, padx=2, pady=2, sticky="w")
         # Create option 1 dropdown menu
-        self.option1 = tk.OptionMenu(self.settingsWindow, self.selectedPinyin, "Mandarin", "Cantonese")
+        self.option1 = tk.OptionMenu(self.settingsWindow, self.selectedPinyin, "Mandarin", "Cantonese (jyutping)", "Cantonese (Jyutping) w/ tone marks")
         self.option1.configure(font=self.myFont)
         self.option1.grid(row=0, column=1, padx=2, pady=2, sticky="w")
 
@@ -371,10 +395,19 @@ class Widget():
         self.option2.configure(font=self.myFont)
         self.option2.grid(row=1, column=1, padx=2, pady=2, sticky="w")
 
+        # Option 3, sound effect toggle, checkbox
+        self.selectedSoundEffect = tk.IntVar()
+        self.selectedSoundEffect.set(self.soundEffects)
+        # Create option 3 text
+        tk.Label(self.settingsWindow, text="Sound effects:     ", font=self.myFont, bg="white").grid(row=2, column=0, padx=2, pady=2, sticky="w")
+        # Create option 3 checkbox
+        self.option3 = tk.Checkbutton(self.settingsWindow, text="", bg="white", variable=self.selectedSoundEffect, onvalue=1, offvalue=0)
+        self.option3.grid(row=2, column=1, padx=5, pady=5, sticky="w")
+
         
         # Save button with some space above it
-        tk.Label(self.settingsWindow, text="", font=self.myFont, bg="white").grid(row=2, column=0, padx=2, pady=2)
-        tk.Button(self.settingsWindow, text="Save Changes", font=self.myFont, command=saveSettings).grid(row=3, column=1, padx=2, pady=2, sticky="sw")
+        tk.Label(self.settingsWindow, text="", font=self.myFont, bg="white").grid(row=3, column=0, padx=2, pady=2)
+        tk.Button(self.settingsWindow, text="Save Changes", font=self.myFont, command=saveSettings).grid(row=4, column=1, padx=2, pady=2, sticky="sw")
 
 # Testing purposes
 def main():

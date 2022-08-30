@@ -9,9 +9,9 @@ def main():
    # Loop through all the tuples and get the second element to append it to the text
    jyuping = ""
    for text in pycantonese.characters_to_jyutping("填滿一生 全是數字"):
-      jyuping += p.decode_pinyin(text[1]) + " "
+      jyuping += text[1] + " "
    
    return jyuping
 
 if __name__ == "__main__":
-   main()
+   print(main())

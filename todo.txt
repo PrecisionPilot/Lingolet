@@ -56,6 +56,7 @@
 - [x] Parsing small text bug
 - [x] Play sound option
 - [x] Cantonese support
+- [x] Cantonese Pinyin options
 - [ ] Slow pronounciation button
 - [ ] Show detected language
 - [ ] Google translate option
@@ -73,7 +74,7 @@
     - [ ] Adjustable window size
     - [x] Cantonese: tone marks or number marking
     - [ ] Custom hotkey
-    - [ ] Toggle sound effect
+    - [x] Toggle sound effect
     - [ ] Custom sound effect
     - [ ] Run on startup option (Windows + MacOS support)
 
