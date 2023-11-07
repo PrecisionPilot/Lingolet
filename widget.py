@@ -251,7 +251,6 @@ class Widget():
                 else:
                     self.outputPinyin = self.pinyin.get_pinyin(self.inText, splitter=" ", tone_marks="marks")
                 # Add simplified Chinese
-                print(self.getLanguage(self.inText))
                 if self.showSimplified and self.getLanguage(self.inText) == "zh-TW":
                     self.outputPinyin += f"\n{self.translateGoogle('ZH-CN', self.inText)}"
                 self.outText = f"{self.outputPinyin}\n\n" + self.outText.text
