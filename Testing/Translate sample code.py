@@ -1,5 +1,5 @@
 import os
-os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = r'Assets/google auth.json'
+os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = r'Assets/Authentication/Google Cloud.json'
 def translate_text(target, text):
     """Translates text into the target language.
 
@@ -22,4 +22,4 @@ def translate_text(target, text):
     print(u"Translation: {}".format(result["translatedText"]))
     print(u"Detected source language: {}".format(result["detectedSourceLanguage"]))
 
-translate_text("ZH", "hello world")
+translate_text("ZH", "安靜的夜晚裡 頭腦還不想停")
