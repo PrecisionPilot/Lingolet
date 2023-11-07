@@ -14,6 +14,8 @@ import playsound as playsound
 import threading
 from google.cloud import translate_v2 as translate
 import googleTTS
+import six
+from google.cloud import translate_v2 as translate
 
 class Widget():
     def __init__(self) -> None:
@@ -38,6 +40,7 @@ class Widget():
         self.soundEffects = True
         self.cantonese = False
         self.tone_marks = False
+        self.showSimplified = True;
         self.key = Controller()
         self.pinyin = Pinyin()
         self.sourceLanguage = ""
@@ -193,6 +196,16 @@ class Widget():
                     return codeItem
             return None
 
+    def translateGoogle(self, target, text):
+
+        if isinstance(text, six.binary_type):
+            text = text.decode("utf-8")
+
+        # Text can also be a sequence of strings, in which case this method
+        # will return a sequence of results for each text.
+        result = self.GoogleTranslate.translate(text, target_language=target)
+        return result["translatedText"]
+
     def translate(self, sound_effect=True, event=None):
         # Settings button
         tk.Button(self.root, text="Settings", command=self.openSettings).grid(row=0, column=0, padx=10, pady=10, sticky="nw")
@@ -235,10 +248,15 @@ class Widget():
 
             if self.detectedSourceLanguage == "ZH":
                 # Mandarin or Cantonese Pinyin?
+                # Add Pinyin
                 if self.cantonese:
                     self.outputPinyin = self.cantonese2pinyin(self.inText, self.tone_marks)
                 else:
                     self.outputPinyin = self.pinyin.get_pinyin(self.inText, splitter=" ", tone_marks="marks")
+                # Add simplified Chinese
+                print(self.getLanguage(self.inText))
+                if self.showSimplified and self.getLanguage(self.inText) == "zh-TW":
+                    self.outputPinyin += f"\n{self.translateGoogle('ZH-CN', self.inText)}"
                 self.outText = f"{self.outputPinyin}\n\n" + self.outText.text
         
         # Generate text to speech audio file
@@ -350,6 +368,7 @@ class Widget():
                     self.tone_marks = False
                 else:
                     self.tone_marks = True
+            self.showSimplified = [False, True][self.selectedShowSimplified.get() == 1]
             self.sourceLanguage = self.language2code(isGoogle=False, language=self.selectedSourceLanguage.get())
             self.settingsWindow.destroy()
             self.soundEffects = [False, True][self.selectedSoundEffect.get() == 1]
@@ -382,27 +401,36 @@ class Widget():
         self.option1.configure(font=self.myFont)
         self.option1.grid(row=0, column=1, padx=2, pady=2, sticky="w")
 
-        # Option 2, source language selection, dropdown menu
+        # Option 2, show simplified Chinese
+        self.selectedShowSimplified = tk.IntVar()
+        self.selectedShowSimplified.set(self.showSimplified)
+        # Create option 2 text
+        tk.Label(self.settingsWindow, text="Show simplified Chinese:     ", font=self.myFont, bg="white").grid(row=1, column=0, padx=2, pady=2, sticky="w")
+        # Create option 2 checkbox
+        self.option2 = tk.Checkbutton(self.settingsWindow, text="", bg="white", variable=self.selectedShowSimplified, onvalue=1, offvalue=0)
+        self.option2.grid(row=1, column=1, padx=5, pady=5, sticky="w")
+
+        # Option 3, source language selection, dropdown menu
         self.selectedSourceLanguage = tk.StringVar()
         self.selectedSourceLanguage.set(self.code2language(isGoogle=False, code=self.sourceLanguage))
         # Create option 2 text
-        tk.Label(self.settingsWindow, text="Source language:     ", font=self.myFont, bg="white").grid(row=1, column=0, padx=2, pady=2, sticky="w")
+        tk.Label(self.settingsWindow, text="Source language:     ", font=self.myFont, bg="white").grid(row=2, column=0, padx=2, pady=2, sticky="w")
         # Create option 2 dropdown menu
         self.option2 = tk.OptionMenu(self.settingsWindow, self.selectedSourceLanguage, "Detect language")
         # Add language options based on DeepL API
         for code, language in self.deeplCodes.items():
             self.option2["menu"].add_command(label=language, command=tk._setit(self.selectedSourceLanguage, language))
         self.option2.configure(font=self.myFont)
-        self.option2.grid(row=1, column=1, padx=2, pady=2, sticky="w")
+        self.option2.grid(row=2, column=1, padx=2, pady=2, sticky="w")
 
-        # Option 3, sound effect toggle, checkbox
+        # Option 4, sound effect toggle, checkbox
         self.selectedSoundEffect = tk.IntVar()
         self.selectedSoundEffect.set(self.soundEffects)
         # Create option 3 text
-        tk.Label(self.settingsWindow, text="Sound effects:     ", font=self.myFont, bg="white").grid(row=2, column=0, padx=2, pady=2, sticky="w")
+        tk.Label(self.settingsWindow, text="Sound effects:     ", font=self.myFont, bg="white").grid(row=3, column=0, padx=2, pady=2, sticky="w")
         # Create option 3 checkbox
         self.option3 = tk.Checkbutton(self.settingsWindow, text="", bg="white", variable=self.selectedSoundEffect, onvalue=1, offvalue=0)
-        self.option3.grid(row=2, column=1, padx=5, pady=5, sticky="w")
+        self.option3.grid(row=3, column=1, padx=5, pady=5, sticky="w")
 
         
         # Save button with some space above it
