@@ -155,6 +155,7 @@ class Widget():
     
     def cantonese2pinyin(self, text=""):
         self.jyuping = " ".join(jyutping.get(text))
+        print(self.jyuping)
         return self.jyuping
     
     def getLanguage(self, text=""):
