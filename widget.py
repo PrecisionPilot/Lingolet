@@ -158,8 +158,8 @@ class Widget():
         text = text.replace(" ", "").split("\n")
         for text_line in text:
             self.jyuping += " ".join(jyutping.get(text_line)) + "\n"
+        self.jyuping = self.jyuping.rstrip()
         print(self.jyuping)
-        self.jyuping.strip()
 
         return self.jyuping
     
@@ -252,8 +252,11 @@ class Widget():
                     self.outputPinyin = self.pinyin.get_pinyin(self.inText, splitter=" ", tone_marks="marks")
                 # Add simplified Chinese
                 if self.showSimplified and self.getLanguage(self.inText) == "zh-TW":
-                    self.outputPinyin += f"\n{self.translateGoogle('ZH-CN', self.inText)}"
-                self.outText = f"{self.outputPinyin}\n\n" + self.outText.text
+                    self.outputPinyin += "\n"
+                    for inTextLine in self.inText.split("\n"):
+                        self.outputPinyin += self.translateGoogle('ZH-CN', inTextLine) + "\n"
+                self.outputPinyin = self.outputPinyin.replace(" \n ", "\n")
+                self.outText = f"{self.outputPinyin}\n" + self.outText.text
         
         # Generate text to speech audio file
         if self.detectedSourceLanguage == "EN":
