@@ -39,7 +39,6 @@ class Widget():
         # Variables
         self.soundEffects = True
         self.cantonese = False
-
         self.showSimplified = True
         self.key = Controller()
         self.pinyin = Pinyin()
