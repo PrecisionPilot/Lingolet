@@ -159,9 +159,8 @@ class Widget():
         text = text.replace(" ", "").split("\n")
         for text_line in text:
             self.jyuping += " ".join(jyutping.get(text_line)) + "\n"
+        print(self.jyuping)
         self.jyuping.strip()
-        
-        return self.jyuping
     
     def getLanguage(self, text=""):
         return self.GoogleTranslate.detect_language(text)["language"]
