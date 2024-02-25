@@ -4,7 +4,7 @@ from tkinter import messagebox
 from internetConnection import isConnected
 from pynput.keyboard import Key, Controller
 from xpinyin import Pinyin
-import pycantonese
+import jyutping
 import time
 import math
 import json
@@ -37,7 +37,6 @@ class Widget():
         # Variables
         self.soundEffects = True
         self.cantonese = False
-        self.tone_marks = False
         self.key = Controller()
         self.pinyin = Pinyin()
         self.sourceLanguage = ""
@@ -151,16 +150,8 @@ class Widget():
         if self.soundEffects:
             threading.Thread(target=playsound.playsound, args=(f"Assets/Sound Effects/{sound_effect}",)).start()
     
-    def cantonese2pinyin(self, text="", tone_marks=False):
-        # Loop through all the tuples and get the second element to append it to the text
-        self.jyuping = ""
-        if tone_marks:
-            for text in pycantonese.characters_to_jyutping(text):
-                self.jyuping += self.pinyin.decode_pinyin(text[1]) + " "
-        else:
-            for text in pycantonese.characters_to_jyutping(text):
-                self.jyuping += str(text[1]) + " "
-        
+    def cantonese2pinyin(self, text=""):
+        self.jyuping = " ".join(jyutping.get(text))
         return self.jyuping
     
     def getLanguage(self, text=""):
@@ -236,7 +227,7 @@ class Widget():
             if self.detectedSourceLanguage == "ZH":
                 # Mandarin or Cantonese Pinyin?
                 if self.cantonese:
-                    self.outputPinyin = self.cantonese2pinyin(self.inText, self.tone_marks)
+                    self.outputPinyin = self.cantonese2pinyin(self.inText)
                 else:
                     self.outputPinyin = self.pinyin.get_pinyin(self.inText, splitter=" ", tone_marks="marks")
                 self.outText = f"{self.outputPinyin}\n\n" + self.outText.text
@@ -346,10 +337,6 @@ class Widget():
                 self.cantonese = False
             else:
                 self.cantonese = True
-                if self.selectedPinyin.get() == "Cantonese (jyutping)":
-                    self.tone_marks = False
-                else:
-                    self.tone_marks = True
             self.sourceLanguage = self.language2code(isGoogle=False, language=self.selectedSourceLanguage.get())
             self.settingsWindow.destroy()
             self.soundEffects = [False, True][self.selectedSoundEffect.get() == 1]
@@ -369,16 +356,13 @@ class Widget():
         # Option 1, Chinese or Cantonese romanization, dropdown menu
         self.selectedPinyin = tk.StringVar()
         if self.cantonese:  # Button shows selected option
-            if self.tone_marks:
-                self.selectedPinyin.set("Cantonese (Jyutping) w/ tone marks")
-            else:
-                self.selectedPinyin.set("Cantonese (jyutping)")
+            self.selectedPinyin.set("Cantonese")
         else:
             self.selectedPinyin.set("Mandarin")
         # Create option 1 text
         tk.Label(self.settingsWindow, text="Pinyin:     ", font=self.myFont, bg="white").grid(row=0, column=0, padx=2, pady=2, sticky="w")
         # Create option 1 dropdown menu
-        self.option1 = tk.OptionMenu(self.settingsWindow, self.selectedPinyin, "Mandarin", "Cantonese (jyutping)", "Cantonese (Jyutping) w/ tone marks")
+        self.option1 = tk.OptionMenu(self.settingsWindow, self.selectedPinyin, "Mandarin", "Cantonese")
         self.option1.configure(font=self.myFont)
         self.option1.grid(row=0, column=1, padx=2, pady=2, sticky="w")
 

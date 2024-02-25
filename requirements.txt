@@ -7,7 +7,7 @@ google.cloud.vision
 google.cloud.translate
 pillow
 xpinyin
-pycantonese
+jyutping
 google-cloud-texttospeech
 playsound==1.2.2
 gTTS
