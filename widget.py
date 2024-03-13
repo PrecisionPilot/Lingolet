@@ -4,7 +4,6 @@ from tkinter import messagebox
 from internetConnection import isConnected
 from pynput.keyboard import Key, Controller
 from xpinyin import Pinyin
-import jyutping
 import time
 import math
 import json
@@ -16,6 +15,8 @@ from google.cloud import translate_v2 as translate
 import googleTTS
 import six
 from google.cloud import translate_v2 as translate
+from pyjyutping import jyutping
+import jyutping as jytp
 
 class Widget():
     def __init__(self) -> None:
@@ -148,6 +149,12 @@ class Widget():
         self.root.lift()
         self.root.mainloop()
         self.releaseKeys()
+
+    def get_jyutping(self, text: str) -> str:
+        # If ping1 has a none, then sub element with ping2
+        ping1 = jytp.get(text)
+        ping2 = jyutping.convert(text).split(" ")
+        return " ".join([ping1[i] if ping1[i] else ping2[i] for i in range(len(ping1))])
     
     def playSoundEffect(self, sound_effect: str):
         if self.soundEffects:
@@ -157,7 +164,7 @@ class Widget():
         self.jyuping = ""
         text = text.replace(" ", "").split("\n")
         for text_line in text:
-            self.jyuping += " ".join(jyutping.get(text_line)) + "\n"
+            self.jyuping += self.get_jyutping(text_line) + "\n"
         self.jyuping = self.jyuping.rstrip()
         print(self.jyuping)
 
