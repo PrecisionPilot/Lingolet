@@ -20,11 +20,14 @@ debugMode = False
 popUp.welcome()
 
 # Activation hotkey triggers this procedure
-def parseClipboard():
+def parseClipboard(openPopUp: bool = False):
     clipboard = ImageGrab.grabclipboard()
 
     # Play sound
-    popUp.playSoundEffect("Coin.mp3")
+    if openPopUp:
+        popUp.playSoundEffect("Coin 3.mp3")
+    else:
+        popUp.playSoundEffect("Coin 2.mp3")
 
     # Check clipboard contents
     # If clipboard contains image
@@ -44,10 +47,11 @@ def parseClipboard():
             pyperclip.copy(text)
             print(text)
             # Open translation widget
-            popUp.open(text)
+            if openPopUp:
+                popUp.open(text)
 
     # if clibpoard contains text
-    elif pyperclip.paste():
+    elif pyperclip.paste() and openPopUp:
         # No need to copy to clipboard
         text = pyperclip.paste()
         print(text)
@@ -66,7 +70,8 @@ def main():
 
     # Hotkey implementation
     if not debugMode:
-        with keyboard.GlobalHotKeys({'<alt>+q': parseClipboard}) as h:
+        with keyboard.GlobalHotKeys({'<alt>+q': lambda : parseClipboard(True),
+                                     '<alt>+w': lambda : parseClipboard(False)}) as h:
             h.join()
 
     # Debug mode
